@@ -7,7 +7,7 @@
           <text></text>
         </inputExpression>
         <inputValues id="UnaryTests_07wtcj3">
-          <text><![CDATA["Bachelor","Master","PhD"]]></text>
+          <text><![CDATA["Bachelor","Master","PhD","none","alternative education"]]></text>
         </inputValues>
       </input>
       <input id="InputClause_1q5inz5" label="Major">
@@ -27,86 +27,129 @@
       </input>
       <input id="InputClause_03762nf" label="Skills">
         <inputExpression id="LiteralExpression_0t4mzfv" typeRef="string" />
+        <inputValues id="UnaryTests_1eephmy">
+          <text><![CDATA["MS Office","Project Management Certification (e.g.IPMA)","Programming Basics","Leadership","Agile Methods (SCRUM)"]]></text>
+        </inputValues>
       </input>
       <output id="output1" label="Invite for interview" name="" typeRef="boolean" />
       <rule id="row-147002677-1">
         <inputEntry id="UnaryTests_13dhloq">
-          <text><![CDATA["Bachelor"]]></text>
+          <text><![CDATA["Bachelor", "Master", "PhD"]]></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0fluw0u">
-          <text></text>
+          <text><![CDATA["Economics", "Engineering", "Commerce", "Business Administration", "Business Information Systems", "Computer Science"]]></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0qb8vwg">
           <text><![CDATA[<= 2]]></text>
         </inputEntry>
         <inputEntry id="UnaryTests_050ggqs">
-          <text></text>
+          <text><![CDATA["German", "French", "Italian", "English"]]></text>
         </inputEntry>
         <inputEntry id="UnaryTests_03y8qs3">
-          <text></text>
+          <text><![CDATA["MS Office", "Project Management Certification (e.g.IPMA)", "Programming Basics", "Agile Methods (SCRUM)"]]></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1uze3x1">
-          <text></text>
+          <text>false</text>
         </outputEntry>
       </rule>
       <rule id="row-147002677-2">
         <inputEntry id="UnaryTests_0lqtb2y">
-          <text></text>
+          <text><![CDATA["Master", "PhD", "Bachelor"]]></text>
         </inputEntry>
         <inputEntry id="UnaryTests_14ljkqj">
-          <text></text>
+          <text><![CDATA["Economics", "Engineering", "Commerce", "Business Administration", "Business Information Systems", "Computer Science"]]></text>
         </inputEntry>
         <inputEntry id="UnaryTests_01t1356">
           <text>]3..5[</text>
         </inputEntry>
         <inputEntry id="UnaryTests_00ovbds">
-          <text></text>
+          <text><![CDATA["German", "French", "Italian", "English"]]></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0ggfbdo">
-          <text></text>
+          <text><![CDATA["MS Office", "Project Management Certification (e.g.IPMA)", "Programming Basics", "Leadership", "Agile Methods (SCRUM)"]]></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1n452xl">
-          <text></text>
+          <text>true</text>
         </outputEntry>
       </rule>
       <rule id="row-147002677-3">
         <inputEntry id="UnaryTests_0vrv582">
-          <text></text>
+          <text><![CDATA["PhD", "Bachelor", "Master"]]></text>
         </inputEntry>
         <inputEntry id="UnaryTests_14eqhmm">
-          <text></text>
+          <text><![CDATA["Economics", "Engineering", "Commerce", "Business Administration", "Computer Science", "Business Information Systems"]]></text>
         </inputEntry>
         <inputEntry id="UnaryTests_1hsljov">
           <text>]6..9[</text>
         </inputEntry>
         <inputEntry id="UnaryTests_12ky52j">
-          <text></text>
+          <text><![CDATA["German", "French", "Italian", "English"]]></text>
         </inputEntry>
         <inputEntry id="UnaryTests_1sevpzs">
-          <text></text>
+          <text><![CDATA["MS Office", "Project Management Certification (e.g.IPMA)", "Programming Basics", "Leadership", "Agile Methods (SCRUM)"]]></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1b2iucb">
-          <text></text>
+          <text>true</text>
         </outputEntry>
       </rule>
       <rule id="row-147002677-4">
         <inputEntry id="UnaryTests_1wzxihu">
-          <text></text>
+          <text><![CDATA["Bachelor", "Master", "PhD"]]></text>
         </inputEntry>
         <inputEntry id="UnaryTests_1ols7f5">
-          <text></text>
+          <text><![CDATA["Economics", "Engineering", "Commerce", "Business Administration", "Business Information Systems", "Computer Science"]]></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0detzql">
           <text><![CDATA[>= 10]]></text>
         </inputEntry>
         <inputEntry id="UnaryTests_17nrffm">
-          <text></text>
+          <text><![CDATA["German", "French", "Italian", "English"]]></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0n9gbs8">
-          <text></text>
+          <text><![CDATA["MS Office", "Project Management Certification (e.g.IPMA)", "Programming Basics", "Leadership", "Agile Methods (SCRUM)"]]></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1s4q1bl">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="row-719891418-1">
+        <inputEntry id="UnaryTests_0qmtj2c">
+          <text><![CDATA["alternative education"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1l4cwke">
           <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_17it971">
+          <text><![CDATA[>= 6]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0e1w4fy">
+          <text><![CDATA["German", "French", "Italian", "English"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0hjt3zi">
+          <text><![CDATA["MS Office", "Project Management Certification (e.g.IPMA)", "Programming Basics", "Leadership", "Agile Methods (SCRUM)"]]></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1dhy3rd">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="row-719891418-2">
+        <inputEntry id="UnaryTests_0neyq4z">
+          <text><![CDATA["none"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_03prbm9">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0lwla3x">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0dgyj00">
+          <text><![CDATA["French", "German", "Italian"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0nv9vcl">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0v2exgo">
+          <text>false</text>
         </outputEntry>
       </rule>
     </decisionTable>
