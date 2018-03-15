@@ -117,7 +117,7 @@
           <text><![CDATA["alternative education"]]></text>
         </inputEntry>
         <inputEntry id="UnaryTests_1l4cwke">
-          <text></text>
+          <text><![CDATA["Economics", "Business Administration", "Computer Science"]]></text>
         </inputEntry>
         <inputEntry id="UnaryTests_17it971">
           <text><![CDATA[>= 6]]></text>
@@ -143,13 +143,33 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0dgyj00">
-          <text><![CDATA["French", "German", "Italian"]]></text>
+          <text><![CDATA["French", "German", "Italian", "English"]]></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0nv9vcl">
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0v2exgo">
           <text>false</text>
+        </outputEntry>
+      </rule>
+      <rule id="row-719891418-3">
+        <inputEntry id="UnaryTests_1ynm4r1">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0om1xv1">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1xq7gut">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_11xfiuz">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0en86wl">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1dsj4bo">
+          <text></text>
         </outputEntry>
       </rule>
     </decisionTable>
