@@ -572,7 +572,7 @@
         </bpmn:dataOutputAssociation>
       </bpmn:manualTask>
       <bpmn:sequenceFlow id="SequenceFlow_03dh7je" sourceRef="Task_1f8mdrh" targetRef="BusinessRuleTask_11jddh0" />
-      <bpmn:businessRuleTask id="Task_1hhjr41" name="Evaluate candidate score">
+      <bpmn:businessRuleTask id="Task_1hhjr41" name="Evaluate candidate score" camunda:decisionRef="2. Evaluation_second.dmn">
         <bpmn:incoming>SequenceFlow_1k4tueo</bpmn:incoming>
         <bpmn:outgoing>SequenceFlow_1atio8l</bpmn:outgoing>
       </bpmn:businessRuleTask>
