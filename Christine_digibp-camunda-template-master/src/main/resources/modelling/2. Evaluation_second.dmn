@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" id="definitions_07up2lr" name="definitions" namespace="http://camunda.org/schema/1.0/dmn">
+  <decision id="decision" name="2. Evaluation">
+    <decisionTable id="decisionTable">
+      <input id="input1" label="Skills">
+        <inputExpression id="inputExpression1" typeRef="string">
+          <text></text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0ywzhl3" label="Personality">
+        <inputExpression id="LiteralExpression_17wjllo" typeRef="string" />
+      </input>
+      <output id="output1" label="" name="" typeRef="integer" />
+      <rule id="row-304655613-4">
+        <inputEntry id="UnaryTests_19nvz15">
+          <text><![CDATA["all expectations fulfilled"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1xnfsxc">
+          <text><![CDATA["doesnt fit to the team"]]></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0hjemda">
+          <text>2</text>
+        </outputEntry>
+      </rule>
+      <rule id="table-563120245-1">
+        <description></description>
+        <inputEntry id="UnaryTests_0l3e1h2">
+          <text><![CDATA["all expectations fulfilled"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0u4mvht">
+          <text><![CDATA["fits to the team"]]></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0qkgeyk">
+          <text>5</text>
+        </outputEntry>
+      </rule>
+      <rule id="row-304655613-5">
+        <inputEntry id="UnaryTests_0tdh40e">
+          <text><![CDATA["almost all expectations fulfilled"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0wb03zi">
+          <text><![CDATA["fits to the team"]]></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1q8ji9b">
+          <text>3</text>
+        </outputEntry>
+      </rule>
+      <rule id="row-304655613-6">
+        <inputEntry id="UnaryTests_0bzodc1">
+          <text><![CDATA["almost all expectations fulfilled"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1jnk60b">
+          <text><![CDATA["doesn`t fit to the team"]]></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1lkmb2k">
+          <text>1</text>
+        </outputEntry>
+      </rule>
+      <rule id="row-304655613-7">
+        <inputEntry id="UnaryTests_1mv0mqi">
+          <text><![CDATA["expectations are not fulfilled"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_16vnftf">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ih4x3d">
+          <text>0</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>
