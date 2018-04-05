@@ -47,11 +47,6 @@
     <bpmn:sequenceFlow id="SequenceFlow_1vocd6r" sourceRef="RetrieveJobDescription" targetRef="ExclusiveGateway_1x48p5y" />
     <bpmn:sequenceFlow id="SequenceFlow_15niz7t" sourceRef="CreateJobDescription" targetRef="ExclusiveGateway_1x48p5y" />
     <bpmn:endEvent id="EndEvent_0o1kh7d" name="Do not hire employee">
-      <bpmn:extensionElements>
-        <camunda:inputOutput>
-          <camunda:inputParameter name="No" />
-        </camunda:inputOutput>
-      </bpmn:extensionElements>
       <bpmn:incoming>HeadcountNo</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:startEvent id="RequestNewEmployee" name="Request new employee">
