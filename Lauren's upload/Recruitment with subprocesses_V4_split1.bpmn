@@ -14,10 +14,10 @@
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ExistingRole</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>HeadcountAvailable</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>AskDirector</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>DeliverJobFile</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ChoosePanel</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>NotifyPanelMembers</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>AskDirector</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_03zro0z" name="Interview Panel">
         <bpmn:childLaneSet xsi:type="bpmn:tLaneSet" />
@@ -31,8 +31,8 @@
     <bpmn:inclusiveGateway id="ExclusiveGateway_1x48p5y">
       <bpmn:extensionElements>
         <camunda:inputOutput>
-          <camunda:inputParameter name="JobDescription" />
-          <camunda:outputParameter name="JobDescription" />
+          <camunda:inputParameter name="JobDescription">Yes</camunda:inputParameter>
+          <camunda:outputParameter name="JobDescription">Yes</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1vocd6r</bpmn:incoming>
@@ -66,7 +66,7 @@
     <bpmn:endEvent id="EndEvent_15phtc4">
       <bpmn:extensionElements>
         <camunda:inputOutput>
-          <camunda:inputParameter name="EmailNotification" />
+          <camunda:inputParameter name="EmailNotification">Send</camunda:inputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0sig9jn</bpmn:incoming>
@@ -74,8 +74,8 @@
     <bpmn:manualTask id="RetrieveJobDescription" name="Retrieve job description">
       <bpmn:extensionElements>
         <camunda:inputOutput>
-          <camunda:inputParameter name="Yes" />
-          <camunda:outputParameter name="JobDescription" />
+          <camunda:inputParameter name="Yes">Yes</camunda:inputParameter>
+          <camunda:outputParameter name="JobDescription">Yes</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1228xeu</bpmn:incoming>
@@ -85,8 +85,8 @@
     <bpmn:manualTask id="CreateJobDescription" name="Create job description">
       <bpmn:extensionElements>
         <camunda:inputOutput>
-          <camunda:inputParameter name="No" />
-          <camunda:outputParameter name="JobDescription" />
+          <camunda:inputParameter name="No">No</camunda:inputParameter>
+          <camunda:outputParameter name="JobDescription">Yes</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0v7qbru</bpmn:incoming>
@@ -99,7 +99,8 @@
     <bpmn:exclusiveGateway id="ExistingRole" name="Is headcount for an already existing role?">
       <bpmn:extensionElements>
         <camunda:inputOutput>
-          <camunda:inputParameter name="HeadcountYes" />
+          <camunda:inputParameter name="Yes">Yes</camunda:inputParameter>
+          <camunda:outputParameter name="ExistingRole">Yes</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_06x4713</bpmn:incoming>
@@ -109,28 +110,19 @@
     <bpmn:exclusiveGateway id="HeadcountAvailable" name="Headcount available?">
       <bpmn:extensionElements>
         <camunda:inputOutput>
-          <camunda:inputParameter name="DirectorFeedback" />
+          <camunda:inputParameter name="DirectorFeedback">Headcount available</camunda:inputParameter>
+          <camunda:outputParameter name="HeadcountAvailable">Yes</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_17f6tl2</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1yzo70t</bpmn:outgoing>
       <bpmn:outgoing>SequenceFlow_06x4713</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:task id="AskDirector" name="Ask Director for new headcount">
-      <bpmn:extensionElements>
-        <camunda:inputOutput>
-          <camunda:inputParameter name="HeadcountRequest" />
-          <camunda:outputParameter name="DirectorFeedback" />
-        </camunda:inputOutput>
-      </bpmn:extensionElements>
-      <bpmn:incoming>SequenceFlow_1xaf48n</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_17f6tl2</bpmn:outgoing>
-    </bpmn:task>
     <bpmn:manualTask id="DeliverJobFile" name="Deliver job file for posting">
       <bpmn:extensionElements>
         <camunda:inputOutput>
-          <camunda:inputParameter name="JobDescription" />
-          <camunda:outputParameter name="JobFile" />
+          <camunda:inputParameter name="JobDescription">Yes</camunda:inputParameter>
+          <camunda:outputParameter name="JobFile">Send</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0cush1d</bpmn:incoming>
@@ -139,8 +131,8 @@
     <bpmn:manualTask id="ChoosePanel" name="Choose interview panel members">
       <bpmn:extensionElements>
         <camunda:inputOutput>
-          <camunda:inputParameter name="JobFile" />
-          <camunda:outputParameter name="PanelMembers" />
+          <camunda:inputParameter name="JobFile">Send</camunda:inputParameter>
+          <camunda:outputParameter name="PanelMembers">Choice</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1vwjfib</bpmn:incoming>
@@ -152,12 +144,22 @@
     <bpmn:manualTask id="NotifyPanelMembers" name="Notify interview panel members">
       <bpmn:extensionElements>
         <camunda:inputOutput>
-          <camunda:inputParameter name="PanelMembers" />
-          <camunda:outputParameter name="EmailNotification" />
+          <camunda:inputParameter name="PanelMembers">Choice</camunda:inputParameter>
+          <camunda:outputParameter name="EmailNotification">Send</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_00v1ter</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0sig9jn</bpmn:outgoing>
+    </bpmn:manualTask>
+    <bpmn:manualTask id="AskDirector" name="Ask Director for new headcount">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="HeadcountRequest">Yes</camunda:inputParameter>
+          <camunda:outputParameter name="DirectorFeedback">Headcount available</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1xaf48n</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_17f6tl2</bpmn:outgoing>
     </bpmn:manualTask>
   </bpmn:process>
   <bpmn:process id="Process_0hgp4ou" isExecutable="true" />
@@ -186,9 +188,9 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_1xaf48n_di" bpmnElement="SequenceFlow_1xaf48n">
         <di:waypoint xsi:type="dc:Point" x="-1257" y="-127" />
-        <di:waypoint xsi:type="dc:Point" x="-1239" y="-127" />
+        <di:waypoint xsi:type="dc:Point" x="-1238" y="-127" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="-1293" y="-148.5" width="90" height="13" />
+          <dc:Bounds x="-1292.5" y="-148.5" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="EndEvent_0o1kh7d_di" bpmnElement="EndEvent_0o1kh7d">
@@ -293,14 +295,11 @@
       <bpmndi:BPMNShape id="ManualTask_1usch1b_di" bpmnElement="NotifyPanelMembers">
         <dc:Bounds x="-478" y="-167" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Task_0n018ly_di" bpmnElement="AskDirector">
-        <dc:Bounds x="-1238.593" y="-167" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_17f6tl2_di" bpmnElement="SequenceFlow_17f6tl2">
-        <di:waypoint xsi:type="dc:Point" x="-1139" y="-127" />
+        <di:waypoint xsi:type="dc:Point" x="-1138" y="-127" />
         <di:waypoint xsi:type="dc:Point" x="-1119" y="-127" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="-1129" y="-148" width="0" height="12" />
+          <dc:Bounds x="-1128.5" y="-148" width="0" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_0cush1d_di" bpmnElement="SequenceFlow_0cush1d">
@@ -324,6 +323,9 @@
           <dc:Bounds x="-509" y="-148" width="0" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ManualTask_03c04is_di" bpmnElement="AskDirector">
+        <dc:Bounds x="-1238" y="-167" width="100" height="80" />
+      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>
