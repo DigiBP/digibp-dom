@@ -7,14 +7,14 @@
   <bpmn:process id="Process_1" isExecutable="true">
     <bpmn:laneSet>
       <bpmn:lane id="Lane_0nrr46z" name="Manager">
-        <bpmn:flowNodeRef>RequestNewEmployee</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>AskDirector</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ExistingHeadcount</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ExclusiveGateway_08kgy3w</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_15phtc4</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ExistingJobDescription</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_01iiv0a</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>DeliverJobFile</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>AskDirector</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>RequestNewEmployee</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_03zro0z" name="Interview Panel">
         <bpmn:childLaneSet xsi:type="bpmn:tLaneSet" />
@@ -31,30 +31,7 @@
     <bpmn:sequenceFlow id="HeadcountNo" name="No" sourceRef="HeadcountAvailable" targetRef="EndEvent_0o1kh7d">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[#{HeadcountAvailable == 'No'}]]></bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:startEvent id="RequestNewEmployee" name="Request new employee">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="newEmployee" label="New Employee" type="string" defaultValue="true" />
-          <camunda:formField id="existingRole" label="Existing Role" type="boolean" defaultValue="No" />
-          <camunda:formField id="newRole" label="New Role" type="boolean" defaultValue="Yes" />
-        </camunda:formData>
-      </bpmn:extensionElements>
-      <bpmn:outgoing>SequenceFlow_1xaf48n</bpmn:outgoing>
-    </bpmn:startEvent>
     <bpmn:sequenceFlow id="SequenceFlow_17f6tl2" sourceRef="AskDirector" targetRef="HeadcountAvailable" />
-    <bpmn:userTask id="AskDirector" name="Ask Director for new headcount" camunda:candidateGroups="manager">
-      <bpmn:extensionElements>
-        <camunda:inputOutput>
-          <camunda:inputParameter name="HeadcountRequest">Yes</camunda:inputParameter>
-          <camunda:outputParameter name="DirectorFeedback">Headcount available</camunda:outputParameter>
-        </camunda:inputOutput>
-        <camunda:formData>
-          <camunda:formField id="newEmployee" label="New Employee" type="string" defaultValue="true" />
-        </camunda:formData>
-      </bpmn:extensionElements>
-      <bpmn:incoming>SequenceFlow_1xaf48n</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_17f6tl2</bpmn:outgoing>
-    </bpmn:userTask>
     <bpmn:sequenceFlow id="SequenceFlow_1veemet" name="Yes" sourceRef="HeadcountAvailable" targetRef="ApprovedHeadcount">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[#{HeadcountAvailable == 'Yes'}]]></bpmn:conditionExpression>
     </bpmn:sequenceFlow>
@@ -81,8 +58,8 @@
     <bpmn:userTask id="ApprovedHeadcount" name="Headcount is approved" camunda:candidateGroups="director">
       <bpmn:extensionElements>
         <camunda:inputOutput>
-          <camunda:inputParameter name="JobDescription">Yes</camunda:inputParameter>
-          <camunda:outputParameter name="JobFile">Send</camunda:outputParameter>
+          <camunda:inputParameter name="DirectorFeedback">Yes</camunda:inputParameter>
+          <camunda:outputParameter name="HeadcountType">Decision</camunda:outputParameter>
         </camunda:inputOutput>
         <camunda:formData>
           <camunda:formField id="newRole" label="New Role" type="boolean" defaultValue="Yes" />
@@ -109,6 +86,10 @@
         <camunda:formData>
           <camunda:formField id="existingRole" label="Existing Role" type="boolean" defaultValue="No" />
         </camunda:formData>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="HeadcountType">Decision</camunda:inputParameter>
+          <camunda:outputParameter name="ExistingPosition">Yes</camunda:outputParameter>
+        </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0d0dq6h</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1onf5h5</bpmn:outgoing>
@@ -118,6 +99,10 @@
         <camunda:formData>
           <camunda:formField id="newRole" label="New Role" type="boolean" defaultValue="Yes" />
         </camunda:formData>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="HeadcountType">Decision</camunda:inputParameter>
+          <camunda:outputParameter name="NewPosition">Yes</camunda:outputParameter>
+        </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1jqbp68</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1u92al3</bpmn:outgoing>
@@ -128,10 +113,38 @@
           <camunda:formField id="existingRole" label="Existing Role" type="boolean" defaultValue="No" />
           <camunda:formField id="newRole" label="New Role" type="boolean" defaultValue="Yes" />
         </camunda:formData>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="ExistingPosition">Yes</camunda:inputParameter>
+          <camunda:inputParameter name="NewPosition">Yes</camunda:inputParameter>
+          <camunda:outputParameter name="JobFile">Send</camunda:outputParameter>
+        </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1ymnhng</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1aegwv1</bpmn:outgoing>
     </bpmn:userTask>
+    <bpmn:userTask id="AskDirector" name="Ask Director for new headcount" camunda:candidateGroups="manager">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="HeadcountRequest">Yes</camunda:inputParameter>
+          <camunda:outputParameter name="DirectorFeedback">Headcount available</camunda:outputParameter>
+        </camunda:inputOutput>
+        <camunda:formData>
+          <camunda:formField id="newEmployee" label="New Employee" type="string" defaultValue="true" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1xaf48n</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_17f6tl2</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:startEvent id="RequestNewEmployee" name="Request new employee">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="newEmployee" label="New Employee" type="string" defaultValue="true" />
+          <camunda:formField id="existingRole" label="Existing Role" type="boolean" defaultValue="No" />
+          <camunda:formField id="newRole" label="New Role" type="boolean" defaultValue="Yes" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:outgoing>SequenceFlow_1xaf48n</bpmn:outgoing>
+    </bpmn:startEvent>
   </bpmn:process>
   <bpmn:process id="Process_0hgp4ou" isExecutable="true" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
@@ -140,9 +153,9 @@
         <dc:Bounds x="-1352" y="-1043" width="6819" height="1482" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="RequestNewEmployee">
-        <dc:Bounds x="-1293" y="-145" width="36" height="36" />
+        <dc:Bounds x="-1275" y="-145" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="-1308" y="-106" width="65" height="24" />
+          <dc:Bounds x="-1290" y="-106" width="65" height="24" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_0nrr46z_di" bpmnElement="Lane_0nrr46z">
@@ -158,10 +171,10 @@
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_1xaf48n_di" bpmnElement="SequenceFlow_1xaf48n">
-        <di:waypoint xsi:type="dc:Point" x="-1257" y="-127" />
-        <di:waypoint xsi:type="dc:Point" x="-1238" y="-127" />
+        <di:waypoint xsi:type="dc:Point" x="-1239" y="-127" />
+        <di:waypoint xsi:type="dc:Point" x="-1208" y="-127" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="-1292.5" y="-148.5" width="90" height="13" />
+          <dc:Bounds x="-1268.5" y="-148.5" width="90" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="EndEvent_0o1kh7d_di" bpmnElement="EndEvent_0o1kh7d">
@@ -195,15 +208,15 @@
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_17f6tl2_di" bpmnElement="SequenceFlow_17f6tl2">
-        <di:waypoint xsi:type="dc:Point" x="-1188" y="-87" />
-        <di:waypoint xsi:type="dc:Point" x="-1188" y="382" />
+        <di:waypoint xsi:type="dc:Point" x="-1158" y="-87" />
+        <di:waypoint xsi:type="dc:Point" x="-1158" y="382" />
         <di:waypoint xsi:type="dc:Point" x="-1103" y="382" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="-1218" y="141.5" width="90" height="12" />
+          <dc:Bounds x="-1188" y="141.5" width="90" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="UserTask_1dnie8z_di" bpmnElement="AskDirector">
-        <dc:Bounds x="-1238" y="-167" width="100" height="80" />
+        <dc:Bounds x="-1208" y="-167" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="UserTask_1nz2t21_di" bpmnElement="ApprovedHeadcount">
         <dc:Bounds x="-1128" y="246" width="100" height="80" />
