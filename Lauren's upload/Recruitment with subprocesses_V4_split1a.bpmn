@@ -7,7 +7,7 @@
   <bpmn:process id="Process_1" isExecutable="true">
     <bpmn:laneSet>
       <bpmn:lane id="Lane_0nrr46z" name="Manager">
-        <bpmn:flowNodeRef>ExistingHeadcount</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ExistingPosition</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ExclusiveGateway_08kgy3w</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_15phtc4</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ExistingJobDescription</bpmn:flowNodeRef>
@@ -43,17 +43,17 @@
     <bpmn:endEvent id="EndEvent_0o1kh7d" name="Do not hire employee">
       <bpmn:incoming>HeadcountNo</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:exclusiveGateway id="ExistingHeadcount" name="Headcount for existing position?">
+    <bpmn:exclusiveGateway id="ExistingPosition" name="Headcount for existing position?">
       <bpmn:incoming>SequenceFlow_0d9kpk7</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0d0dq6h</bpmn:outgoing>
       <bpmn:outgoing>SequenceFlow_1jqbp68</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="SequenceFlow_0d9kpk7" sourceRef="ApprovedHeadcount" targetRef="ExistingHeadcount" />
-    <bpmn:sequenceFlow id="SequenceFlow_0d0dq6h" name="Yes" sourceRef="ExistingHeadcount" targetRef="ExistingJobDescription">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[#{ExistingHeadcount == 'Yes'}]]></bpmn:conditionExpression>
+    <bpmn:sequenceFlow id="SequenceFlow_0d9kpk7" sourceRef="ApprovedHeadcount" targetRef="ExistingPosition" />
+    <bpmn:sequenceFlow id="SequenceFlow_0d0dq6h" name="Yes" sourceRef="ExistingPosition" targetRef="ExistingJobDescription">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[#{ExistingPosition == 'Yes'}]]></bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="SequenceFlow_1jqbp68" name="No" sourceRef="ExistingHeadcount" targetRef="Task_01iiv0a">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[#{ExistingHeadcount == 'No'}]]></bpmn:conditionExpression>
+    <bpmn:sequenceFlow id="SequenceFlow_1jqbp68" name="No" sourceRef="ExistingPosition" targetRef="Task_01iiv0a">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[#{ExistingPosition == 'No'}]]></bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:userTask id="ApprovedHeadcount" name="Headcount is approved" camunda:candidateGroups="director">
       <bpmn:extensionElements>
@@ -87,8 +87,8 @@
           <camunda:formField id="existingRole" label="Existing Role" type="boolean" defaultValue="No" />
         </camunda:formData>
         <camunda:inputOutput>
-          <camunda:inputParameter name="HeadcountType">Decision</camunda:inputParameter>
-          <camunda:outputParameter name="ExistingPosition">Yes</camunda:outputParameter>
+          <camunda:inputParameter name="ExistingPosition">Yes</camunda:inputParameter>
+          <camunda:outputParameter name="ExistingJobDescription">Text</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0d0dq6h</bpmn:incoming>
@@ -100,8 +100,8 @@
           <camunda:formField id="newRole" label="New Role" type="boolean" defaultValue="Yes" />
         </camunda:formData>
         <camunda:inputOutput>
-          <camunda:inputParameter name="HeadcountType">Decision</camunda:inputParameter>
-          <camunda:outputParameter name="NewPosition">Yes</camunda:outputParameter>
+          <camunda:inputParameter name="ExistingPosition">No</camunda:inputParameter>
+          <camunda:outputParameter name="NewJobDescription">Text</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1jqbp68</bpmn:incoming>
@@ -114,8 +114,8 @@
           <camunda:formField id="newRole" label="New Role" type="boolean" defaultValue="Yes" />
         </camunda:formData>
         <camunda:inputOutput>
-          <camunda:inputParameter name="ExistingPosition">Yes</camunda:inputParameter>
-          <camunda:inputParameter name="NewPosition">Yes</camunda:inputParameter>
+          <camunda:inputParameter name="ExistingJobDescription">Text</camunda:inputParameter>
+          <camunda:inputParameter name="NewJobDescription">Text</camunda:inputParameter>
           <camunda:outputParameter name="JobFile">Send</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
@@ -228,7 +228,7 @@
           <dc:Bounds x="-1107.5" y="339.59375" width="19" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="ExclusiveGateway_0pf7k2d_di" bpmnElement="ExistingHeadcount" isMarkerVisible="true">
+      <bpmndi:BPMNShape id="ExclusiveGateway_0pf7k2d_di" bpmnElement="ExistingPosition" isMarkerVisible="true">
         <dc:Bounds x="-953" y="-152" width="50" height="50" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="-897" y="-139" width="83" height="24" />
