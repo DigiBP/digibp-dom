@@ -58,7 +58,7 @@
     <bpmn:userTask id="ApprovedHeadcount" name="Headcount is approved" camunda:candidateGroups="director">
       <bpmn:extensionElements>
         <camunda:inputOutput>
-          <camunda:inputParameter name="DirectorFeedback">Yes</camunda:inputParameter>
+          <camunda:inputParameter name="DirectorFeedback">Headcount available</camunda:inputParameter>
           <camunda:outputParameter name="HeadcountType">Decision</camunda:outputParameter>
         </camunda:inputOutput>
         <camunda:formData>
