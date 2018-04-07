@@ -7,13 +7,9 @@
   <bpmn:process id="Process_1" isExecutable="true">
     <bpmn:laneSet>
       <bpmn:lane id="Lane_0nrr46z" name="Manager">
-        <bpmn:flowNodeRef>ExclusiveGateway_1x48p5y</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>RequestNewEmployee</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>ExistingRole</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>HeadcountAvailable</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>AskDirector</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>CreateJobDescription</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>RetrieveJobDescription</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>DeliverJobFile</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_15phtc4</bpmn:flowNodeRef>
       </bpmn:lane>
@@ -26,26 +22,10 @@
       </bpmn:lane>
       <bpmn:lane id="Lane_1ni903m" name="HR Assisted" />
     </bpmn:laneSet>
-    <bpmn:inclusiveGateway id="ExclusiveGateway_1x48p5y">
-      <bpmn:incoming>SequenceFlow_1vocd6r</bpmn:incoming>
-      <bpmn:incoming>SequenceFlow_15niz7t</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0cush1d</bpmn:outgoing>
-    </bpmn:inclusiveGateway>
     <bpmn:sequenceFlow id="SequenceFlow_1xaf48n" sourceRef="RequestNewEmployee" targetRef="AskDirector" />
     <bpmn:sequenceFlow id="HeadcountNo" name="No" sourceRef="HeadcountAvailable" targetRef="EndEvent_0o1kh7d">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[#{HeadcountAvailable == 'No'}]]></bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="HeadcountYes" name="Yes" sourceRef="HeadcountAvailable" targetRef="ExistingRole">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[#{HeadcountAvailable == 'Yes'}]]></bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="ExistingRoleNo" name="No" sourceRef="ExistingRole" targetRef="CreateJobDescription">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[#{ExistingRole == 'No'}]]></bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="ExistingRoleYes" name="Yes" sourceRef="ExistingRole" targetRef="RetrieveJobDescription">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[#{ExistingRole == 'Yes'}]]></bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="SequenceFlow_1vocd6r" sourceRef="RetrieveJobDescription" targetRef="ExclusiveGateway_1x48p5y" />
-    <bpmn:sequenceFlow id="SequenceFlow_15niz7t" sourceRef="CreateJobDescription" targetRef="ExclusiveGateway_1x48p5y" />
     <bpmn:endEvent id="EndEvent_0o1kh7d" name="Do not hire employee">
       <bpmn:incoming>HeadcountNo</bpmn:incoming>
     </bpmn:endEvent>
@@ -60,17 +40,11 @@
       <bpmn:outgoing>SequenceFlow_1xaf48n</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="SequenceFlow_17f6tl2" sourceRef="AskDirector" targetRef="HeadcountAvailable" />
-    <bpmn:exclusiveGateway id="ExistingRole" name="Is headcount for an already existing role?">
-      <bpmn:incoming>HeadcountYes</bpmn:incoming>
-      <bpmn:outgoing>ExistingRoleNo</bpmn:outgoing>
-      <bpmn:outgoing>ExistingRoleYes</bpmn:outgoing>
-    </bpmn:exclusiveGateway>
     <bpmn:exclusiveGateway id="HeadcountAvailable" name="Headcount available?">
       <bpmn:incoming>SequenceFlow_17f6tl2</bpmn:incoming>
       <bpmn:outgoing>HeadcountNo</bpmn:outgoing>
-      <bpmn:outgoing>HeadcountYes</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_1veemet</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="SequenceFlow_0cush1d" sourceRef="ExclusiveGateway_1x48p5y" targetRef="DeliverJobFile" />
     <bpmn:sequenceFlow id="SequenceFlow_1vwjfib" sourceRef="DeliverJobFile" targetRef="EndEvent_15phtc4" />
     <bpmn:userTask id="AskDirector" name="Ask Director for new headcount" camunda:candidateGroups="manager">
       <bpmn:extensionElements>
@@ -85,25 +59,6 @@
       <bpmn:incoming>SequenceFlow_1xaf48n</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_17f6tl2</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="CreateJobDescription" name="Create job description" camunda:candidateGroups="manager">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="newRole" label="New Role" type="boolean" defaultValue="yes" />
-        </camunda:formData>
-      </bpmn:extensionElements>
-      <bpmn:incoming>ExistingRoleNo</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_15niz7t</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:userTask id="RetrieveJobDescription" name="Retrieve job description" camunda:candidateGroups="manager">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="existingRole" label="Existing Role" type="boolean" defaultValue="No" />
-        </camunda:formData>
-      </bpmn:extensionElements>
-      <bpmn:incoming>ExistingRoleYes</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_1vocd6r</bpmn:outgoing>
-      <bpmn:dataInputAssociation />
-    </bpmn:userTask>
     <bpmn:userTask id="DeliverJobFile" name="Deliver job file for posting" camunda:candidateGroups="manager">
       <bpmn:extensionElements>
         <camunda:inputOutput>
@@ -115,12 +70,15 @@
           <camunda:formField id="existingRole" label="Existing Role" type="boolean" defaultValue="No" />
         </camunda:formData>
       </bpmn:extensionElements>
-      <bpmn:incoming>SequenceFlow_0cush1d</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_1veemet</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1vwjfib</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:endEvent id="EndEvent_15phtc4">
       <bpmn:incoming>SequenceFlow_1vwjfib</bpmn:incoming>
     </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1veemet" name="Yes" sourceRef="HeadcountAvailable" targetRef="DeliverJobFile">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[#{HeadcountAvailable == 'Yes'}]]></bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
   </bpmn:process>
   <bpmn:process id="Process_0hgp4ou" isExecutable="true" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
@@ -173,57 +131,6 @@
       <bpmndi:BPMNShape id="Lane_0yruhv7_di" bpmnElement="Lane_0yruhv7">
         <dc:Bounds x="-1322" y="237" width="6789" height="133" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="ExclusiveGateway_0dergkb_di" bpmnElement="ExistingRole" isMarkerVisible="true">
-        <dc:Bounds x="-1028" y="-152" width="50" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="-1090" y="-112" width="80" height="36" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="InclusiveGateway_1lfpgxf_di" bpmnElement="ExclusiveGateway_1x48p5y">
-        <dc:Bounds x="-841" y="-152" width="50" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="-861" y="-99" width="90" height="13" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="SequenceFlow_1vocd6r_di" bpmnElement="SequenceFlow_1vocd6r">
-        <di:waypoint xsi:type="dc:Point" x="-864" y="-181" />
-        <di:waypoint xsi:type="dc:Point" x="-816" y="-181" />
-        <di:waypoint xsi:type="dc:Point" x="-816" y="-152" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="-885" y="-202.5" width="90" height="13" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_15niz7t_di" bpmnElement="SequenceFlow_15niz7t">
-        <di:waypoint xsi:type="dc:Point" x="-864" y="-68" />
-        <di:waypoint xsi:type="dc:Point" x="-816" y="-68" />
-        <di:waypoint xsi:type="dc:Point" x="-816" y="-102" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="-885" y="-89.5" width="90" height="13" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_06x4713_di" bpmnElement="HeadcountYes">
-        <di:waypoint xsi:type="dc:Point" x="-1069" y="-127" />
-        <di:waypoint xsi:type="dc:Point" x="-1028" y="-127" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="-1062" y="-144" width="19" height="12" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_0v7qbru_di" bpmnElement="ExistingRoleNo">
-        <di:waypoint xsi:type="dc:Point" x="-1003" y="-102" />
-        <di:waypoint xsi:type="dc:Point" x="-1003" y="-68" />
-        <di:waypoint xsi:type="dc:Point" x="-964" y="-68" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="-990" y="-89" width="14" height="12" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_1228xeu_di" bpmnElement="ExistingRoleYes">
-        <di:waypoint xsi:type="dc:Point" x="-1003" y="-152" />
-        <di:waypoint xsi:type="dc:Point" x="-1003" y="-181" />
-        <di:waypoint xsi:type="dc:Point" x="-964" y="-181" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="-996" y="-200" width="19" height="12" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Lane_1ni903m_di" bpmnElement="Lane_1ni903m">
         <dc:Bounds x="-1322" y="-1043" width="6789" height="791" />
       </bpmndi:BPMNShape>
@@ -240,13 +147,6 @@
           <dc:Bounds x="-1128.5" y="-148" width="0" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_0cush1d_di" bpmnElement="SequenceFlow_0cush1d">
-        <di:waypoint xsi:type="dc:Point" x="-791" y="-127" />
-        <di:waypoint xsi:type="dc:Point" x="-768" y="-127" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="-779.5" y="-148" width="0" height="12" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1vwjfib_di" bpmnElement="SequenceFlow_1vwjfib">
         <di:waypoint xsi:type="dc:Point" x="-668" y="-127" />
         <di:waypoint xsi:type="dc:Point" x="-570" y="-127" />
@@ -257,15 +157,16 @@
       <bpmndi:BPMNShape id="UserTask_1dnie8z_di" bpmnElement="AskDirector">
         <dc:Bounds x="-1238" y="-167" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="UserTask_1qq03so_di" bpmnElement="CreateJobDescription">
-        <dc:Bounds x="-964" y="-108" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="UserTask_1p5p6ke_di" bpmnElement="RetrieveJobDescription">
-        <dc:Bounds x="-964" y="-221" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="UserTask_1nz2t21_di" bpmnElement="DeliverJobFile">
         <dc:Bounds x="-768" y="-167" width="100" height="80" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1veemet_di" bpmnElement="SequenceFlow_1veemet">
+        <di:waypoint xsi:type="dc:Point" x="-1069" y="-127" />
+        <di:waypoint xsi:type="dc:Point" x="-768" y="-127" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-928" y="-148" width="19" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>
