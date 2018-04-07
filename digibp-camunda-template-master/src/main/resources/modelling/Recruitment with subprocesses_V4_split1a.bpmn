@@ -3,13 +3,15 @@
   <bpmn:collaboration id="Collaboration_1ehhwry">
     <bpmn:participant id="Participant_07esipk" processRef="Process_1" />
     <bpmn:participant id="Participant_064ehed" name="Applicant" processRef="Process_0hgp4ou" />
+    <bpmn:messageFlow id="MessageFlow_1psodpr" sourceRef="PostJobInt" targetRef="Participant_064ehed" />
+    <bpmn:messageFlow id="MessageFlow_1bxeosq" sourceRef="PostJobExt" targetRef="Participant_064ehed" />
+    <bpmn:messageFlow id="MessageFlow_0am0m5m" sourceRef="Participant_064ehed" targetRef="ReceiveApplications" />
   </bpmn:collaboration>
   <bpmn:process id="Process_1" isExecutable="true">
     <bpmn:laneSet>
       <bpmn:lane id="Lane_0nrr46z" name="Manager">
         <bpmn:flowNodeRef>ExistingPosition</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ExclusiveGateway_08kgy3w</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>EndEvent_15phtc4</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ExistingJobDescription</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_01iiv0a</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>DeliverJobFile</bpmn:flowNodeRef>
@@ -25,7 +27,13 @@
         <bpmn:flowNodeRef>ApprovedHeadcount</bpmn:flowNodeRef>
         <bpmn:childLaneSet xsi:type="bpmn:tLaneSet" />
       </bpmn:lane>
-      <bpmn:lane id="Lane_1ni903m" name="HR Assisted" />
+      <bpmn:lane id="Lane_1ni903m" name="HR Assistant">
+        <bpmn:flowNodeRef>FinalizeJobFile</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>PostJobExt</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>PostJobInt</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ReceiveApplications</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_0l50qtl</bpmn:flowNodeRef>
+      </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:sequenceFlow id="SequenceFlow_1xaf48n" sourceRef="RequestNewEmployee" targetRef="AskDirector" />
     <bpmn:sequenceFlow id="HeadcountNo" name="No" sourceRef="HeadcountAvailable" targetRef="EndEvent_0o1kh7d">
@@ -76,11 +84,7 @@
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="SequenceFlow_1u92al3" sourceRef="Task_01iiv0a" targetRef="ExclusiveGateway_08kgy3w" />
     <bpmn:sequenceFlow id="SequenceFlow_1onf5h5" sourceRef="ExistingJobDescription" targetRef="ExclusiveGateway_08kgy3w" />
-    <bpmn:endEvent id="EndEvent_15phtc4">
-      <bpmn:incoming>SequenceFlow_1aegwv1</bpmn:incoming>
-    </bpmn:endEvent>
     <bpmn:sequenceFlow id="SequenceFlow_1ymnhng" sourceRef="ExclusiveGateway_08kgy3w" targetRef="DeliverJobFile" />
-    <bpmn:sequenceFlow id="SequenceFlow_1aegwv1" sourceRef="DeliverJobFile" targetRef="EndEvent_15phtc4" />
     <bpmn:userTask id="ExistingJobDescription" name="Get Existing Job Description" camunda:candidateGroups="manager">
       <bpmn:extensionElements>
         <camunda:formData>
@@ -120,7 +124,7 @@
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1ymnhng</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_1aegwv1</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_0g16uio</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:userTask id="AskDirector" name="Ask Director for new headcount" camunda:candidateGroups="manager">
       <bpmn:extensionElements>
@@ -145,6 +149,76 @@
       </bpmn:extensionElements>
       <bpmn:outgoing>SequenceFlow_1xaf48n</bpmn:outgoing>
     </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0g16uio" sourceRef="DeliverJobFile" targetRef="FinalizeJobFile" />
+    <bpmn:sequenceFlow id="SequenceFlow_00cdlg4" sourceRef="FinalizeJobFile" targetRef="PostJobInt" />
+    <bpmn:sequenceFlow id="SequenceFlow_0rdknm5" sourceRef="FinalizeJobFile" targetRef="PostJobExt" />
+    <bpmn:userTask id="FinalizeJobFile" name="Finalize Job File" camunda:candidateGroups="HR Assistant">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="JobFile">Send</camunda:inputParameter>
+          <camunda:outputParameter name="FinalizedProfile">Ready </camunda:outputParameter>
+        </camunda:inputOutput>
+        <camunda:formData>
+          <camunda:formField id="existingRole" label="Existing Role" type="boolean" defaultValue="No" />
+          <camunda:formField id="newRole" label="New Role" type="boolean" defaultValue="Yes" />
+          <camunda:formField id="JobFile" label="Job File" type="string" defaultValue="Text" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_0g16uio</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_00cdlg4</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_0rdknm5</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="PostJobExt" name="Post Job External" camunda:candidateGroups="HR Assistant">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="existingRole" label="Existing Role" type="boolean" defaultValue="No" />
+          <camunda:formField id="newRole" label="New Role" type="boolean" defaultValue="Yes" />
+          <camunda:formField id="JobFile" label="Job File" type="string" defaultValue="Text" />
+        </camunda:formData>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="FinalizedProfile">Ready</camunda:inputParameter>
+          <camunda:outputParameter name="PostedJobExt">Job posted externally</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_0rdknm5</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0w3jik0</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="PostJobInt" name="Post Job Internal" camunda:candidateGroups="HR Assistant">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="existingRole" label="Existing Role" type="boolean" defaultValue="No" />
+          <camunda:formField id="newRole" label="New Role" type="boolean" defaultValue="Yes" />
+          <camunda:formField id="JobFile" label="Job File" type="string" defaultValue="Text" />
+        </camunda:formData>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="FinalizedProfile">Ready</camunda:inputParameter>
+          <camunda:outputParameter name="PostedJobInt">Job posted internally</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_00cdlg4</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1t7yrp2</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="SequenceFlow_1t7yrp2" sourceRef="PostJobInt" targetRef="ReceiveApplications" />
+    <bpmn:sequenceFlow id="SequenceFlow_0w3jik0" sourceRef="PostJobExt" targetRef="ReceiveApplications" />
+    <bpmn:userTask id="ReceiveApplications" name="Receive Applications" camunda:candidateGroups="HR Assistant">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="PostedJobInt">Job posted interally</camunda:inputParameter>
+          <camunda:inputParameter name="PostedJobExt">Job posted externally </camunda:inputParameter>
+          <camunda:outputParameter name="ReceiveApplications">Received applications</camunda:outputParameter>
+        </camunda:inputOutput>
+        <camunda:formData>
+          <camunda:formField id="JobFile" label="Job File" type="string" defaultValue="Text" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1t7yrp2</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_0w3jik0</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1nopcm3</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="EndEvent_0l50qtl">
+      <bpmn:incoming>SequenceFlow_1nopcm3</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1nopcm3" sourceRef="ReceiveApplications" targetRef="EndEvent_0l50qtl" />
   </bpmn:process>
   <bpmn:process id="Process_0hgp4ou" isExecutable="true" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
@@ -200,12 +274,6 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_1ni903m_di" bpmnElement="Lane_1ni903m">
         <dc:Bounds x="-1322" y="-1043" width="6789" height="791" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="EndEvent_15phtc4_di" bpmnElement="EndEvent_15phtc4">
-        <dc:Bounds x="-342" y="-145" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="-369" y="-105" width="90" height="12" />
-        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_17f6tl2_di" bpmnElement="SequenceFlow_17f6tl2">
         <di:waypoint xsi:type="dc:Point" x="-1158" y="-87" />
@@ -288,13 +356,6 @@
           <dc:Bounds x="-544" y="-148" width="0" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_1aegwv1_di" bpmnElement="SequenceFlow_1aegwv1">
-        <di:waypoint xsi:type="dc:Point" x="-407" y="-127" />
-        <di:waypoint xsi:type="dc:Point" x="-342" y="-127" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="-374.5" y="-148" width="0" height="12" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="UserTask_1y19zma_di" bpmnElement="ExistingJobDescription">
         <dc:Bounds x="-811" y="-235" width="100" height="80" />
       </bpmndi:BPMNShape>
@@ -304,6 +365,95 @@
       <bpmndi:BPMNShape id="UserTask_1n04ekz_di" bpmnElement="DeliverJobFile">
         <dc:Bounds x="-507" y="-167" width="100" height="80" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0g16uio_di" bpmnElement="SequenceFlow_0g16uio">
+        <di:waypoint xsi:type="dc:Point" x="-457" y="-167" />
+        <di:waypoint xsi:type="dc:Point" x="-457" y="-445" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-442" y="-312" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_1mv0g1s_di" bpmnElement="FinalizeJobFile">
+        <dc:Bounds x="-507" y="-525" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_00cdlg4_di" bpmnElement="SequenceFlow_00cdlg4">
+        <di:waypoint xsi:type="dc:Point" x="-407" y="-485" />
+        <di:waypoint xsi:type="dc:Point" x="-353" y="-485" />
+        <di:waypoint xsi:type="dc:Point" x="-353" y="-570" />
+        <di:waypoint xsi:type="dc:Point" x="-298" y="-570" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-338" y="-533.5" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_1tnvfox_di" bpmnElement="PostJobInt">
+        <dc:Bounds x="-298" y="-610" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0rdknm5_di" bpmnElement="SequenceFlow_0rdknm5">
+        <di:waypoint xsi:type="dc:Point" x="-407" y="-485" />
+        <di:waypoint xsi:type="dc:Point" x="-353" y="-485" />
+        <di:waypoint xsi:type="dc:Point" x="-353" y="-417" />
+        <di:waypoint xsi:type="dc:Point" x="-298" y="-417" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-338" y="-457" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_18k3dla_di" bpmnElement="PostJobExt">
+        <dc:Bounds x="-298" y="-456" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1t7yrp2_di" bpmnElement="SequenceFlow_1t7yrp2">
+        <di:waypoint xsi:type="dc:Point" x="-198" y="-570" />
+        <di:waypoint xsi:type="dc:Point" x="-159" y="-570" />
+        <di:waypoint xsi:type="dc:Point" x="-159" y="-502" />
+        <di:waypoint xsi:type="dc:Point" x="-119" y="-502" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-144" y="-542" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0w3jik0_di" bpmnElement="SequenceFlow_0w3jik0">
+        <di:waypoint xsi:type="dc:Point" x="-198" y="-416" />
+        <di:waypoint xsi:type="dc:Point" x="-159" y="-416" />
+        <di:waypoint xsi:type="dc:Point" x="-159" y="-502" />
+        <di:waypoint xsi:type="dc:Point" x="-119" y="-502" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-144" y="-465" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_011epxw_di" bpmnElement="ReceiveApplications">
+        <dc:Bounds x="-119" y="-542" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_0l50qtl_di" bpmnElement="EndEvent_0l50qtl">
+        <dc:Bounds x="71.1649048625793" y="-520" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="89.1649048625793" y="-480" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1nopcm3_di" bpmnElement="SequenceFlow_1nopcm3">
+        <di:waypoint xsi:type="dc:Point" x="-19" y="-502" />
+        <di:waypoint xsi:type="dc:Point" x="71" y="-502" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="26" y="-523" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MessageFlow_1psodpr_di" bpmnElement="MessageFlow_1psodpr">
+        <di:waypoint xsi:type="dc:Point" x="-224" y="-610" />
+        <di:waypoint xsi:type="dc:Point" x="-224.34460887949263" y="-1094.877378435518" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-224.1723044397463" y="-873.438689217759" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MessageFlow_1bxeosq_di" bpmnElement="MessageFlow_1bxeosq">
+        <di:waypoint xsi:type="dc:Point" x="-248" y="-456" />
+        <di:waypoint xsi:type="dc:Point" x="-248" y="-1097" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-233" y="-782.5" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MessageFlow_0am0m5m_di" bpmnElement="MessageFlow_0am0m5m">
+        <di:waypoint xsi:type="dc:Point" x="-77" y="-1097" />
+        <di:waypoint xsi:type="dc:Point" x="-77" y="-542" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-62" y="-825.5" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>
