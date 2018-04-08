@@ -13,7 +13,7 @@
       <input id="InputClause_093h7tw" label="Position">
         <inputExpression id="LiteralExpression_1kpvk3h" typeRef="string" />
         <inputValues id="UnaryTests_1vxbywv">
-          <text><![CDATA["Trainee","Internship","Manager","Assisstant","Analyst"]]></text>
+          <text><![CDATA["Trainee","Internship","Manager","Assisstant","Analyst","Assistant"]]></text>
         </inputValues>
       </input>
       <input id="InputClause_0g5pdl6" label="Education">
@@ -65,7 +65,7 @@
           <text><![CDATA["Marketing", "HR", "Sales", "IT", "Accounting", "Project"]]></text>
         </inputEntry>
         <inputEntry id="UnaryTests_10zd22g">
-          <text><![CDATA["Assisstant"]]></text>
+          <text><![CDATA["Assistant"]]></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0ltxm8a">
           <text><![CDATA["Apprenticeship", "Bachelor"]]></text>
