@@ -53,7 +53,7 @@
         <bpmn:flowNodeRef>SendApplications</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>HRListTelInterviewCand</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ScheduleTelInterview</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>TelephoneInterviews</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>TelephoneInterview</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>DefineInterviewList</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>HRListInterview</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ExclusiveGateway_0ey2iqx</bpmn:flowNodeRef>
@@ -325,8 +325,7 @@
     <bpmn:userTask id="ScheduleTelInterview" name="Schedule Telephone Interviews" camunda:candidateGroups="HR Assistant">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="InterviewCandidates" label="Interview Candidates" type="string" defaultValue="true" />
-          <camunda:formField id="PanelTimetable" label="Panel Timetable" type="string" defaultValue="availablity" />
+          <camunda:formField id="InterviewCandidates" label="How many candidates to be interviewed by phone?" type="boolean" defaultValue="15" />
         </camunda:formData>
         <camunda:inputOutput>
           <camunda:inputParameter name="OverviewCandidates">Overview of Candidates</camunda:inputParameter>
@@ -338,8 +337,8 @@
       <bpmn:outgoing>SequenceFlow_0jbkwwx</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:sequenceFlow id="SequenceFlow_0fqethy" sourceRef="HRListTelInterviewCand" targetRef="ScheduleTelInterview" />
-    <bpmn:sequenceFlow id="SequenceFlow_0jbkwwx" sourceRef="ScheduleTelInterview" targetRef="TelephoneInterviews" />
-    <bpmn:userTask id="TelephoneInterviews" name="Execute Telephone Interview" camunda:candidateGroups="HR Assistant">
+    <bpmn:sequenceFlow id="SequenceFlow_0jbkwwx" sourceRef="ScheduleTelInterview" targetRef="TelephoneInterview" />
+    <bpmn:userTask id="TelephoneInterview" name="Execute Telephone Interview" camunda:candidateGroups="HR Assistant">
       <bpmn:extensionElements>
         <camunda:inputOutput>
           <camunda:inputParameter name="ScheduledInterviews">Scheduled Interviews</camunda:inputParameter>
@@ -352,9 +351,8 @@
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0jbkwwx</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_19mtsoc</bpmn:outgoing>
-      <bpmn:multiInstanceLoopCharacteristics />
     </bpmn:userTask>
-    <bpmn:sequenceFlow id="SequenceFlow_19mtsoc" sourceRef="TelephoneInterviews" targetRef="DefineInterviewList" />
+    <bpmn:sequenceFlow id="SequenceFlow_19mtsoc" sourceRef="TelephoneInterview" targetRef="DefineInterviewList" />
     <bpmn:userTask id="DefineInterviewList" name="Define List of Candidates for Interview" camunda:candidateGroups="HR Assistant">
       <bpmn:extensionElements>
         <camunda:formData>
@@ -474,7 +472,6 @@
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0yvfgxq</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1dzcmrt</bpmn:outgoing>
-      <bpmn:multiInstanceLoopCharacteristics />
     </bpmn:userTask>
     <bpmn:userTask id="ConfirmInterviewAppointments" name="Confirm Interview Appointments" camunda:candidateGroups="HR Assistant">
       <bpmn:extensionElements>
@@ -484,6 +481,7 @@
         </camunda:inputOutput>
         <camunda:formData>
           <camunda:formField id="InterviewTimetable" label="Timetable for Interviews" type="string" defaultValue="true" />
+          <camunda:formField id="InterviewCandidate" label="How many candidates are to be interviewed" type="long" defaultValue="10" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_15d7c8f</bpmn:incoming>
@@ -840,7 +838,7 @@
           <dc:Bounds x="1198" y="-506" width="0" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="UserTask_1bq627r_di" bpmnElement="TelephoneInterviews">
+      <bpmndi:BPMNShape id="UserTask_1bq627r_di" bpmnElement="TelephoneInterview">
         <dc:Bounds x="1275" y="-525" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_19mtsoc_di" bpmnElement="SequenceFlow_19mtsoc">
