@@ -44,6 +44,7 @@
         <bpmn:flowNodeRef>Task_16f61zn</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ReceiveListAssessResults</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>CollEvalMeeting</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_1a4hxmj</bpmn:flowNodeRef>
         <bpmn:childLaneSet xsi:type="bpmn:tLaneSet" />
       </bpmn:lane>
       <bpmn:lane id="Lane_0yruhv7" name="Director">
@@ -650,6 +651,7 @@
       <bpmn:extensionElements>
         <camunda:inputOutput>
           <camunda:inputParameter name="ListForEvalMeeting">true</camunda:inputParameter>
+          <camunda:outputParameter name="ListForEvalMeeting">true</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0l40fo9</bpmn:incoming>
@@ -661,8 +663,13 @@
           <camunda:formField id="AssessmentResult" label="Result of Assessment" type="string" defaultValue="score" />
           <camunda:formField id="OverviewCandidates" label="Overview of Candidates" type="string" defaultValue="true" />
         </camunda:formData>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="ListForEvalMeeting">true</camunda:inputParameter>
+          <camunda:outputParameter name="FavoriteCandidate">true</camunda:outputParameter>
+        </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_14au6vv</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_14jq4o2</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:sequenceFlow id="SequenceFlow_14au6vv" sourceRef="ReceiveListAssessResults" targetRef="CollEvalMeeting" />
     <bpmn:sequenceFlow id="SequenceFlow_05qdado" sourceRef="ScheduleCollElMeeting" targetRef="Assessment" />
@@ -681,6 +688,10 @@
       <bpmn:incoming>SequenceFlow_1e44a72</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1jvso9z</bpmn:outgoing>
     </bpmn:userTask>
+    <bpmn:endEvent id="EndEvent_1a4hxmj">
+      <bpmn:incoming>SequenceFlow_14jq4o2</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_14jq4o2" sourceRef="CollEvalMeeting" targetRef="EndEvent_1a4hxmj" />
   </bpmn:process>
   <bpmn:process id="Process_0hgp4ou" isExecutable="true" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
@@ -1330,6 +1341,21 @@
         <di:waypoint xsi:type="dc:Point" x="4361" y="-806" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="4261.5" y="-827" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_1a4hxmj_di" bpmnElement="EndEvent_1a4hxmj">
+        <dc:Bounds x="4822.081504702195" y="142.30407523510974" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="4840.081504702195" y="182.30407523510974" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_14jq4o2_di" bpmnElement="SequenceFlow_14jq4o2">
+        <di:waypoint xsi:type="dc:Point" x="4719" y="173" />
+        <di:waypoint xsi:type="dc:Point" x="4771" y="173" />
+        <di:waypoint xsi:type="dc:Point" x="4771" y="160" />
+        <di:waypoint xsi:type="dc:Point" x="4822" y="160" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="4786" y="160.5" width="0" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
