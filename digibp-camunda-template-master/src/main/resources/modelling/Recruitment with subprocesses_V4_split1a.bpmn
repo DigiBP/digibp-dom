@@ -325,7 +325,7 @@
     <bpmn:userTask id="ScheduleTelInterview" name="Schedule Telephone Interviews" camunda:candidateGroups="HR Assistant">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="InterviewCandidates" label="How many candidates to be interviewed by phone?" type="boolean" defaultValue="15" />
+          <camunda:formField id="InterviewCandidates" label="How many candidates to be interviewed by phone?" type="long" defaultValue="15" />
         </camunda:formData>
         <camunda:inputOutput>
           <camunda:inputParameter name="OverviewCandidates">Overview of Candidates</camunda:inputParameter>
@@ -351,6 +351,9 @@
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0jbkwwx</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_19mtsoc</bpmn:outgoing>
+      <bpmn:multiInstanceLoopCharacteristics>
+        <bpmn:loopCardinality xsi:type="bpmn:tFormalExpression">#{InterviewCandidates}</bpmn:loopCardinality>
+      </bpmn:multiInstanceLoopCharacteristics>
     </bpmn:userTask>
     <bpmn:sequenceFlow id="SequenceFlow_19mtsoc" sourceRef="TelephoneInterview" targetRef="DefineInterviewList" />
     <bpmn:userTask id="DefineInterviewList" name="Define List of Candidates for Interview" camunda:candidateGroups="HR Assistant">
@@ -472,6 +475,9 @@
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0yvfgxq</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1dzcmrt</bpmn:outgoing>
+      <bpmn:multiInstanceLoopCharacteristics>
+        <bpmn:loopCardinality xsi:type="bpmn:tFormalExpression">#{InterviewCandidate}</bpmn:loopCardinality>
+      </bpmn:multiInstanceLoopCharacteristics>
     </bpmn:userTask>
     <bpmn:userTask id="ConfirmInterviewAppointments" name="Confirm Interview Appointments" camunda:candidateGroups="HR Assistant">
       <bpmn:extensionElements>
