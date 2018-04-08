@@ -15,7 +15,6 @@
     <bpmn:messageFlow id="MessageFlow_0o7gjhx" sourceRef="ConfirmInterviewAppointments" targetRef="Participant_064ehed" />
     <bpmn:messageFlow id="MessageFlow_1wqdtjk" sourceRef="ScheduleAssess" targetRef="Participant_064ehed" />
     <bpmn:messageFlow id="MessageFlow_068t4ew" sourceRef="Participant_064ehed" targetRef="ScheduleAssess" />
-    <bpmn:messageFlow id="MessageFlow_01ic862" sourceRef="ConfirmAssessApp" targetRef="Participant_064ehed" />
   </bpmn:collaboration>
   <bpmn:process id="Process_1" isExecutable="true">
     <bpmn:laneSet>
@@ -43,6 +42,7 @@
         <bpmn:flowNodeRef>Task_0p79nf6</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_16f61zn</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ConfirmMeeting</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_1m2bjvi</bpmn:flowNodeRef>
         <bpmn:childLaneSet xsi:type="bpmn:tLaneSet" />
       </bpmn:lane>
       <bpmn:lane id="Lane_0yruhv7" name="Director">
@@ -68,11 +68,6 @@
         <bpmn:flowNodeRef>TelephoneInterview</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ReceiveListAssess</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ScheduleAssess</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>ConfirmAssessApp</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>ScheduleCollElMeeting</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Assessment</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>ExclusiveGateway_0xa9t24</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>EndEvent_0dcxm5f</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:sequenceFlow id="SequenceFlow_1xaf48n" sourceRef="RequestNewEmployee" targetRef="AskDirector" />
@@ -571,41 +566,9 @@
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_03ilc1c</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_073dcbd</bpmn:outgoing>
       <bpmn:outgoing>SequenceFlow_11i5p64</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="ConfirmAssessApp" name="Confirm Assessment Appointments" camunda:candidateGroups="HR Assistant">
-      <bpmn:extensionElements>
-        <camunda:inputOutput>
-          <camunda:inputParameter name="ScheduledAssess">Timetable</camunda:inputParameter>
-          <camunda:outputParameter name="ConfirmedTimetable">true</camunda:outputParameter>
-        </camunda:inputOutput>
-        <camunda:formData>
-          <camunda:formField id="AssessmentTimetable" label="Timetable for Assessments" type="string" defaultValue="true" />
-        </camunda:formData>
-      </bpmn:extensionElements>
-      <bpmn:incoming>SequenceFlow_073dcbd</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_019ekcj</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:userTask id="ScheduleCollElMeeting" name="Schedule &#34;Collaborative Evaluation&#34; meeting for all Interview Panel members" camunda:candidateGroups="HR Assistant">
-      <bpmn:extensionElements>
-        <camunda:inputOutput>
-          <camunda:inputParameter name="ScheduledAssess">Timetable</camunda:inputParameter>
-          <camunda:outputParameter name="ProposedTimeforCollEvl">true</camunda:outputParameter>
-        </camunda:inputOutput>
-        <camunda:formData>
-          <camunda:formField id="AssessmentTimetable" label="Timetable for Assessments" type="string" defaultValue="true" />
-          <camunda:formField id="ProposedTime" label="Proposed time for coll eval meeting" type="string" defaultValue="true" />
-        </camunda:formData>
-      </bpmn:extensionElements>
-      <bpmn:incoming>SequenceFlow_11i5p64</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_14y8zx5</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:sequenceFlow id="SequenceFlow_073dcbd" sourceRef="ScheduleAssess" targetRef="ConfirmAssessApp" />
-    <bpmn:sequenceFlow id="SequenceFlow_11i5p64" sourceRef="ScheduleAssess" targetRef="ScheduleCollElMeeting" />
-    <bpmn:sequenceFlow id="SequenceFlow_019ekcj" sourceRef="ConfirmAssessApp" targetRef="ExclusiveGateway_0xa9t24" />
-    <bpmn:sequenceFlow id="SequenceFlow_0gx36n4" sourceRef="ExclusiveGateway_0xa9t24" targetRef="Assessment" />
-    <bpmn:sequenceFlow id="SequenceFlow_14y8zx5" sourceRef="ScheduleCollElMeeting" targetRef="ConfirmMeeting" />
+    <bpmn:sequenceFlow id="SequenceFlow_11i5p64" sourceRef="ScheduleAssess" targetRef="ConfirmMeeting" />
     <bpmn:userTask id="ConfirmMeeting" name="Confirm Meeting for Collaborative Evaluation" camunda:candidateGroups="Interview Panel">
       <bpmn:extensionElements>
         <camunda:formData>
@@ -616,33 +579,13 @@
           <camunda:outputParameter name="ConfirmedTimeforCollEvl">true</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
-      <bpmn:incoming>SequenceFlow_14y8zx5</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_05afysr</bpmn:outgoing>
+      <bpmn:incoming>SequenceFlow_11i5p64</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1psdw17</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:sequenceFlow id="SequenceFlow_05afysr" sourceRef="ConfirmMeeting" targetRef="ExclusiveGateway_0xa9t24" />
-    <bpmn:userTask id="Assessment" name="Program start date and time for skill-based assessment program" camunda:candidateGroups="HR Assistant">
-      <bpmn:extensionElements>
-        <camunda:inputOutput>
-          <camunda:inputParameter name="ConfirmedTimetable">true</camunda:inputParameter>
-          <camunda:inputParameter name="ConfirmedTimeforCollEvl">true</camunda:inputParameter>
-          <camunda:outputParameter name="AssessmentKeys">true</camunda:outputParameter>
-        </camunda:inputOutput>
-        <camunda:formData>
-          <camunda:formField id="AssessmentTimetable" label="Assessment for Timetable" type="string" defaultValue="true" />
-        </camunda:formData>
-      </bpmn:extensionElements>
-      <bpmn:incoming>SequenceFlow_0gx36n4</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_17tg4q8</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:inclusiveGateway id="ExclusiveGateway_0xa9t24">
-      <bpmn:incoming>SequenceFlow_019ekcj</bpmn:incoming>
-      <bpmn:incoming>SequenceFlow_05afysr</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0gx36n4</bpmn:outgoing>
-    </bpmn:inclusiveGateway>
-    <bpmn:endEvent id="EndEvent_0dcxm5f">
-      <bpmn:incoming>SequenceFlow_17tg4q8</bpmn:incoming>
+    <bpmn:endEvent id="EndEvent_1m2bjvi">
+      <bpmn:incoming>SequenceFlow_1psdw17</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="SequenceFlow_17tg4q8" sourceRef="Assessment" targetRef="EndEvent_0dcxm5f" />
+    <bpmn:sequenceFlow id="SequenceFlow_1psdw17" sourceRef="ConfirmMeeting" targetRef="EndEvent_1m2bjvi" />
   </bpmn:process>
   <bpmn:process id="Process_0hgp4ou" isExecutable="true" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
@@ -1194,92 +1137,30 @@
           <dc:Bounds x="3650" y="-820.5" width="0" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="UserTask_0mnjbj7_di" bpmnElement="ConfirmAssessApp">
-        <dc:Bounds x="3834" y="-588" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="UserTask_0bgo5h5_di" bpmnElement="ScheduleCollElMeeting">
-        <dc:Bounds x="3834" y="-444" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="MessageFlow_01ic862_di" bpmnElement="MessageFlow_01ic862">
-        <di:waypoint xsi:type="dc:Point" x="3913" y="-588" />
-        <di:waypoint xsi:type="dc:Point" x="3913" y="-1097" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="3928" y="-848.5" width="0" height="12" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="UserTask_0j37mt7_di" bpmnElement="Assessment">
-        <dc:Bounds x="4076" y="-532" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="SequenceFlow_073dcbd_di" bpmnElement="SequenceFlow_073dcbd">
-        <di:waypoint xsi:type="dc:Point" x="3672" y="-492" />
-        <di:waypoint xsi:type="dc:Point" x="3753" y="-492" />
-        <di:waypoint xsi:type="dc:Point" x="3753" y="-548" />
-        <di:waypoint xsi:type="dc:Point" x="3834" y="-548" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="3768" y="-526" width="0" height="12" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_11i5p64_di" bpmnElement="SequenceFlow_11i5p64">
         <di:waypoint xsi:type="dc:Point" x="3672" y="-492" />
         <di:waypoint xsi:type="dc:Point" x="3753" y="-492" />
         <di:waypoint xsi:type="dc:Point" x="3753" y="-404" />
-        <di:waypoint xsi:type="dc:Point" x="3834" y="-404" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="3768" y="-454" width="0" height="12" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_019ekcj_di" bpmnElement="SequenceFlow_019ekcj">
-        <di:waypoint xsi:type="dc:Point" x="3934" y="-548" />
-        <di:waypoint xsi:type="dc:Point" x="4018" y="-548" />
-        <di:waypoint xsi:type="dc:Point" x="4018" y="-517" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="3976" y="-569" width="0" height="12" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="InclusiveGateway_15l87xd_di" bpmnElement="ExclusiveGateway_0xa9t24">
-        <dc:Bounds x="3993" y="-517" width="50" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="4017.7539184952975" y="-463" width="0" height="12" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="SequenceFlow_0gx36n4_di" bpmnElement="SequenceFlow_0gx36n4">
-        <di:waypoint xsi:type="dc:Point" x="4043" y="-492" />
-        <di:waypoint xsi:type="dc:Point" x="4076" y="-492" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="4059.5" y="-513" width="0" height="12" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_14y8zx5_di" bpmnElement="SequenceFlow_14y8zx5">
-        <di:waypoint xsi:type="dc:Point" x="3884" y="-364" />
+        <di:waypoint xsi:type="dc:Point" x="3884" y="-404" />
         <di:waypoint xsi:type="dc:Point" x="3884" y="110" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="3899" y="-133" width="0" height="12" />
+          <dc:Bounds x="3768" y="-454" width="0" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="UserTask_0rm2z30_di" bpmnElement="ConfirmMeeting">
         <dc:Bounds x="3834" y="110" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="SequenceFlow_05afysr_di" bpmnElement="SequenceFlow_05afysr">
-        <di:waypoint xsi:type="dc:Point" x="3934" y="150" />
-        <di:waypoint xsi:type="dc:Point" x="4018" y="150" />
-        <di:waypoint xsi:type="dc:Point" x="4018" y="-467" />
+      <bpmndi:BPMNShape id="EndEvent_1m2bjvi_di" bpmnElement="EndEvent_1m2bjvi">
+        <dc:Bounds x="4017.448275862069" y="132" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="3976" y="129" width="0" height="12" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="EndEvent_0dcxm5f_di" bpmnElement="EndEvent_0dcxm5f">
-        <dc:Bounds x="4255.691222570533" y="-503" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="4273.691222570533" y="-463" width="0" height="12" />
+          <dc:Bounds x="4035.448275862069" y="172" width="0" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="SequenceFlow_17tg4q8_di" bpmnElement="SequenceFlow_17tg4q8">
-        <di:waypoint xsi:type="dc:Point" x="4176" y="-492" />
-        <di:waypoint xsi:type="dc:Point" x="4216" y="-492" />
-        <di:waypoint xsi:type="dc:Point" x="4216" y="-485" />
-        <di:waypoint xsi:type="dc:Point" x="4256" y="-485" />
+      <bpmndi:BPMNEdge id="SequenceFlow_1psdw17_di" bpmnElement="SequenceFlow_1psdw17">
+        <di:waypoint xsi:type="dc:Point" x="3934" y="150" />
+        <di:waypoint xsi:type="dc:Point" x="4017" y="150" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="4231" y="-494.5" width="0" height="12" />
+          <dc:Bounds x="3975.5" y="129" width="0" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
