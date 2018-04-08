@@ -493,12 +493,6 @@
     </bpmn:userTask>
     <bpmn:sequenceFlow id="SequenceFlow_1g7nii4" sourceRef="ScoreCandidate" targetRef="Task_0p79nf6" />
     <bpmn:businessRuleTask id="Task_0p79nf6" name="Evaluate Candidates Score" camunda:resultVariable="CandidatesScore" camunda:decisionRef="InterviewEvaluation">
-      <bpmn:extensionElements>
-        <camunda:inputOutput>
-          <camunda:inputParameter name="EvaluationOfCandidate">Evaluation of Candidate</camunda:inputParameter>
-          <camunda:outputParameter name="CandidatesScore">Score</camunda:outputParameter>
-        </camunda:inputOutput>
-      </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1g7nii4</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_03s5iv4</bpmn:outgoing>
     </bpmn:businessRuleTask>
