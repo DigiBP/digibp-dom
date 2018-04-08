@@ -501,7 +501,7 @@
       <bpmn:extensionElements>
         <camunda:inputOutput>
           <camunda:inputParameter name="CandidatesScore">Score</camunda:inputParameter>
-          <camunda:outputParameter name="ListAssessment">true</camunda:outputParameter>
+          <camunda:outputParameter name="ListAssessmentPanel">true</camunda:outputParameter>
         </camunda:inputOutput>
         <camunda:formData>
           <camunda:formField id="ListPosCandForAssess" label="List of possible Candidates for Assessment" type="string" defaultValue="true" />
@@ -517,7 +517,7 @@
           <camunda:formField id="ListPosCandForAssess" label="List of possible Candidates for Assessment" type="string" defaultValue="true" />
         </camunda:formData>
         <camunda:inputOutput>
-          <camunda:inputParameter name="ListAssessment">true</camunda:inputParameter>
+          <camunda:inputParameter name="ListAssessmentPanel">true</camunda:inputParameter>
           <camunda:outputParameter name="ListAssessment">true</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
@@ -529,7 +529,7 @@
       <bpmn:extensionElements>
         <camunda:inputOutput>
           <camunda:inputParameter name="ListAssessment">true</camunda:inputParameter>
-          <camunda:outputParameter name="ListAssessment">true</camunda:outputParameter>
+          <camunda:outputParameter name="DeliveredListAssessment">true</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0tq60xg</bpmn:incoming>
@@ -539,8 +539,8 @@
     <bpmn:receiveTask id="ReceiveListAssess" name="Receive List of Candidates for Assessment">
       <bpmn:extensionElements>
         <camunda:inputOutput>
-          <camunda:inputParameter name="ListAssessment">true</camunda:inputParameter>
-          <camunda:outputParameter name="ListAssessment">true</camunda:outputParameter>
+          <camunda:inputParameter name="DeliveredListAssessment">true</camunda:inputParameter>
+          <camunda:outputParameter name="ListAssessmentForAppointements">true</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1i0s3dg</bpmn:incoming>
@@ -554,7 +554,7 @@
           <camunda:formField id="AssessmentTimetable" label="Timetable for Assessments" type="date" defaultValue="true" />
         </camunda:formData>
         <camunda:inputOutput>
-          <camunda:inputParameter name="ListAssessment">true</camunda:inputParameter>
+          <camunda:inputParameter name="ListAssessmentForAppointements">true</camunda:inputParameter>
           <camunda:outputParameter name="ScheduledAssess">Timetable</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
