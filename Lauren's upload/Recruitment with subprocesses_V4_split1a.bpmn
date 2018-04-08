@@ -16,8 +16,6 @@
     <bpmn:messageFlow id="MessageFlow_1wqdtjk" sourceRef="ScheduleAssess" targetRef="Participant_064ehed" />
     <bpmn:messageFlow id="MessageFlow_068t4ew" sourceRef="Participant_064ehed" targetRef="ScheduleAssess" />
     <bpmn:messageFlow id="MessageFlow_01ic862" sourceRef="ConfirmAssessApp" targetRef="Participant_064ehed" />
-    <bpmn:messageFlow id="MessageFlow_0mya8k1" sourceRef="Assessment" targetRef="ExAssess" />
-    <bpmn:messageFlow id="MessageFlow_0mdt0yb" sourceRef="ExAssess" targetRef="CheckAssessmentResults" />
   </bpmn:collaboration>
   <bpmn:process id="Process_1" isExecutable="true">
     <bpmn:laneSet>
@@ -76,6 +74,7 @@
         <bpmn:flowNodeRef>Assessment</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>CheckAssessmentResults</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>SendListAssessResults</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ExAssess</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:sequenceFlow id="SequenceFlow_1xaf48n" sourceRef="RequestNewEmployee" targetRef="AskDirector" />
@@ -619,6 +618,7 @@
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0vr83ja</bpmn:incoming>
       <bpmn:incoming>SequenceFlow_05qdado</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1e44a72</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:sequenceFlow id="SequenceFlow_1sdkq6i" sourceRef="CheckAssessmentResults" targetRef="SendListAssessResults" />
     <bpmn:userTask id="CheckAssessmentResults" name="Check Assessment Results" camunda:candidateGroups="HR Assistant">
@@ -632,6 +632,7 @@
           <camunda:outputParameter name="CandidateOverviewList">true</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1jvso9z</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1sdkq6i</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:sendTask id="SendListAssessResults" name="Send List of Assessment Results of Candidates " camunda:expression="#{SendListAssess == &#39;yes&#39;}" camunda:resultVariable="Panel gets list">
@@ -665,9 +666,9 @@
     </bpmn:userTask>
     <bpmn:sequenceFlow id="SequenceFlow_14au6vv" sourceRef="ReceiveListAssessResults" targetRef="CollEvalMeeting" />
     <bpmn:sequenceFlow id="SequenceFlow_05qdado" sourceRef="ScheduleCollElMeeting" targetRef="Assessment" />
-  </bpmn:process>
-  <bpmn:process id="Process_0hgp4ou" isExecutable="true">
-    <bpmn:userTask id="ExAssess" name="Execute Assessment" camunda:candidateGroups="Applicant">
+    <bpmn:sequenceFlow id="SequenceFlow_1e44a72" sourceRef="Assessment" targetRef="ExAssess" />
+    <bpmn:sequenceFlow id="SequenceFlow_1jvso9z" sourceRef="ExAssess" targetRef="CheckAssessmentResults" />
+    <bpmn:userTask id="ExAssess" name="Execute Assessment" camunda:candidateGroups="HR Assistant">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="AssessmentResult" label="Result of Assessment" type="string" defaultValue="score" />
@@ -677,8 +678,11 @@
           <camunda:outputParameter name="AssessmentScore">points</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1e44a72</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1jvso9z</bpmn:outgoing>
     </bpmn:userTask>
   </bpmn:process>
+  <bpmn:process id="Process_0hgp4ou" isExecutable="true" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="kkk">
       <bpmndi:BPMNShape id="Participant_07esipk_di" bpmnElement="Participant_07esipk">
@@ -1269,26 +1273,9 @@
       <bpmndi:BPMNShape id="UserTask_0j37mt7_di" bpmnElement="Assessment">
         <dc:Bounds x="4062" y="-588" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="MessageFlow_0mya8k1_di" bpmnElement="MessageFlow_0mya8k1">
-        <di:waypoint xsi:type="dc:Point" x="4112" y="-588" />
-        <di:waypoint xsi:type="dc:Point" x="4112" y="-846" />
-        <di:waypoint xsi:type="dc:Point" x="4112" y="-846" />
-        <di:waypoint xsi:type="dc:Point" x="4112" y="-1130" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="4127" y="-852" width="0" height="12" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="UserTask_00tdz47_di" bpmnElement="ExAssess">
-        <dc:Bounds x="4063" y="-1210" width="100" height="80" />
+        <dc:Bounds x="4062" y="-846" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="MessageFlow_0mdt0yb_di" bpmnElement="MessageFlow_0mdt0yb">
-        <di:waypoint xsi:type="dc:Point" x="4163" y="-1170" />
-        <di:waypoint xsi:type="dc:Point" x="4411" y="-1170" />
-        <di:waypoint xsi:type="dc:Point" x="4411" y="-846" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="4287" y="-1191" width="0" height="12" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="UserTask_0rrirmr_di" bpmnElement="CollEvalMeeting">
         <dc:Bounds x="4619" y="133" width="100" height="80" />
       </bpmndi:BPMNShape>
@@ -1329,6 +1316,20 @@
         <di:waypoint xsi:type="dc:Point" x="4062" y="-548" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="4013" y="-495" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1e44a72_di" bpmnElement="SequenceFlow_1e44a72">
+        <di:waypoint xsi:type="dc:Point" x="4112" y="-588" />
+        <di:waypoint xsi:type="dc:Point" x="4111" y="-766" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="4111.5" y="-698" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1jvso9z_di" bpmnElement="SequenceFlow_1jvso9z">
+        <di:waypoint xsi:type="dc:Point" x="4162" y="-806" />
+        <di:waypoint xsi:type="dc:Point" x="4361" y="-806" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="4261.5" y="-827" width="0" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
