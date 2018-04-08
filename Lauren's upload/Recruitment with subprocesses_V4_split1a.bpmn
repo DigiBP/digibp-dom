@@ -542,7 +542,7 @@
       <bpmn:outgoing>SequenceFlow_0tq60xg</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:sequenceFlow id="SequenceFlow_0tq60xg" sourceRef="GetListAssess" targetRef="ProvideListAssess" />
-    <bpmn:sendTask id="ProvideListAssess" name="Provide List of Candidates" camunda:expression="#{ProvideListAssess == &#39;yes&#39;}" camunda:resultVariable="HR informed">
+    <bpmn:sendTask id="ProvideListAssess" name="Provide List of Candidates" camunda:expression="#{ProvideListAssess == &#39;Yes&#39;}" camunda:resultVariable="HR informed">
       <bpmn:extensionElements>
         <camunda:inputOutput>
           <camunda:inputParameter name="ListAssessment">true</camunda:inputParameter>
@@ -606,7 +606,7 @@
       <bpmn:incoming>SequenceFlow_1jvso9z</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1sdkq6i</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:sendTask id="SendListAssessResults" name="Send List of Assessment Results of Candidates " camunda:expression="#{SendListAssess == &#39;yes&#39;}" camunda:resultVariable="Panel gets list">
+    <bpmn:sendTask id="SendListAssessResults" name="Send List of Assessment Results of Candidates " camunda:expression="#{SendListAssess == &#39;Yes&#39;}" camunda:resultVariable="Panel gets list">
       <bpmn:extensionElements>
         <camunda:inputOutput>
           <camunda:inputParameter name="CandidateOverviewList">true</camunda:inputParameter>
