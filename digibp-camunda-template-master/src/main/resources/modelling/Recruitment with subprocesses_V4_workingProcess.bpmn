@@ -99,6 +99,7 @@
         <bpmn:flowNodeRef>Task_130eovp</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_0lc7frn</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ConfirmInterviewAppointments</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ExclusiveGateway_0wgapcl</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:sequenceFlow id="SequenceFlow_1xaf48n" sourceRef="RequestNewEmployee" targetRef="AskDirector" />
@@ -350,7 +351,7 @@
           <camunda:outputParameter name="InterviewList">List of Candidates for Interviews</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
-      <bpmn:incoming>SequenceFlow_0iujxvu</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_19o0jsy</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0q86vne</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:sequenceFlow id="SequenceFlow_0q86vne" sourceRef="DefineInterviewList" targetRef="ChooseCandidates" />
@@ -912,11 +913,8 @@
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1uwkjkm</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0iujxvu</bpmn:outgoing>
-      <bpmn:outgoing>SequenceFlow_1ikx86j</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_0kobcgx</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:sequenceFlow id="SequenceFlow_0iujxvu" sourceRef="EvaluateApplicants" targetRef="DefineInterviewList" />
-    <bpmn:sequenceFlow id="SequenceFlow_1ikx86j" sourceRef="EvaluateApplicants" targetRef="Task_130eovp" />
     <bpmn:userTask id="Task_130eovp" name="Send mail to rejected applicants">
       <bpmn:extensionElements>
         <camunda:inputOutput>
@@ -924,7 +922,7 @@
           <camunda:outputParameter name="RejectedApplicants">rejected</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
-      <bpmn:incoming>SequenceFlow_1ikx86j</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_1qk15sv</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1ml9mch</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:endEvent id="EndEvent_0lc7frn">
@@ -941,6 +939,14 @@
       <bpmn:incoming>SequenceFlow_15d7c8f</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0yvfgxq</bpmn:outgoing>
     </bpmn:task>
+    <bpmn:sequenceFlow id="SequenceFlow_0kobcgx" sourceRef="EvaluateApplicants" targetRef="ExclusiveGateway_0wgapcl" />
+    <bpmn:sequenceFlow id="SequenceFlow_19o0jsy" sourceRef="ExclusiveGateway_0wgapcl" targetRef="DefineInterviewList" />
+    <bpmn:sequenceFlow id="SequenceFlow_1qk15sv" sourceRef="ExclusiveGateway_0wgapcl" targetRef="Task_130eovp" />
+    <bpmn:parallelGateway id="ExclusiveGateway_0wgapcl">
+      <bpmn:incoming>SequenceFlow_0kobcgx</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_19o0jsy</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_1qk15sv</bpmn:outgoing>
+    </bpmn:parallelGateway>
   </bpmn:process>
   <bpmn:process id="Process_0hgp4ou" isExecutable="true" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
@@ -1837,22 +1843,6 @@
       <bpmndi:BPMNShape id="UserTask_1rc5oll_di" bpmnElement="EvaluateApplicants">
         <dc:Bounds x="1269" y="-525" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="SequenceFlow_0iujxvu_di" bpmnElement="SequenceFlow_0iujxvu">
-        <di:waypoint xsi:type="dc:Point" x="1369" y="-485" />
-        <di:waypoint xsi:type="dc:Point" x="1507" y="-485" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1438" y="-506" width="0" height="12" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_1ikx86j_di" bpmnElement="SequenceFlow_1ikx86j">
-        <di:waypoint xsi:type="dc:Point" x="1369" y="-485" />
-        <di:waypoint xsi:type="dc:Point" x="1438" y="-485" />
-        <di:waypoint xsi:type="dc:Point" x="1438" y="-643" />
-        <di:waypoint xsi:type="dc:Point" x="1507" y="-643" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1453" y="-570" width="0" height="12" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="UserTask_0rd5tog_di" bpmnElement="Task_130eovp">
         <dc:Bounds x="1507" y="-682" width="100" height="80" />
       </bpmndi:BPMNShape>
@@ -1878,6 +1868,34 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Task_0boszmo_di" bpmnElement="ConfirmInterviewAppointments">
         <dc:Bounds x="2342" y="-525" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0kobcgx_di" bpmnElement="SequenceFlow_0kobcgx">
+        <di:waypoint xsi:type="dc:Point" x="1369" y="-485" />
+        <di:waypoint xsi:type="dc:Point" x="1410" y="-485" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1389.5" y="-506" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_19o0jsy_di" bpmnElement="SequenceFlow_19o0jsy">
+        <di:waypoint xsi:type="dc:Point" x="1460" y="-485" />
+        <di:waypoint xsi:type="dc:Point" x="1507" y="-485" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1483.5" y="-506" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1qk15sv_di" bpmnElement="SequenceFlow_1qk15sv">
+        <di:waypoint xsi:type="dc:Point" x="1435" y="-510" />
+        <di:waypoint xsi:type="dc:Point" x="1435" y="-642" />
+        <di:waypoint xsi:type="dc:Point" x="1507" y="-642" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1450" y="-582" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ParallelGateway_1k6m3uc_di" bpmnElement="ExclusiveGateway_0wgapcl">
+        <dc:Bounds x="1410" y="-510" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1434.554006968641" y="-456" width="0" height="12" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
