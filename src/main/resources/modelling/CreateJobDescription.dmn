@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" id="definitions_017c905" name="definitions" namespace="http://camunda.org/schema/1.0/dmn">
+  <decision id="decision" name="CreateJobDescription">
+    <decisionTable id="decisionTable">
+      <input id="input1" label="Department">
+        <inputExpression id="inputExpression1" typeRef="string">
+          <text></text>
+        </inputExpression>
+        <inputValues id="UnaryTests_11zq3pw">
+          <text><![CDATA["Marketing","HR","Sales","IT","Accounting","Project"]]></text>
+        </inputValues>
+      </input>
+      <input id="InputClause_093h7tw" label="Position">
+        <inputExpression id="LiteralExpression_1kpvk3h" typeRef="string" />
+        <inputValues id="UnaryTests_1vxbywv">
+          <text><![CDATA["Trainee","Internship","Manager","Assisstant","Analyst","Assistant"]]></text>
+        </inputValues>
+      </input>
+      <input id="InputClause_0g5pdl6" label="Education">
+        <inputExpression id="LiteralExpression_06t6d6c" typeRef="string" />
+        <inputValues id="UnaryTests_1rwwnd7">
+          <text><![CDATA["Apprenticeship","Bachelor","Master"]]></text>
+        </inputValues>
+      </input>
+      <input id="InputClause_0zjy71q" label="Experience">
+        <inputExpression id="LiteralExpression_0nkk02s" typeRef="integer" />
+      </input>
+      <output id="output1" label="Job Description" name="" typeRef="string" />
+      <rule id="row-976180558-2">
+        <inputEntry id="UnaryTests_01mijdh">
+          <text><![CDATA["Marketing", "HR", "Sales", "Accounting", "Project", "IT"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0y2vfsh">
+          <text><![CDATA["Internship"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1hcud29">
+          <text><![CDATA["Apprenticeship", "Bachelor", "Master"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_171n50b">
+          <text><![CDATA[<= 6]]></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_02xpui0">
+          <text><![CDATA["Internship Job Description"]]></text>
+        </outputEntry>
+      </rule>
+      <rule id="row-976180558-1">
+        <inputEntry id="UnaryTests_15tjfmr">
+          <text><![CDATA["Marketing", "HR", "Sales", "IT", "Accounting", "Project"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1kbxu0m">
+          <text><![CDATA["Trainee"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1bmvs7x">
+          <text><![CDATA["Bachelor", "Master"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_10goqnx">
+          <text><![CDATA[<= 3]]></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1w3hiqr">
+          <text><![CDATA["Trainee Job Decription"]]></text>
+        </outputEntry>
+      </rule>
+      <rule id="row-976180558-3">
+        <inputEntry id="UnaryTests_1b9nbe5">
+          <text><![CDATA["Marketing", "HR", "Sales", "IT", "Accounting", "Project"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_10zd22g">
+          <text><![CDATA["Assistant"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ltxm8a">
+          <text><![CDATA["Apprenticeship", "Bachelor"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_03waxu6">
+          <text>[1..8[</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_01un2iv">
+          <text><![CDATA["Assisstant Job Description"]]></text>
+        </outputEntry>
+      </rule>
+      <rule id="row-976180558-4">
+        <inputEntry id="UnaryTests_0sx0lec">
+          <text><![CDATA["Marketing", "HR", "Sales", "IT", "Accounting", "Project"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1bm1499">
+          <text><![CDATA["Analyst"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1xjv3qi">
+          <text><![CDATA["Bachelor", "Master"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0m2hvsi">
+          <text><![CDATA[> 3]]></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1sxk9ww">
+          <text><![CDATA["Analyst Job Descriptin"]]></text>
+        </outputEntry>
+      </rule>
+      <rule id="row-976180558-5">
+        <inputEntry id="UnaryTests_1s1gt0k">
+          <text><![CDATA["Marketing", "HR", "Sales", "IT", "Accounting", "Project"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1en1j23">
+          <text><![CDATA["Manager"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1tncduy">
+          <text><![CDATA["Master"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0yc4tvb">
+          <text><![CDATA[>= 5]]></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1o0oskz">
+          <text><![CDATA["Manager Job Description"]]></text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>
