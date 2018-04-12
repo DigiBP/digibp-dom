@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" id="definitions_0qcwyty" name="definitions" namespace="http://camunda.org/schema/1.0/dmn">
+  <decision id="decision" name="TelephoneInterviewEvaluation">
+    <decisionTable id="decisionTable">
+      <input id="InputClause_09gvyks" label="Department">
+        <inputExpression id="LiteralExpression_122zzg4" typeRef="string" />
+        <inputValues id="UnaryTests_0ejx50y">
+          <text><![CDATA["Marketing","HR","Sales","Accounting","Project","IT"]]></text>
+        </inputValues>
+      </input>
+      <input id="InputClause_0nuughx" label="Position">
+        <inputExpression id="LiteralExpression_0dbesc5" typeRef="string" />
+        <inputValues id="UnaryTests_1af7cis">
+          <text><![CDATA["Internship","Assistant","Trainee","Manager","Analyst"]]></text>
+        </inputValues>
+      </input>
+      <input id="input1" label="Education">
+        <inputExpression id="inputExpression1" typeRef="string">
+          <text></text>
+        </inputExpression>
+        <inputValues id="UnaryTests_0v72und">
+          <text><![CDATA["Apprenticeship","Bachelor","Master"]]></text>
+        </inputValues>
+      </input>
+      <input id="InputClause_0gwj2j3" label="Experience">
+        <inputExpression id="LiteralExpression_0fb6i5a" typeRef="integer" />
+      </input>
+      <input id="InputClause_0xtron7" label="Languages">
+        <inputExpression id="LiteralExpression_0zx97jq" typeRef="string" />
+        <inputValues id="UnaryTests_02bkhbs">
+          <text><![CDATA["German","English","French","Italian"]]></text>
+        </inputValues>
+      </input>
+      <output id="output1" label="Next round" name="" typeRef="boolean" />
+      <rule id="row-275026850-1">
+        <inputEntry id="UnaryTests_1cjxc6z">
+          <text><![CDATA["Marketing", "HR", "Sales", "Accounting", "IT", "Project"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1hs1jpx">
+          <text><![CDATA["Internship"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0y7sdln">
+          <text><![CDATA["Apprenticeship", "Bachelor", "Master"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1vf2f7e">
+          <text><![CDATA[<= 6]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0tez6em">
+          <text><![CDATA["German", "English"]]></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0c5twsk">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="row-275026850-3">
+        <inputEntry id="UnaryTests_1qvfjy0">
+          <text><![CDATA["Marketing", "HR", "Sales", "Accounting", "Project", "IT"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_16ubms6">
+          <text><![CDATA["Trainee"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1efhvy3">
+          <text><![CDATA["Bachelor", "Master"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0j15osy">
+          <text><![CDATA[<= 3]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ddmlnf">
+          <text><![CDATA["German", "English"]]></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1syurbg">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="row-275026850-2">
+        <inputEntry id="UnaryTests_1e9hfct">
+          <text><![CDATA["Marketing", "HR", "Sales", "Accounting", "Project", "IT"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_14q3rll">
+          <text><![CDATA["Assistant"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1s5rm45">
+          <text><![CDATA["Apprenticeship", "Bachelor"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ptg5nz">
+          <text>[1..8[</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_19zdalh">
+          <text><![CDATA["German", "English", "French", "Italian"]]></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0stl3cd">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="row-275026850-4">
+        <inputEntry id="UnaryTests_0dtwwex">
+          <text><![CDATA["Marketing", "HR", "Sales", "Accounting", "Project", "IT"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1a8trfm">
+          <text><![CDATA["Analyst"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1jfmum4">
+          <text><![CDATA["Bachelor", "Master"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_012kp3c">
+          <text><![CDATA[> 3]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ysb0u4">
+          <text><![CDATA["German", "English"]]></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0g6a6l7">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="row-275026850-5">
+        <inputEntry id="UnaryTests_1k5k7p8">
+          <text><![CDATA["Marketing", "HR", "Sales", "Accounting", "Project", "IT"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0qy7jiu">
+          <text><![CDATA["Manager"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0758umf">
+          <text><![CDATA["Master"]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ljrup5">
+          <text><![CDATA[>= 5]]></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1g4vynm">
+          <text><![CDATA["German", "English", "French", "Italian"]]></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0sy7vbd">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>
