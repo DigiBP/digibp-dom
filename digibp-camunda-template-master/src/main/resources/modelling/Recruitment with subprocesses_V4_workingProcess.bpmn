@@ -40,10 +40,11 @@
         <bpmn:flowNodeRef>NotifyHR</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>CheckContract</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ContractSuitable</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ExclusiveGateway_00s0jze</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>InvitePanel</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_03zro0z" name="Interview Panel">
         <bpmn:flowNodeRef>PanelListIntCandidates</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>TimetableInterviews</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>InterviewCandidates</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ScoreCandidate</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_16f61zn</bpmn:flowNodeRef>
@@ -52,6 +53,8 @@
         <bpmn:flowNodeRef>EvCandScore</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>CollEvalMeeting</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>RankCand</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>AcceptPanel</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_0sqe5b1</bpmn:flowNodeRef>
         <bpmn:childLaneSet xsi:type="bpmn:tLaneSet" />
       </bpmn:lane>
       <bpmn:lane id="Lane_0yruhv7" name="Director">
@@ -154,10 +157,11 @@
           <camunda:inputParameter name="ExistingJobDescription">Text</camunda:inputParameter>
           <camunda:inputParameter name="NewJobDescription">Text</camunda:inputParameter>
           <camunda:outputParameter name="JobFile">Send</camunda:outputParameter>
+          <camunda:outputParameter name="PotentialPanel">true</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1ymnhng</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0g16uio</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_1ulkzq9</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:userTask id="AskDirector" name="Ask Director for new headcount" camunda:candidateGroups="manager">
       <bpmn:extensionElements>
@@ -182,7 +186,7 @@
       </bpmn:extensionElements>
       <bpmn:outgoing>SequenceFlow_1xaf48n</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:sequenceFlow id="SequenceFlow_0g16uio" sourceRef="DeliverJobFile" targetRef="FinalizeJobFile" />
+    <bpmn:sequenceFlow id="SequenceFlow_0g16uio" sourceRef="ExclusiveGateway_00s0jze" targetRef="FinalizeJobFile" />
     <bpmn:sequenceFlow id="SequenceFlow_00cdlg4" sourceRef="FinalizeJobFile" targetRef="PostJobInt" />
     <bpmn:sequenceFlow id="SequenceFlow_0rdknm5" sourceRef="FinalizeJobFile" targetRef="PostJobExt" />
     <bpmn:userTask id="FinalizeJobFile" name="Finalize Job File" camunda:candidateGroups="HR Assistant">
@@ -400,7 +404,7 @@
       <bpmn:incoming>SequenceFlow_1q35bwj</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0w6n9iw</bpmn:outgoing>
     </bpmn:receiveTask>
-    <bpmn:sequenceFlow id="SequenceFlow_0qsxsdp" sourceRef="PanelListIntCandidates" targetRef="TimetableInterviews" />
+    <bpmn:sequenceFlow id="SequenceFlow_0qsxsdp" sourceRef="PanelListIntCandidates" targetRef="ExclusiveGateway_0ey2iqx" />
     <bpmn:receiveTask id="PanelListIntCandidates" name="Receive List of Interview Candidates">
       <bpmn:extensionElements>
         <camunda:inputOutput>
@@ -413,24 +417,10 @@
       <bpmn:outgoing>SequenceFlow_0qsxsdp</bpmn:outgoing>
     </bpmn:receiveTask>
     <bpmn:sequenceFlow id="SequenceFlow_01lswsa" sourceRef="Sendcandidates2ndround" targetRef="PanelListIntCandidates" />
-    <bpmn:userTask id="TimetableInterviews" name="Define Timetable for Interviews" camunda:candidateGroups="Interview Panel">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="PanelTimetable" label="Panel Timetable " type="string" defaultValue="availability" />
-        </camunda:formData>
-        <camunda:inputOutput>
-          <camunda:inputParameter name="PreparedPanel">Panel knows Candidates</camunda:inputParameter>
-          <camunda:outputParameter name="TimetablePanel">Timetable for Interviews</camunda:outputParameter>
-        </camunda:inputOutput>
-      </bpmn:extensionElements>
-      <bpmn:incoming>SequenceFlow_0qsxsdp</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0nfd8yu</bpmn:outgoing>
-    </bpmn:userTask>
     <bpmn:sequenceFlow id="SequenceFlow_0w6n9iw" sourceRef="HRListInterview" targetRef="ExclusiveGateway_0ey2iqx" />
-    <bpmn:sequenceFlow id="SequenceFlow_0nfd8yu" sourceRef="TimetableInterviews" targetRef="ExclusiveGateway_0ey2iqx" />
     <bpmn:inclusiveGateway id="ExclusiveGateway_0ey2iqx">
       <bpmn:incoming>SequenceFlow_0w6n9iw</bpmn:incoming>
-      <bpmn:incoming>SequenceFlow_0nfd8yu</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_0qsxsdp</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_01m4wut</bpmn:outgoing>
     </bpmn:inclusiveGateway>
     <bpmn:sequenceFlow id="SequenceFlow_01m4wut" sourceRef="ExclusiveGateway_0ey2iqx" targetRef="ScheduleInterviews" />
@@ -887,6 +877,38 @@
     <bpmn:endEvent id="EndEvent_1or8hzw" name="Hire employee">
       <bpmn:incoming>SequenceFlow_01o2pqc</bpmn:incoming>
     </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1ulkzq9" sourceRef="DeliverJobFile" targetRef="ExclusiveGateway_00s0jze" />
+    <bpmn:parallelGateway id="ExclusiveGateway_00s0jze">
+      <bpmn:incoming>SequenceFlow_1ulkzq9</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0g16uio</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_1u5e9t7</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:sequenceFlow id="SequenceFlow_1u5e9t7" sourceRef="ExclusiveGateway_00s0jze" targetRef="InvitePanel" />
+    <bpmn:userTask id="InvitePanel" name="Invite interview panel members" camunda:candidateGroups="manager">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="PotentialPanel">true</camunda:inputParameter>
+          <camunda:outputParameter name="ChosenPanel">true</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1u5e9t7</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_03ndkrp</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="SequenceFlow_03ndkrp" sourceRef="InvitePanel" targetRef="AcceptPanel" />
+    <bpmn:userTask id="AcceptPanel" name="Accept invite for panel membership" camunda:candidateGroups="interview panel">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="ChosenPanel">true</camunda:inputParameter>
+          <camunda:outputParameter name="NotifiedPanel">true</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_03ndkrp</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1et3v9j</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="EndEvent_0sqe5b1">
+      <bpmn:incoming>SequenceFlow_1et3v9j</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1et3v9j" sourceRef="AcceptPanel" targetRef="EndEvent_0sqe5b1" />
   </bpmn:process>
   <bpmn:process id="Process_0hgp4ou" isExecutable="true" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
@@ -1028,10 +1050,12 @@
         <dc:Bounds x="-507" y="-167" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0g16uio_di" bpmnElement="SequenceFlow_0g16uio">
-        <di:waypoint xsi:type="dc:Point" x="-457" y="-167" />
+        <di:waypoint xsi:type="dc:Point" x="-331" y="-153" />
+        <di:waypoint xsi:type="dc:Point" x="-331" y="-325" />
+        <di:waypoint xsi:type="dc:Point" x="-457" y="-325" />
         <di:waypoint xsi:type="dc:Point" x="-457" y="-445" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="-442" y="-312" width="0" height="12" />
+          <dc:Bounds x="-439" y="-346" width="90" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="UserTask_1mv0g1s_di" bpmnElement="FinalizeJobFile">
@@ -1190,14 +1214,14 @@
       <bpmndi:BPMNShape id="UserTask_17a4ra7_di" bpmnElement="ScheduleTelInterview">
         <dc:Bounds x="1021" y="-525" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="UserTask_1hs6h9b_di" bpmnElement="TimetableInterviews">
-        <dc:Bounds x="1917" y="86" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0qsxsdp_di" bpmnElement="SequenceFlow_0qsxsdp">
         <di:waypoint xsi:type="dc:Point" x="1835" y="126" />
-        <di:waypoint xsi:type="dc:Point" x="1917" y="126" />
+        <di:waypoint xsi:type="dc:Point" x="1967" y="126" />
+        <di:waypoint xsi:type="dc:Point" x="1967" y="-187" />
+        <di:waypoint xsi:type="dc:Point" x="1967" y="-187" />
+        <di:waypoint xsi:type="dc:Point" x="1967" y="-460" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1876" y="105" width="0" height="12" />
+          <dc:Bounds x="1937" y="-36.5" width="90" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_0fqethy_di" bpmnElement="SequenceFlow_0fqethy">
@@ -1269,15 +1293,6 @@
         <di:waypoint xsi:type="dc:Point" x="1942" y="-485" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="1888" y="-506" width="0" height="12" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_0nfd8yu_di" bpmnElement="SequenceFlow_0nfd8yu">
-        <di:waypoint xsi:type="dc:Point" x="1967" y="86" />
-        <di:waypoint xsi:type="dc:Point" x="1967" y="-187" />
-        <di:waypoint xsi:type="dc:Point" x="1967" y="-187" />
-        <di:waypoint xsi:type="dc:Point" x="1967" y="-460" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1982" y="-193" width="0" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="InclusiveGateway_0hwhh6w_di" bpmnElement="ExclusiveGateway_0ey2iqx">
@@ -1742,6 +1757,52 @@
         <di:waypoint xsi:type="dc:Point" x="5875" y="-412" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="5543" y="-822" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1ulkzq9_di" bpmnElement="SequenceFlow_1ulkzq9">
+        <di:waypoint xsi:type="dc:Point" x="-407" y="-127" />
+        <di:waypoint xsi:type="dc:Point" x="-356" y="-127" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-381.5" y="-148" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ParallelGateway_00a837y_di" bpmnElement="ExclusiveGateway_00s0jze">
+        <dc:Bounds x="-356" y="-152" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-331.1277584204414" y="-98" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1u5e9t7_di" bpmnElement="SequenceFlow_1u5e9t7">
+        <di:waypoint xsi:type="dc:Point" x="-331" y="-102" />
+        <di:waypoint xsi:type="dc:Point" x="-331" y="-66" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-316" y="-90" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_04yz16y_di" bpmnElement="InvitePanel">
+        <dc:Bounds x="-381" y="-66" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_03ndkrp_di" bpmnElement="SequenceFlow_03ndkrp">
+        <di:waypoint xsi:type="dc:Point" x="-331" y="14" />
+        <di:waypoint xsi:type="dc:Point" x="-331" y="110" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-316" y="56" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_1529uhr_di" bpmnElement="AcceptPanel">
+        <dc:Bounds x="-381" y="110" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_0sqe5b1_di" bpmnElement="EndEvent_0sqe5b1">
+        <dc:Bounds x="-184.32135306553914" y="132" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-166.32135306553914" y="172" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1et3v9j_di" bpmnElement="SequenceFlow_1et3v9j">
+        <di:waypoint xsi:type="dc:Point" x="-281" y="150" />
+        <di:waypoint xsi:type="dc:Point" x="-184" y="150" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-232.5" y="129" width="0" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
