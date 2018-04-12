@@ -285,9 +285,6 @@
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0rttsgm</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_08uis8t</bpmn:outgoing>
-      <bpmn:dataOutputAssociation id="DataOutputAssociation_1mnbqbo">
-        <bpmn:targetRef>ApplicantMS</bpmn:targetRef>
-      </bpmn:dataOutputAssociation>
     </bpmn:sendTask>
     <bpmn:sequenceFlow id="SequenceFlow_08uis8t" sourceRef="SendApplications" targetRef="ReceiveShortlist" />
     <bpmn:receiveTask id="ReceiveShortlist" name="Receive shortlisted Applications">
@@ -917,9 +914,6 @@
       <bpmn:incoming>SequenceFlow_1uwkjkm</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0iujxvu</bpmn:outgoing>
       <bpmn:outgoing>SequenceFlow_1ikx86j</bpmn:outgoing>
-      <bpmn:dataOutputAssociation id="DataOutputAssociation_09va3v5">
-        <bpmn:targetRef>ApplicantMS</bpmn:targetRef>
-      </bpmn:dataOutputAssociation>
     </bpmn:userTask>
     <bpmn:sequenceFlow id="SequenceFlow_0iujxvu" sourceRef="EvaluateApplicants" targetRef="DefineInterviewList" />
     <bpmn:sequenceFlow id="SequenceFlow_1ikx86j" sourceRef="EvaluateApplicants" targetRef="Task_130eovp" />
@@ -947,7 +941,6 @@
       <bpmn:incoming>SequenceFlow_15d7c8f</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0yvfgxq</bpmn:outgoing>
     </bpmn:task>
-    <bpmn:dataStoreReference id="ApplicantMS" name="Applicant Management System" />
   </bpmn:process>
   <bpmn:process id="Process_0hgp4ou" isExecutable="true" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
@@ -1886,20 +1879,6 @@
       <bpmndi:BPMNShape id="Task_0boszmo_di" bpmnElement="ConfirmInterviewAppointments">
         <dc:Bounds x="2342" y="-525" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataStoreReference_076mwha_di" bpmnElement="ApplicantMS">
-        <dc:Bounds x="774.68524970964" y="-723.2938443670151" width="50" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="770" y="-669" width="64" height="36" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="DataOutputAssociation_1mnbqbo_di" bpmnElement="DataOutputAssociation_1mnbqbo">
-        <di:waypoint xsi:type="dc:Point" x="406" y="-523" />
-        <di:waypoint xsi:type="dc:Point" x="775" y="-682" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataOutputAssociation_09va3v5_di" bpmnElement="DataOutputAssociation_09va3v5">
-        <di:waypoint xsi:type="dc:Point" x="1269" y="-505" />
-        <di:waypoint xsi:type="dc:Point" x="825" y="-683" />
-      </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>
