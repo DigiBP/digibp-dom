@@ -40,6 +40,8 @@
         <bpmn:flowNodeRef>NotifyHR</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>CheckContract</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ContractSuitable</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ExclusiveGateway_0f1itsb</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>InvitePanel</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_03zro0z" name="Interview Panel">
         <bpmn:flowNodeRef>PanelListIntCandidates</bpmn:flowNodeRef>
@@ -52,6 +54,8 @@
         <bpmn:flowNodeRef>EvCandScore</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>CollEvalMeeting</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>RankCand</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_1g5situ</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>AcceptPanel</bpmn:flowNodeRef>
         <bpmn:childLaneSet xsi:type="bpmn:tLaneSet" />
       </bpmn:lane>
       <bpmn:lane id="Lane_0yruhv7" name="Director">
@@ -154,10 +158,12 @@
           <camunda:inputParameter name="ExistingJobDescription">Text</camunda:inputParameter>
           <camunda:inputParameter name="NewJobDescription">Text</camunda:inputParameter>
           <camunda:outputParameter name="JobFile">Send</camunda:outputParameter>
+          <camunda:outputParameter name="PossiblePanel">Panel</camunda:outputParameter>
         </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1ymnhng</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0g16uio</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_0owq3ig</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:userTask id="AskDirector" name="Ask Director for new headcount" camunda:candidateGroups="manager">
       <bpmn:extensionElements>
@@ -887,6 +893,37 @@
     <bpmn:endEvent id="EndEvent_1or8hzw" name="Hire employee">
       <bpmn:incoming>SequenceFlow_01o2pqc</bpmn:incoming>
     </bpmn:endEvent>
+    <bpmn:exclusiveGateway id="ExclusiveGateway_0f1itsb">
+      <bpmn:incoming>SequenceFlow_0owq3ig</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1nhhbnx</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="SequenceFlow_0owq3ig" sourceRef="DeliverJobFile" targetRef="ExclusiveGateway_0f1itsb" />
+    <bpmn:sequenceFlow id="SequenceFlow_1nhhbnx" sourceRef="ExclusiveGateway_0f1itsb" targetRef="InvitePanel" />
+    <bpmn:userTask id="InvitePanel" name="Invite interview panel members" camunda:candidateGroups="manager">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="PossiblePanel">Panel</camunda:inputParameter>
+          <camunda:outputParameter name="ProposedPanel">Panel</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1nhhbnx</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_08982cq</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="SequenceFlow_08982cq" sourceRef="InvitePanel" targetRef="AcceptPanel" />
+    <bpmn:endEvent id="EndEvent_1g5situ">
+      <bpmn:incoming>SequenceFlow_1nq5ja0</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1nq5ja0" sourceRef="AcceptPanel" targetRef="EndEvent_1g5situ" />
+    <bpmn:userTask id="AcceptPanel" name="Accept invite for panel membership" camunda:candidateGroups="HR Assistant">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="ProposedPanel">Panel</camunda:inputParameter>
+          <camunda:outputParameter name="ConfirmedPanel">Panel</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_08982cq</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1nq5ja0</bpmn:outgoing>
+    </bpmn:userTask>
   </bpmn:process>
   <bpmn:process id="Process_0hgp4ou" isExecutable="true" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
@@ -1744,6 +1781,52 @@
           <dc:Bounds x="5543" y="-822" width="0" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ExclusiveGateway_0f1itsb_di" bpmnElement="ExclusiveGateway_0f1itsb" isMarkerVisible="true">
+        <dc:Bounds x="-337.58072009291527" y="-152" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-312.58072009291527" y="-98" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0owq3ig_di" bpmnElement="SequenceFlow_0owq3ig">
+        <di:waypoint xsi:type="dc:Point" x="-407" y="-127" />
+        <di:waypoint xsi:type="dc:Point" x="-338" y="-127" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-372.5" y="-148" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1nhhbnx_di" bpmnElement="SequenceFlow_1nhhbnx">
+        <di:waypoint xsi:type="dc:Point" x="-313" y="-102" />
+        <di:waypoint xsi:type="dc:Point" x="-313" y="-68" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-298" y="-91" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_1stnr9t_di" bpmnElement="InvitePanel">
+        <dc:Bounds x="-362" y="-68" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_08982cq_di" bpmnElement="SequenceFlow_08982cq">
+        <di:waypoint xsi:type="dc:Point" x="-312" y="12" />
+        <di:waypoint xsi:type="dc:Point" x="-312" y="118" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-297" y="59" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_1g5situ_di" bpmnElement="EndEvent_1g5situ">
+        <dc:Bounds x="-184.83623693379798" y="140" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-166.83623693379798" y="180" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1nq5ja0_di" bpmnElement="SequenceFlow_1nq5ja0">
+        <di:waypoint xsi:type="dc:Point" x="-262" y="158" />
+        <di:waypoint xsi:type="dc:Point" x="-185" y="158" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-223.5" y="137" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_0uv1gs5_di" bpmnElement="AcceptPanel">
+        <dc:Bounds x="-362" y="118" width="100" height="80" />
+      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>
