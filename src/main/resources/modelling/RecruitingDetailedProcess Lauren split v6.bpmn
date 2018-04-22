@@ -28,48 +28,19 @@
         <bpmn:flowNodeRef>StartEvent_1du05l2</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_0ao4g0y</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>RetrieveCandidateFiles</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>SendShortlist</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>UserTask_1rni3nn</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>CheckSchedule</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>ReceiveCandidateResponse</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ProposeDateTime</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ReceiveCandidateResponse</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>SchedulePhoneInterview</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>SendConfirmation</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>CallCandidate</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EvaluateCandidate</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>SendRejectionEmail</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>UpdateCandidateList</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>CallCandidate</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>SendShortlist</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>UserTask_1rni3nn</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
-    <bpmn:task id="UserTask_1rni3nn" name="Receive new list">
-      <bpmn:extensionElements>
-        <camunda:inputOutput>
-          <camunda:outputParameter name="UnsuccessfulCandidateList">text</camunda:outputParameter>
-        </camunda:inputOutput>
-      </bpmn:extensionElements>
-      <bpmn:incoming>SequenceFlow_0fqu4fi</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_1kssc8q</bpmn:outgoing>
-    </bpmn:task>
-    <bpmn:task id="AssignNewShortlist" name="Assign new shortlist to HR">
-      <bpmn:incoming>SequenceFlow_0zr1iwu</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0fqu4fi</bpmn:outgoing>
-    </bpmn:task>
-    <bpmn:task id="ChooseCandidates" name="Choose personal interview candidates">
-      <bpmn:incoming>SequenceFlow_0uug4ry</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0zr1iwu</bpmn:outgoing>
-    </bpmn:task>
-    <bpmn:task id="AccessShortlist" name="Access candidate shortlist">
-      <bpmn:incoming>SequenceFlow_0syniao</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0uug4ry</bpmn:outgoing>
-    </bpmn:task>
-    <bpmn:task id="SendShortlist" name="Send new Shortlist to manager">
-      <bpmn:incoming>SequenceFlow_1gms2wo</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0syniao</bpmn:outgoing>
-    </bpmn:task>
-    <bpmn:task id="RetrieveCandidateFiles" name="Retrieve candidate files">
-      <bpmn:incoming>SequenceFlow_0tymj2q</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_01ox66z</bpmn:outgoing>
-    </bpmn:task>
     <bpmn:endEvent id="EndEvent_0ao4g0y">
       <bpmn:incoming>SequenceFlow_1kssc8q</bpmn:incoming>
     </bpmn:endEvent>
@@ -83,22 +54,32 @@
     <bpmn:sequenceFlow id="SequenceFlow_0uug4ry" sourceRef="AccessShortlist" targetRef="ChooseCandidates" />
     <bpmn:sequenceFlow id="SequenceFlow_0syniao" sourceRef="SendShortlist" targetRef="AccessShortlist" />
     <bpmn:sequenceFlow id="SequenceFlow_0zr1iwu" sourceRef="ChooseCandidates" targetRef="AssignNewShortlist" />
-    <bpmn:task id="CheckSchedule" name="Check schedule for available interview times">
+    <bpmn:sequenceFlow id="SequenceFlow_0s0yxgi" sourceRef="CheckSchedule" targetRef="ProposeDateTime" />
+    <bpmn:sequenceFlow id="SequenceFlow_1mezpq6" sourceRef="ReceiveCandidateResponse" targetRef="SchedulePhoneInterview" />
+    <bpmn:sequenceFlow id="SequenceFlow_01ap71h" sourceRef="ProposeDateTime" targetRef="ReceiveCandidateResponse" />
+    <bpmn:sequenceFlow id="SequenceFlow_03o1tlk" sourceRef="SchedulePhoneInterview" targetRef="SendConfirmation" />
+    <bpmn:sequenceFlow id="SequenceFlow_02d4ez4" sourceRef="SendConfirmation" targetRef="CallCandidate" />
+    <bpmn:sequenceFlow id="SequenceFlow_0xelfcu" sourceRef="EvaluateCandidate" targetRef="SendRejectionEmail" />
+    <bpmn:sequenceFlow id="SequenceFlow_1ifcalv" sourceRef="SendRejectionEmail" targetRef="UpdateCandidateList" />
+    <bpmn:sequenceFlow id="SequenceFlow_1gms2wo" sourceRef="UpdateCandidateList" targetRef="SendShortlist" />
+    <bpmn:sequenceFlow id="SequenceFlow_1e44s0b" sourceRef="CallCandidate" targetRef="EvaluateCandidate" />
+    <bpmn:manualTask id="RetrieveCandidateFiles" name="Retrieve candidate files">
+      <bpmn:incoming>SequenceFlow_0tymj2q</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_01ox66z</bpmn:outgoing>
+    </bpmn:manualTask>
+    <bpmn:manualTask id="CheckSchedule" name="Check schedule for available interview times">
       <bpmn:incoming>SequenceFlow_01ox66z</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0s0yxgi</bpmn:outgoing>
-    </bpmn:task>
-    <bpmn:sequenceFlow id="SequenceFlow_0s0yxgi" sourceRef="CheckSchedule" targetRef="ProposeDateTime" />
-    <bpmn:task id="ReceiveCandidateResponse" name="Receive response from candidate">
-      <bpmn:incoming>SequenceFlow_01ap71h</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_1mezpq6</bpmn:outgoing>
-    </bpmn:task>
-    <bpmn:sequenceFlow id="SequenceFlow_1mezpq6" sourceRef="ReceiveCandidateResponse" targetRef="SchedulePhoneInterview" />
-    <bpmn:task id="ProposeDateTime" name="Propose interview date and time">
+    </bpmn:manualTask>
+    <bpmn:manualTask id="ProposeDateTime" name="Propose interview date and time">
       <bpmn:incoming>SequenceFlow_0s0yxgi</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_01ap71h</bpmn:outgoing>
-    </bpmn:task>
-    <bpmn:sequenceFlow id="SequenceFlow_01ap71h" sourceRef="ProposeDateTime" targetRef="ReceiveCandidateResponse" />
-    <bpmn:task id="SchedulePhoneInterview" name="Schedule phone interview">
+    </bpmn:manualTask>
+    <bpmn:manualTask id="ReceiveCandidateResponse" name="Receive response from candidate">
+      <bpmn:incoming>SequenceFlow_01ap71h</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1mezpq6</bpmn:outgoing>
+    </bpmn:manualTask>
+    <bpmn:manualTask id="SchedulePhoneInterview" name="Schedule phone interview">
       <bpmn:extensionElements>
         <camunda:inputOutput>
           <camunda:outputParameter name="ScheduledInterview1">text</camunda:outputParameter>
@@ -106,33 +87,52 @@
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1mezpq6</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_03o1tlk</bpmn:outgoing>
-    </bpmn:task>
-    <bpmn:sequenceFlow id="SequenceFlow_03o1tlk" sourceRef="SchedulePhoneInterview" targetRef="SendConfirmation" />
-    <bpmn:task id="SendConfirmation" name="Send appointment confirmation to candidate">
+    </bpmn:manualTask>
+    <bpmn:manualTask id="SendConfirmation" name="Send appointment confirmation to candidate">
       <bpmn:incoming>SequenceFlow_03o1tlk</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_02d4ez4</bpmn:outgoing>
-    </bpmn:task>
-    <bpmn:sequenceFlow id="SequenceFlow_02d4ez4" sourceRef="SendConfirmation" targetRef="CallCandidate" />
-    <bpmn:task id="EvaluateCandidate" name="Evaluate candidate">
-      <bpmn:incoming>SequenceFlow_1e44s0b</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0xelfcu</bpmn:outgoing>
-    </bpmn:task>
-    <bpmn:sequenceFlow id="SequenceFlow_0xelfcu" sourceRef="EvaluateCandidate" targetRef="SendRejectionEmail" />
-    <bpmn:task id="SendRejectionEmail" name="Send rejection email to candidate">
-      <bpmn:incoming>SequenceFlow_0xelfcu</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_1ifcalv</bpmn:outgoing>
-    </bpmn:task>
-    <bpmn:sequenceFlow id="SequenceFlow_1ifcalv" sourceRef="SendRejectionEmail" targetRef="UpdateCandidateList" />
-    <bpmn:task id="UpdateCandidateList" name="Update candidate list">
-      <bpmn:incoming>SequenceFlow_1ifcalv</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_1gms2wo</bpmn:outgoing>
-    </bpmn:task>
-    <bpmn:sequenceFlow id="SequenceFlow_1gms2wo" sourceRef="UpdateCandidateList" targetRef="SendShortlist" />
-    <bpmn:task id="CallCandidate" name="Call candidate">
+    </bpmn:manualTask>
+    <bpmn:manualTask id="CallCandidate" name="Call candidate">
       <bpmn:incoming>SequenceFlow_02d4ez4</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1e44s0b</bpmn:outgoing>
-    </bpmn:task>
-    <bpmn:sequenceFlow id="SequenceFlow_1e44s0b" sourceRef="CallCandidate" targetRef="EvaluateCandidate" />
+    </bpmn:manualTask>
+    <bpmn:manualTask id="EvaluateCandidate" name="Evaluate candidate">
+      <bpmn:incoming>SequenceFlow_1e44s0b</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0xelfcu</bpmn:outgoing>
+    </bpmn:manualTask>
+    <bpmn:manualTask id="SendRejectionEmail" name="Send rejection email to candidate">
+      <bpmn:incoming>SequenceFlow_0xelfcu</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1ifcalv</bpmn:outgoing>
+    </bpmn:manualTask>
+    <bpmn:manualTask id="UpdateCandidateList" name="Update candidate list">
+      <bpmn:incoming>SequenceFlow_1ifcalv</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1gms2wo</bpmn:outgoing>
+    </bpmn:manualTask>
+    <bpmn:manualTask id="SendShortlist" name="Send new Shortlist to manager">
+      <bpmn:incoming>SequenceFlow_1gms2wo</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0syniao</bpmn:outgoing>
+    </bpmn:manualTask>
+    <bpmn:manualTask id="AccessShortlist" name="Access candidate shortlist">
+      <bpmn:incoming>SequenceFlow_0syniao</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0uug4ry</bpmn:outgoing>
+    </bpmn:manualTask>
+    <bpmn:manualTask id="ChooseCandidates" name="Choose personal interview candidates">
+      <bpmn:incoming>SequenceFlow_0uug4ry</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0zr1iwu</bpmn:outgoing>
+    </bpmn:manualTask>
+    <bpmn:manualTask id="AssignNewShortlist" name="Assign new shortlist to HR">
+      <bpmn:incoming>SequenceFlow_0zr1iwu</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0fqu4fi</bpmn:outgoing>
+    </bpmn:manualTask>
+    <bpmn:manualTask id="UserTask_1rni3nn" name="Receive new list">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="UnsuccessfulCandidateList">text</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_0fqu4fi</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1kssc8q</bpmn:outgoing>
+    </bpmn:manualTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1n3fhm8">
@@ -141,51 +141,6 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Participant_0up8tsk_di" bpmnElement="Participant_0up8tsk">
         <dc:Bounds x="-4526" y="-419" width="9253" height="1490" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Task_0zlalxd_di" bpmnElement="UpdateCandidateList">
-        <dc:Bounds x="-1345" y="91" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Task_067x5fg_di" bpmnElement="EvaluateCandidate">
-        <dc:Bounds x="-1631" y="99" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Task_0k7p9s5_di" bpmnElement="CallCandidate">
-        <dc:Bounds x="-1778" y="99" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Task_1w97hwa_di" bpmnElement="SendRejectionEmail">
-        <dc:Bounds x="-1494" y="99" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Task_134dcbg_di" bpmnElement="SchedulePhoneInterview">
-        <dc:Bounds x="-2087" y="99" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Task_0w06rsb_di" bpmnElement="CheckSchedule">
-        <dc:Bounds x="-2558" y="91" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Task_0f0be56_di" bpmnElement="SendConfirmation" bioc:stroke="#FB8C00" bioc:fill="#FFE0B2">
-        <dc:Bounds x="-1916" y="99" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Task_1hejeew_di" bpmnElement="ReceiveCandidateResponse" bioc:stroke="#FB8C00" bioc:fill="#FFE0B2">
-        <dc:Bounds x="-2237" y="91" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Task_1m0wq73_di" bpmnElement="ProposeDateTime" bioc:stroke="#FB8C00" bioc:fill="#FFE0B2">
-        <dc:Bounds x="-2401" y="91" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Task_0fkw6sx_di" bpmnElement="UserTask_1rni3nn">
-        <dc:Bounds x="-392" y="214" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Task_141wiqb_di" bpmnElement="AssignNewShortlist">
-        <dc:Bounds x="-537" y="462" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Task_1eph0rz_di" bpmnElement="ChooseCandidates">
-        <dc:Bounds x="-671" y="462" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Task_1u6dxsz_di" bpmnElement="AccessShortlist">
-        <dc:Bounds x="-798" y="462" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Task_0jo6udo_di" bpmnElement="SendShortlist">
-        <dc:Bounds x="-798" y="91" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Task_08fg2k9_di" bpmnElement="RetrieveCandidateFiles">
-        <dc:Bounds x="-2709" y="91" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="EndEvent_0ao4g0y_di" bpmnElement="EndEvent_0ao4g0y">
         <dc:Bounds x="-231.12530712530724" y="236" width="36" height="36" />
@@ -280,7 +235,7 @@
         <di:waypoint x="-2301" y="131" />
         <di:waypoint x="-2237" y="131" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="-2269" y="109" width="0" height="13" />
+          <dc:Bounds x="-2269" y="109.5" width="0" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_03o1tlk_di" bpmnElement="SequenceFlow_03o1tlk">
@@ -326,9 +281,54 @@
         <di:waypoint x="-1678" y="139" />
         <di:waypoint x="-1631" y="139" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="-1654.5" y="117" width="0" height="13" />
+          <dc:Bounds x="-1654.5" y="117.5" width="0" height="13" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ManualTask_0hag9rx_di" bpmnElement="RetrieveCandidateFiles">
+        <dc:Bounds x="-2709" y="91" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ManualTask_1y5t84t_di" bpmnElement="CheckSchedule">
+        <dc:Bounds x="-2558" y="91" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ManualTask_0qkfxv0_di" bpmnElement="ProposeDateTime" bioc:stroke="#FB8C00" bioc:fill="#FFE0B2">
+        <dc:Bounds x="-2401" y="91" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ManualTask_1crcskr_di" bpmnElement="ReceiveCandidateResponse" bioc:stroke="#FB8C00" bioc:fill="#FFE0B2">
+        <dc:Bounds x="-2237" y="91" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ManualTask_00vwvl3_di" bpmnElement="SchedulePhoneInterview">
+        <dc:Bounds x="-2087" y="99" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ManualTask_02zjaz8_di" bpmnElement="SendConfirmation" bioc:stroke="#FB8C00" bioc:fill="#FFE0B2">
+        <dc:Bounds x="-1916" y="99" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ManualTask_1mhz8m1_di" bpmnElement="CallCandidate">
+        <dc:Bounds x="-1778" y="99" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ManualTask_0npqgke_di" bpmnElement="EvaluateCandidate">
+        <dc:Bounds x="-1631" y="99" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ManualTask_0e8bmnj_di" bpmnElement="SendRejectionEmail">
+        <dc:Bounds x="-1494" y="99" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ManualTask_1essgky_di" bpmnElement="UpdateCandidateList">
+        <dc:Bounds x="-1345" y="91" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ManualTask_189tmhs_di" bpmnElement="SendShortlist">
+        <dc:Bounds x="-798" y="91" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ManualTask_1lp0387_di" bpmnElement="AccessShortlist">
+        <dc:Bounds x="-798" y="462" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ManualTask_0zq4n56_di" bpmnElement="ChooseCandidates">
+        <dc:Bounds x="-671" y="462" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ManualTask_0bajvjp_di" bpmnElement="AssignNewShortlist">
+        <dc:Bounds x="-537" y="462" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ManualTask_1srokkg_di" bpmnElement="UserTask_1rni3nn">
+        <dc:Bounds x="-392" y="214" width="100" height="80" />
+      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>
