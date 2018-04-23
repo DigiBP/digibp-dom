@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" id="Definitions_1pct56j" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.13.0">
-  <bpmn:collaboration id="Collaboration_0gwl2pq">
+  <bpmn:collaboration id="Contract1">
     <bpmn:participant id="Participant_003qtmi" processRef="Process_1" />
     <bpmn:participant id="Participant_1hur92j" processRef="Process_0s0xynv" />
   </bpmn:collaboration>
@@ -177,7 +177,7 @@
     </bpmn:userTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
-    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0gwl2pq">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Contract1">
       <bpmndi:BPMNShape id="Participant_003qtmi_di" bpmnElement="Participant_003qtmi">
         <dc:Bounds x="123" y="-196" width="2103" height="282" />
       </bpmndi:BPMNShape>
