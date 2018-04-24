@@ -65,3 +65,4 @@ vendor/
 *.vpp~*
 *.vpp.*
 
+.DS_Store
