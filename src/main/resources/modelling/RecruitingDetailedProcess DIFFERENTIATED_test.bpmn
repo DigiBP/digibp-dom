@@ -277,7 +277,7 @@
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0vwo32c</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1yz64k3</bpmn:outgoing>
-      <bpmn:businessRuleTask id="BusinessRuleTask_05tvpkv" name="Evaluate candidate">
+      <bpmn:businessRuleTask id="BusinessRuleTask_05tvpkv" name="Evaluate candidate" camunda:resultVariable="result" camunda:decisionRef="InviteForInterview" camunda:mapDecisionResult="singleEntry">
         <bpmn:extensionElements>
           <camunda:inputOutput>
             <camunda:inputParameter name="CandidateAvailability">text</camunda:inputParameter>
