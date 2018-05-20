@@ -1,6 +1,6 @@
 
 
-# Recruitment process
+# Recruitment process - Process Description
 
 In the following ReadMe file the recruitment process is documented with all it`s aspects and included services within 
 the process.
@@ -32,6 +32,40 @@ The decision is communicated to the HR, which subsequently informs all candidate
 to the decided candidate. After the conclusion of the contract, the process is completed.
 
 
+## Roles within the Process
+
+- HR Department
+- Department Manager
+- Interview Panel
+- Department Head
+
+- Applicant/s
+
+## Decision Tables
+
+- Evaluate candidate: Telephone Interview
+- Evaluate Candidate: In-Person Interview
+
+## Service integration Tasks
+
+- Get existing job description
+- Post Job
+- Create Shortlist of applicants
+- Send rejection mail
+- Upload Shortlist
+- Update Shortlist
+- Send mail task
+- Send appointment confirmation to candidate
+- Update candidate list with favorites
+- rejection of candidates
+
+## Tools used for process automation
+
+- Camunda modeler: To model the process
+- GitHub: Process repasitory and shareDrive for team members
+- Heroku: Process Deployment
+- Postman:
+- 
 
 [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 [![Deploy to Heroku](https://img.shields.io/badge/deploy%20to-Heroku-6762a6.svg?longCache=true)](https://heroku.com/deploy)
