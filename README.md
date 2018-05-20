@@ -61,11 +61,13 @@ to the decided candidate. After the conclusion of the contract, the process is c
 
 ## Tools used for process automation
 
-- Camunda modeler: To model the process
-- GitHub: Process repasitory and shareDrive for team members
-- Heroku: Process Deployment
+- Camunda BPM modeler and DMN diagrams: To model the process
+- Camunda Platform / BPM for executing BPMN workflows and DMN decision tables
+- GitHub: For documentation, modelling and project artefacts
+- Heroku: Cloud Platform as a Service (PaaS) provider
 - Postman:
-- 
+- Integromat: For process automation > connection & process integration
+  - IF TRIGGER THEN ACTION UNTIL LOOP(CONDITION)
 
 [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 [![Deploy to Heroku](https://img.shields.io/badge/deploy%20to-Heroku-6762a6.svg?longCache=true)](https://heroku.com/deploy)
