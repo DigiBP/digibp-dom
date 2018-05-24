@@ -2,7 +2,7 @@
 
 #### Contents
 
-- [Recruitment process - Process Description (#Recruitment process - Process Description)]
+- [Recruitment process - Process Description] (#Recruitment process - Process Description)
 
 
 
