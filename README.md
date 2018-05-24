@@ -40,8 +40,8 @@ to the decided candidate. After the conclusion of the contract, the process is c
 - Department Manager
 - Interview Panel
 - Department Head
-
 - Applicant/s
+
 
 ![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/Evaluate%20Candidate.png?token=AjCUh2lQ3Fr7v7NC8N8x3-8GrnLUPVkwks5bEAL5wA%3D%3D)
 
@@ -77,6 +77,7 @@ to the decided candidate. After the conclusion of the contract, the process is c
 - Integromat: For process automation > connection & process integration
   - If trigger then action until loop (condition)
 
+
 ### Get existing job description
 
 The service Task "Get existing job description" has been defined as a srvice task, in order to make it easier for the participants the retrieve data. For that purpose the GoogleSheet has been connected to the process, or rather within the Task. 
@@ -84,9 +85,13 @@ The service Task "Get existing job description" has been defined as a srvice tas
 ![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/Get%20Existing%20job%20description.png?token=AjCUh2d9IstZXTeX4bfLhBTrk1yojPKCks5bEAgawA%3D%3D)
 
 
-In this case the data is The case data is identified by a business key. The service tasks are connected to two Integromat scenario endpoints create-customer-data and read-customer-data as shown in the following animation:
+In this case the data is identified by a business key. The service tasks are connected to two Integromat scenario endpoints create-customer-data and read-customer-data as shown in the following animation:
+
+![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/Intehromat-GSheet%20intergration.png?token=AjCUh04auLr47kK3YOvo0HE-45AaMgazks5bEArgwA%3D%3D)
 
 
+For the integration with integromat and Camunda the Wiki page has been used, which was provided by the lectures:
 
-[![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
-[![Deploy to Heroku](https://img.shields.io/badge/deploy%20to-Heroku-6762a6.svg?longCache=true)](https://heroku.com/deploy)
+![Link to Wiki](https://github.com/DigiBP/digibp.github.io/wiki/Getting-Started-Integromat)
+
+
