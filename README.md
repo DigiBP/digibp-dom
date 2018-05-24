@@ -1,8 +1,4 @@
 ![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/recruitment.jpg?token=AjCUh4sNx5TJgtKwRqUPhKXSaRnIWDZyks5bD-snwA%3D%3D)
-
-- [Recruitment process - Process Description](#Recruitment)
-
-
 ## Recruitment process - Process Description
 
 In the following ReadMe file the recruitment process is documented with all it`s aspects and included services within 
@@ -34,9 +30,11 @@ Candidates are also evaluated using a decision table. then a candidate for the o
 The decision is communicated to the HR, which subsequently informs all candidates accordingly and sends the contract 
 to the decided candidate. After the conclusion of the contract, the process is completed.
 
+![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/Bildschirmfoto%202018-05-24%20um%2014.46.10.png?token=AjCUhwInWmmCBBoTeNRimPxtrjZRhdZcks5bD-7TwA%3D%3D)
 
 ## Roles within the Process
-
+![]
+(https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/GreenThumbsUp1.jpg?token=AjCUh948-o9VHGUjENfdo_AWaf5J63nQks5bD_3IwA%3D%3D)
 - HR Department
 - Department Manager
 - Interview Panel
@@ -70,9 +68,9 @@ to the decided candidate. After the conclusion of the contract, the process is c
 - Heroku: Cloud Platform as a Service (PaaS) provider
 - Postman:
 - Integromat: For process automation > connection & process integration
-  - IF TRIGGER THEN ACTION UNTIL LOOP(CONDITION)
+  - If trigger then action until loop (condition)
 
-
+- [Recruitment process - Process Description](#Recruitment)
 
 
 
