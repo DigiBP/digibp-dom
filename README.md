@@ -1,4 +1,6 @@
-![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/recruitment.jpg?token=AjCUh4sNx5TJgtKwRqUPhKXSaRnIWDZyks5bD-snwA%3D%3D)
+![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/Bildschirmfoto%202018-05-24%20um%2014.46.10.png?token=AjCUhwInWmmCBBoTeNRimPxtrjZRhdZcks5bD-7TwA%3D%3D)
+
+
 ## Recruitment process - Process Description
 
 In the following ReadMe file the recruitment process is documented with all it`s aspects and included services within 
@@ -30,11 +32,10 @@ Candidates are also evaluated using a decision table. then a candidate for the o
 The decision is communicated to the HR, which subsequently informs all candidates accordingly and sends the contract 
 to the decided candidate. After the conclusion of the contract, the process is completed.
 
-![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/Bildschirmfoto%202018-05-24%20um%2014.46.10.png?token=AjCUhwInWmmCBBoTeNRimPxtrjZRhdZcks5bD-7TwA%3D%3D)
+
 
 ## Roles within the Process
-![]
-(https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/GreenThumbsUp1.jpg?token=AjCUh948-o9VHGUjENfdo_AWaf5J63nQks5bD_3IwA%3D%3D)
+
 - HR Department
 - Department Manager
 - Interview Panel
@@ -42,14 +43,20 @@ to the decided candidate. After the conclusion of the contract, the process is c
 
 - Applicant/s
 
+![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/Evaluate%20Candidate.png?token=AjCUh2lQ3Fr7v7NC8N8x3-8GrnLUPVkwks5bEAL5wA%3D%3D)
+
 ## Decision Tables
 
-- Evaluate candidate: Telephone Interview
+- Interview Evaluation: Telephone Interview
 - Evaluate Candidate: In-Person Interview
+
+
+![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/Bildschirmfoto%202018-05-24%20um%2016.02.59.png?token=AjCUhxuXdZJwUyqgV8rq6dIwyi0ZRmQLks5bEAHIwA%3D%3D)
+
 
 ## Service integration Tasks
 
-- Get existing job description
+- [Get existing job description](GetJob)
 - Post Job
 - Create Shortlist of applicants
 - Send rejection mail
@@ -70,18 +77,16 @@ to the decided candidate. After the conclusion of the contract, the process is c
 - Integromat: For process automation > connection & process integration
   - If trigger then action until loop (condition)
 
-- [Recruitment process - Process Description](#Recruitment)
+### Get existing job description
+
+The service Task "Get existing job description" has been defined as a srvice task, in order to make it easier for the participants the retrieve data. For that purpose the GoogleSheet has been connected to the process, or rather within the Task. 
+
+![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/Get%20Existing%20job%20description.png?token=AjCUh2d9IstZXTeX4bfLhBTrk1yojPKCks5bEAgawA%3D%3D)
+
+
+In this case the data is The case data is identified by a business key. The service tasks are connected to two Integromat scenario endpoints create-customer-data and read-customer-data as shown in the following animation:
 
 
 
 [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 [![Deploy to Heroku](https://img.shields.io/badge/deploy%20to-Heroku-6762a6.svg?longCache=true)](https://heroku.com/deploy)
-
-
-## Maintainer
-- [Digitalisation of Business Processes](https://github.com/digibp)
-
-## License
-
-- [Apache License, Version 2.0](https://github.com/DigiBP/digibp-archetype-camunda-boot/blob/master/LICENSE)
-
