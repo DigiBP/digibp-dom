@@ -6,7 +6,7 @@
 
 
 
-# Recruitment process - Process Description
+## Recruitment process - Process Description
 
 In the following ReadMe file the recruitment process is documented with all it`s aspects and included services within 
 the process.
