@@ -1,3 +1,6 @@
+![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/Bildschirmfoto%202018-05-17%20um%2014.05.43.png?token=AjCUh_PdUQqEP9n-lOAFXK9vbKq69MBIks5bD-HFwA%3D%3D)
+
+
 
 
 # Recruitment process - Process Description
