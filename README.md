@@ -58,15 +58,14 @@ to the decided candidate. After the conclusion of the contract, the process is c
 
 - [Request for new employee](Request)
 - [Get existing job description](GetJob)
-- Post Job
+- [Post Job](post)
 - Create Shortlist of applicants
-- Send rejection mail
-- Upload Shortlist
-- Update Shortlist
-- Send mail task
-- Send appointment confirmation to candidate
-- Update candidate list with favorites
-- rejection of candidates
+  - Upload Shortlist
+  - Update Shortlist
+  - Update candidate list with favorites
+- Send mail Task
+  - rejection of candidates
+  
 
 ## Tools used for process automation
 
@@ -75,7 +74,8 @@ to the decided candidate. After the conclusion of the contract, the process is c
 - GitHub: For documentation, modelling and project artefacts and sharing the data within the Group
 - Heroku: Cloud Platform as a Service (PaaS) provider; For the deployement of the Camunda BPM processes
 - Postman: To transfer the data from Postman to Integromat
-- Integromat: For process automation > connection & process integration
+- Integromat: For process automation  
+  - connection & process integration
   - If trigger then action until loop (condition)
 - Dialogflow: Chatbot integration
 
@@ -84,17 +84,9 @@ to the decided candidate. After the conclusion of the contract, the process is c
 
 The service Task "Get existing job description" has been defined as a srvice task, in order to make it easier for the participants the retrieve data. For that purpose the GoogleSheet has been connected to the process, or rather within the Task. 
 
-![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/Get%20Existing%20job%20description.png?token=AjCUh2d9IstZXTeX4bfLhBTrk1yojPKCks5bEAgawA%3D%3D)
-
-
 In this case the data is identified by a business key. The service tasks are connected to two Integromat scenario endpoints create-customer-data and read-customer-data as shown in the following animation:
 
-![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/Intehromat-GSheet%20intergration.png?token=AjCUh04auLr47kK3YOvo0HE-45AaMgazks5bEArgwA%3D%3D)
-
-
-For the integration with integromat and Camunda the Wiki page has been used, which was provided by the lectures:
-
-![Link to Wiki](https://github.com/DigiBP/digibp.github.io/wiki/Getting-Started-Integromat)
+For the integration with integromat and Camunda the Wiki page has been used, which was provided by the lectures.
 
 
 ### Request for new employee
@@ -105,15 +97,8 @@ The Task "Request for Employee" has been automated as follows: The department Ma
 2. What is the role of the job? -> Answer: Role
 3. Do you have salery expectation? -> Answer: negotianable
 
+![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/dialogflowOne.PNG?token=AjCUh2xTw6qZ3RrwyTKBPy3_XkVJAfb0ks5bG7oIwA%3D%3D)
 
-
-The input values/answers to the questions will than be summed up to one information base and sended to the Department Head.
-
-
-
-- ake a request for new employee and send it to the department head.
-- Aleksa makes the notification and sends it to the deprtment head.
-
-Picture
+- The input values/answers to the questions will than be summed up to one information base and sended to the Department Head.
 
 
