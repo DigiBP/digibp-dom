@@ -139,3 +139,4 @@ The mail task appears multiple times within the process. It is used to speaciall
 #### Future recommendation
 
 - For the further improvement of the process we would recommand to have a propour implemented of Alexa chatbot integration, to enable higher process efficiency and make the overall process more easy by higher automation rate.
+
