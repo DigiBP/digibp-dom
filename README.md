@@ -6,7 +6,7 @@
 In the following ReadMe file the recruitment process is documented with all it`s aspects and included services within 
 the process.
 The process starts with the request of a department manager for a new employee. The reqeust goes to the department 
-head When the Department head rejects the request the process ends, when he/she approves the process proceeds. 
+head. When the Department head rejects the request the process ends, when he/she approves, the process proceeds. 
 
 When approved: The department head sends an approval notification to the department manager. When the 
 manager gets the approval he/ she than starts preparing the job description for the new position. 
@@ -40,6 +40,7 @@ to the decided candidate. After the conclusion of the contract, the process is c
 - Department Manager
 - Interview Panel
 - Department Head
+
 - Applicant/s
 
 
@@ -56,6 +57,7 @@ to the decided candidate. After the conclusion of the contract, the process is c
 
 ## Service integration Tasks
 
+- [Request for new employee](Request)
 - [Get existing job description](GetJob)
 - Post Job
 - Create Shortlist of applicants
@@ -71,11 +73,12 @@ to the decided candidate. After the conclusion of the contract, the process is c
 
 - Camunda BPM modeler and DMN diagrams: To model the process
 - Camunda Platform / BPM for executing BPMN workflows and DMN decision tables
-- GitHub: For documentation, modelling and project artefacts
-- Heroku: Cloud Platform as a Service (PaaS) provider
-- Postman:
+- GitHub: For documentation, modelling and project artefacts and sharing the data within the Group
+- Heroku: Cloud Platform as a Service (PaaS) provider; For the deployement of the Camunda BPM processes
+- Postman: To transfer the data from Postman to Integromat
 - Integromat: For process automation > connection & process integration
   - If trigger then action until loop (condition)
+- Dialogflow: Chatbot integration
 
 
 ### Get existing job description
@@ -94,5 +97,12 @@ For the integration with integromat and Camunda the Wiki page has been used, whi
 
 ![Link to Wiki](https://github.com/DigiBP/digibp.github.io/wiki/Getting-Started-Integromat)
 
+
+### Request for new employee
+
+The Task "Request for Employee" has been automated as follows: The department Manager doesnt need to write Email notification to make the Request for the new Employee. He can just easily tell Aleksa to do that.
+
+- Aleksa, make a request for new employee and send it to the department head.
+- Aleksa makes the notification and sends it to the deprtment head.
 
 
