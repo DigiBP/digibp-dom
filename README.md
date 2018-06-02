@@ -111,3 +111,20 @@ To automaticaly create and update the list with all the applicants which have ap
 ![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/updateexcel-select.PNG?token=AjCUh9N2k4rlLsKpMwgqnWEocnGaGbm8ks5bG75GwA%3D%3D)
 
 ![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/updateexcel-update.PNG?token=AjCUh_ytaLz4OTE6YaYPyFI3obfq7qvGks5bG76QwA%3D%3D)
+
+
+### Send mail Task
+
+The mail task appears multiple times within the process. It is used to speacially communicate between the different parties: such as the applicants, to update them on their application and also to communicate with the manager, as well as the interview panel.
+
+- For the mail integration Microsoft flow is used
+
+- Inside the microsoft flow one HTTP request along with the send-mail gateway for Gmail and one HTTP response has been configured.
+
+![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/email1st.PNG?token=AjCUh1ms-uJRyl9456QzaUKDPpXjq1Tyks5bG7_lwA%3D%3D)
+
+- In HTTP request we have used a json script containing the objects such as Emailadress, Emailsubject and emailbody
+
+![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/email2nd.PNG?token=AjCUhz-rg5AEx8j15pmi13HhWsglaBocks5bG8ALwA%3D%3D)
+
+![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/email3rd.PNG?token=AjCUh2hh0_lFpSx4lWRm0iUvCt5U3xjYks5bG8AVwA%3D%3D)
