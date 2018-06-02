@@ -59,13 +59,13 @@ to the decided candidate. After the conclusion of the contract, the process is c
 - [Request for new employee](Request)
 - [Get existing job description](GetJob)
 - [Post Job](post)
-- Create Shortlist of applicants
+- [Create Shortlist of applicants](Shortlist)
   - Upload Shortlist
   - Update Shortlist
   - Update candidate list with favorites
 - Send mail Task
   - rejection of candidates
-  
+
 
 ## Tools used for process automation
 
@@ -73,6 +73,9 @@ to the decided candidate. After the conclusion of the contract, the process is c
 - Camunda Platform / BPM for executing BPMN workflows and DMN decision tables
 - GitHub: For documentation, modelling and project artefacts and sharing the data within the Group
 - Heroku: Cloud Platform as a Service (PaaS) provider; For the deployement of the Camunda BPM processes
+
+![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/updateexcel.PNG?token=AjCUh0mOJWg8CT0kiXZRUEu8VX5SqNWyks5bG71swA%3D%3D)
+
 - Postman: To transfer the data from Postman to Integromat
 - Integromat: For process automation  
   - connection & process integration
@@ -101,4 +104,10 @@ The Task "Request for Employee" has been automated as follows: The department Ma
 
 - The input values/answers to the questions will than be summed up to one information base and sended to the Department Head.
 
+### Create Shortlist of applicants
 
+To automaticaly create and update the list with all the applicants which have applied for the job, we have decided to use Google Sheet, in order to automaticly update column values. This automation is done with the help of integromat, where we have connected the Google Sheet into the Camunda process.
+
+![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/updateexcel-select.PNG?token=AjCUh9N2k4rlLsKpMwgqnWEocnGaGbm8ks5bG75GwA%3D%3D)
+
+![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/updateexcel-update.PNG?token=AjCUh_ytaLz4OTE6YaYPyFI3obfq7qvGks5bG76QwA%3D%3D)
