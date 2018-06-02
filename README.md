@@ -63,8 +63,8 @@ to the decided candidate. After the conclusion of the contract, the process is c
   - Upload Shortlist
   - Update Shortlist
   - Update candidate list with favorites
-- Send mail Task
-  - rejection of candidates
+- [Send mail Task](Send)
+  - Rejection of candidates
 
 
 ## Tools used for process automation
