@@ -128,3 +128,14 @@ The mail task appears multiple times within the process. It is used to speaciall
 ![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/email2nd.PNG?token=AjCUhz-rg5AEx8j15pmi13HhWsglaBocks5bG8ALwA%3D%3D)
 
 ![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/email3rd.PNG?token=AjCUh2hh0_lFpSx4lWRm0iUvCt5U3xjYks5bG8AVwA%3D%3D)
+
+### Overall Challanges and future recommendation 
+
+#### Challanges
+
+- Service integration has been one of the biggest challanges regarding the automation
+  - Specially integrating the Aleksa skill was very difficult. By the end we could integrate Aleksa into the process, but problems accured when we tryed to transfer the data to external platform.
+ 
+#### Future recommendation
+
+- For the further improvement of the process we would recommand to have a propour implemented of Alexa chatbot integration, to enable higher process efficiency and make the overall process more easy by higher automation rate.
