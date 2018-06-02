@@ -1,4 +1,4 @@
-![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/Bildschirmfoto%202018-05-24%20um%2014.46.10.png?token=AjCUhwInWmmCBBoTeNRimPxtrjZRhdZcks5bD-7TwA%3D%3D)
+![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/recruitment.jpg?token=AjCUhxHgVTWjl5CuNBnzQtnPd_1e-Ur3ks5bG7ZEwA%3D%3D)
 
 
 ## Recruitment process - Process Description
@@ -32,7 +32,7 @@ Candidates are also evaluated using a decision table. then a candidate for the o
 The decision is communicated to the HR, which subsequently informs all candidates accordingly and sends the contract 
 to the decided candidate. After the conclusion of the contract, the process is completed.
 
-
+![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/Bildschirmfoto%202018-05-24%20um%2014.46.10.png?token=AjCUh2nvx1PEy67KM8kxTyxqFaXyMHREks5bG7auwA%3D%3D)
 
 ## Roles within the Process
 
@@ -44,15 +44,14 @@ to the decided candidate. After the conclusion of the contract, the process is c
 - Applicant/s
 
 
-![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/Evaluate%20Candidate.png?token=AjCUh2lQ3Fr7v7NC8N8x3-8GrnLUPVkwks5bEAL5wA%3D%3D)
-
 ## Decision Tables
 
 - Interview Evaluation: Telephone Interview
 - Evaluate Candidate: In-Person Interview
 
+![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/Evaluate%20Candidate%20DMN.png?token=AjCUh_MSHd6V2tEd2MXCfWVVbtRKIHyQks5bG7jNwA%3D%3D)
 
-![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/Bildschirmfoto%202018-05-24%20um%2016.02.59.png?token=AjCUhxuXdZJwUyqgV8rq6dIwyi0ZRmQLks5bEAHIwA%3D%3D)
+![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/Evaluate%20Candidate_BPM.png?token=AjCUh9xXjraeovD7gA7CM_atqyFnK2TFks5bG7kZwA%3D%3D)
 
 
 ## Service integration Tasks
@@ -100,9 +99,21 @@ For the integration with integromat and Camunda the Wiki page has been used, whi
 
 ### Request for new employee
 
-The Task "Request for Employee" has been automated as follows: The department Manager doesnt need to write Email notification to make the Request for the new Employee. He can just easily tell Aleksa to do that.
+The Task "Request for Employee" has been automated as follows: The department Manager doesnt need to write Email notification to make the Request for the new Employee. He can use the dialogflow by simply typing in the answer to the following questions:
 
-- Aleksa, make a request for new employee and send it to the department head.
+1. Hi there, what is your prefered position? -> Answer: Position name
+2. What is the role of the job? -> Answer: Role
+3. Do you have salery expectation? -> Answer: negotianable
+
+
+
+The input values/answers to the questions will than be summed up to one information base and sended to the Department Head.
+
+
+
+- ake a request for new employee and send it to the department head.
 - Aleksa makes the notification and sends it to the deprtment head.
+
+Picture
 
 
