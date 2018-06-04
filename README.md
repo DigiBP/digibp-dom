@@ -80,7 +80,7 @@ to the decided candidate. Once the contract has been signed, the process is comp
 
 ### Get existing job description
 
-The service Task "Get existing job description" has been defined as a service task, in order to make it easier for the participants the retrieve data. For that purpose the GoogleSheet has been connected to the process, or rather within the Task. 
+The service task "Get existing job description" has been defined as a service task, in order to make it easier for the participants to retrieve data. For that purpose the GoogleSheet has been connected to the process, or rather within the Task. 
 
 In this case the data is identified by a business key. The service tasks are connected to two Integromat scenario endpoints create-customer-data and read-customer-data as shown in the following animation:
 
@@ -89,15 +89,15 @@ For the integration with integromat and Camunda the Wiki page has been used, whi
 
 ### Request for new employee
 
-The Task "Request for Employee" has been automated as follows: The department Manager doesnt need to write Email notification to make the Request for the new Employee. He can use the dialogflow by simply typing in the answer to the following questions:
+The Task "Request for Employee" has been automated as follows: The department Manager doesn't need to write an Email notification to make the Request for a new Employee. He can use the dialogflow by simply typing in the answer to the following questions:
 
-1. Hi there, what is your prefered position? -> Answer: Position name
+1. Hi there, what is your preferred position? -> Answer: Position name
 2. What is the role of the job? -> Answer: Role
-3. Do you have salery expectation? -> Answer: negotianable
+3. Do you have a salary expectation? -> Answer: negotianable
 
 ![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/dialogflowOne.PNG?token=AjCUh2xTw6qZ3RrwyTKBPy3_XkVJAfb0ks5bG7oIwA%3D%3D)
 
-- The input values/answers to the questions will than be summed up to one information base and sended to the Department Head.
+- The input values/answers to the questions will then be summed up to one information base and sent to the Department Head.
 
 ### Create Shortlist of applicants
 
@@ -110,7 +110,7 @@ To automaticaly create and update the list with all the applicants which have ap
 
 ### Send mail Task
 
-The mail task appears multiple times within the process. It is used to speacially communicate between the different parties: such as the applicants, to update them on their application and also to communicate with the manager, as well as the interview panel.
+The mail task appears multiple times within the process. It is used to communicate between the different parties such as the applicants, to update them on their application and also to communicate with the Manager, as well as the interview panel.
 
 - For the mail integration Microsoft flow is used
 
@@ -129,11 +129,11 @@ The mail task appears multiple times within the process. It is used to speaciall
 #### Challanges
 
 - Service integration has been one of the biggest challanges regarding the automation
-  - Specially integrating the Aleksa skill was very difficult. By the end we could integrate Aleksa into the process, but problems accured when we tryed to transfer the data to external platform.
+  - In particular, integrating the Alexa skill was very difficult. By the end we were able to integrate Alexa into the process, but problems occured when we tried to transfer the data to an external platform.
  
 #### Future recommendation
 
-- For the further improvement of the process we would recommand to have a propour implemented of Alexa chatbot integration, to enable higher process efficiency and make the overall process more easy by higher automation rate.
+- For the further improvement of the process we would recommend the integration of an Alexa chatbot, to enable higher process efficiency and make the overall process easier for those involved through increased automation.
 
 
 ![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/Thank%20You.png?token=AjCUhxJRZf6stOqvFR5FIG0-Gpg_jdmEks5bG8aywA%3D%3D)
