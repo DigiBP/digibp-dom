@@ -128,12 +128,12 @@ The mail task appears multiple times within the process. It is used to communica
 
 #### Challanges
 
-- Service integration has been one of the biggest challanges regarding the automation
+- Service integration has been one of the biggest challanges regarding the automation.
   - In particular, integrating the Alexa skill was very difficult. By the end we were able to integrate Alexa into the process, but problems occured when we tried to transfer the data to an external platform.
  
 #### Future recommendation
 
-- For the further improvement of the process we would recommend the integration of an Alexa chatbot, to enable higher process efficiency and make the overall process easier for those involved through increased automation.
+- To improve the process further, we would recommend the integration of an Alexa chatbot, to enable higher process efficiency and make the overall process easier for those involved by increasing the amount of automation.
 
 
 ![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/Thank%20You.png?token=AjCUhxJRZf6stOqvFR5FIG0-Gpg_jdmEks5bG8aywA%3D%3D)
