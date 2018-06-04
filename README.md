@@ -47,7 +47,7 @@ to the decided candidate. After the conclusion of the contract, the process is c
 ## Decision Tables
 
 - Interview Evaluation: Telephone Interview
-- Evaluate Candidate: In-Person Interview
+- Candidate Evaluation: In-Person Interview
 
 ![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/Evaluate%20Candidate%20DMN.png?token=AjCUh_MSHd6V2tEd2MXCfWVVbtRKIHyQks5bG7jNwA%3D%3D)
 
@@ -71,7 +71,7 @@ to the decided candidate. After the conclusion of the contract, the process is c
 
 - Camunda BPM modeler and DMN diagrams: To model the process
 - Camunda Platform / BPM for executing BPMN workflows and DMN decision tables
-- GitHub: For documentation, modelling and project artefacts and sharing the data within the Group
+- GitHub: For documentation, modelling and project artefacts, as well as sharing the data within the Group
 - Heroku: Cloud Platform as a Service (PaaS) provider; For the deployement of the Camunda BPM processes
 
 ![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/updateexcel.PNG?token=AjCUh0mOJWg8CT0kiXZRUEu8VX5SqNWyks5bG71swA%3D%3D)
