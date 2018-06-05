@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<semantic:definitions xmlns:semantic="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" xmlns="http://www.trisotech.com/dmn/definitions/_f9922e18-6b2a-41c8-814f-0fbad12ff4bf" xmlns:feel="http://www.omg.org/spec/FEEL/20140401" xmlns:tc="http://www.omg.org/spec/DMN/20160719/testcase" xmlns:triso="http://www.trisotech.com/2015/triso/modeling" xmlns:trisofeed="http://trisotech.com/feed" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="_f9922e18-6b2a-41c8-814f-0fbad12ff4bf" name="Telephone Evaluation (Lauren version)" namespace="http://www.trisotech.com/dmn/definitions/_f9922e18-6b2a-41c8-814f-0fbad12ff4bf" exporter="DMN Modeler" exporterVersion="6.0.6" triso:logoChoice="Default">
+<semantic:definitions xmlns:semantic="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.trisotech.com/dmn/definitions/_f9922e18-6b2a-41c8-814f-0fbad12ff4bf" xmlns:feel="http://www.omg.org/spec/FEEL/20140401" xmlns:tc="http://www.omg.org/spec/DMN/20160719/testcase" xmlns:triso="http://www.trisotech.com/2015/triso/modeling" xmlns:trisofeed="http://trisotech.com/feed" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="_f9922e18-6b2a-41c8-814f-0fbad12ff4bf" name="Telephone Evaluation (Lauren version)" namespace="http://www.trisotech.com/dmn/definitions/_f9922e18-6b2a-41c8-814f-0fbad12ff4bf" exporter="DMN Modeler" exporterVersion="6.0.6" triso:logoChoice="Default">
   <semantic:extensionElements />
-  <semantic:decision id="InviteForInterview" name="Invite for Interview">
-    <semantic:extensionElements>
-      <biodi:bounds x="150" y="150" width="180" height="80" />
-    </semantic:extensionElements>
+  <semantic:decision id="IncludeInShortlist" name="Telephone Evaluation">
     <semantic:variable id="_fc15311a-f40f-4165-b389-cd3a37e08861" name="Decision Logic 1" typeRef="feel:boolean" />
     <semantic:informationRequirement>
       <semantic:requiredInput href="#inputData__b41e4bf8-33d6-49ec-81c3-37b6fca01223" />
@@ -19,33 +16,22 @@
       <semantic:requiredInput href="#inputData__1a80d250-5932-487e-b046-36c23d62912f" />
     </semantic:informationRequirement>
     <semantic:decisionTable id="_d59c004a-5133-42fd-9183-3d70cad4d9e0" outputLabel="Decision Logic 1">
-      <semantic:input id="_b41e4bf8-33d6-49ec-81c3-37b6fca01223" label="leaving current position">
+      <semantic:input id="_b41e4bf8-33d6-49ec-81c3-37b6fca01223" label="Can provide references">
         <semantic:inputExpression typeRef="boolean">
-          <semantic:text>leavingCurrentPosition</semantic:text>
+          <semantic:text>ProvideReference</semantic:text>
         </semantic:inputExpression>
       </semantic:input>
-      <semantic:input id="_e491ee12-7c18-4816-9f0f-94508547e2db" label="Available Start Date">
+      <semantic:input id="_e491ee12-7c18-4816-9f0f-94508547e2db" label="Available for position start date">
         <semantic:inputExpression typeRef="boolean">
-          <semantic:text>AvailableStartDate</semantic:text>
+          <semantic:text>PositionStartDate</semantic:text>
         </semantic:inputExpression>
       </semantic:input>
-      <semantic:input id="_8706cedc-5326-4f43-b9ee-78992c7f6d13" label="Interested Position">
-        <semantic:inputExpression typeRef="string">
-          <semantic:text>InterestedPosition</semantic:text>
+      <semantic:input id="_8706cedc-5326-4f43-b9ee-78992c7f6d13" label="Appears interested in position">
+        <semantic:inputExpression typeRef="boolean">
+          <semantic:text>InterestedInPosition</semantic:text>
         </semantic:inputExpression>
-        <semantic:inputValues triso:constraintsType="enumeration">
-          <semantic:text>"low","medium","high"</semantic:text>
-        </semantic:inputValues>
       </semantic:input>
-      <semantic:input id="_1a80d250-5932-487e-b046-36c23d62912f" label="Familarity with Industry">
-        <semantic:inputExpression typeRef="string">
-          <semantic:text>FamiliarityWithIndustry</semantic:text>
-        </semantic:inputExpression>
-        <semantic:inputValues triso:constraintsType="enumeration">
-          <semantic:text>"low","medium","high"</semantic:text>
-        </semantic:inputValues>
-      </semantic:input>
-      <semantic:output id="_a6ff918c-6a8e-4d71-a0c4-e9815c4aa468" label="Result" name="Result" />
+      <semantic:output id="_a6ff918c-6a8e-4d71-a0c4-e9815c4aa468" label="Result" name="Result" typeRef="boolean" />
       <semantic:rule id="_4f5de425-9521-4d57-ba28-15cff76b6587">
         <semantic:inputEntry id="_ba577422-1bb4-4b25-944f-7621ebc4fa88">
           <semantic:text>false</semantic:text>
@@ -56,25 +42,19 @@
         <semantic:inputEntry id="_53ff8f69-955e-4e35-a43f-db96e9ad199c">
           <semantic:text>-</semantic:text>
         </semantic:inputEntry>
-        <semantic:inputEntry id="_4549f9e1-4aaf-4961-9975-e63a4d0972d5">
-          <semantic:text>-</semantic:text>
-        </semantic:inputEntry>
         <semantic:outputEntry id="_ca484a25-7353-4438-9af9-a6b9c6aff317">
           <semantic:text>false</semantic:text>
         </semantic:outputEntry>
       </semantic:rule>
       <semantic:rule id="_463191ab-a4fc-415b-9a9e-9d9745b4cd6e">
         <semantic:inputEntry id="_4758e7a2-8c4a-4aac-b3a5-289fa81da779">
-          <semantic:text>true</semantic:text>
-        </semantic:inputEntry>
-        <semantic:inputEntry id="_76bfaf14-75a1-4c40-bfb7-065e53683b98">
           <semantic:text>false</semantic:text>
         </semantic:inputEntry>
-        <semantic:inputEntry id="_e7fd6030-559c-45f2-9606-9aa7a0892568">
+        <semantic:inputEntry id="_76bfaf14-75a1-4c40-bfb7-065e53683b98">
           <semantic:text>-</semantic:text>
         </semantic:inputEntry>
-        <semantic:inputEntry id="_c926a77d-7dbe-4832-9a87-b1e27ef17702">
-          <semantic:text>-</semantic:text>
+        <semantic:inputEntry id="_e7fd6030-559c-45f2-9606-9aa7a0892568">
+          <semantic:text></semantic:text>
         </semantic:inputEntry>
         <semantic:outputEntry id="_30298bfb-b370-441f-83fe-1ee8df5a21a6">
           <semantic:text>false</semantic:text>
@@ -85,13 +65,10 @@
           <semantic:text>true</semantic:text>
         </semantic:inputEntry>
         <semantic:inputEntry id="_d68b0f0f-48f6-46ff-ab52-ee5c90a153de">
-          <semantic:text>-</semantic:text>
+          <semantic:text>false</semantic:text>
         </semantic:inputEntry>
         <semantic:inputEntry id="_f6b0f264-cb13-4c8e-8f76-6c300df075c3">
-          <semantic:text>"low"</semantic:text>
-        </semantic:inputEntry>
-        <semantic:inputEntry id="_5b543ed7-78de-4501-a736-50f31c7517a7">
-          <semantic:text>-</semantic:text>
+          <semantic:text>true</semantic:text>
         </semantic:inputEntry>
         <semantic:outputEntry id="_1c9e14e9-3780-41a9-b170-8730e8a3c0d1">
           <semantic:text>false</semantic:text>
@@ -105,10 +82,7 @@
           <semantic:text>true</semantic:text>
         </semantic:inputEntry>
         <semantic:inputEntry id="_4649c116-f90f-40a1-82a4-bea32eb620f6">
-          <semantic:text>"medium"</semantic:text>
-        </semantic:inputEntry>
-        <semantic:inputEntry id="_f52b040a-bb30-4db1-be7a-f2f027e4659c">
-          <semantic:text>"low"</semantic:text>
+          <semantic:text>false</semantic:text>
         </semantic:inputEntry>
         <semantic:outputEntry id="_adfb5786-771b-4635-80fe-cb54fe886320">
           <semantic:text>false</semantic:text>
@@ -122,29 +96,9 @@
           <semantic:text>true</semantic:text>
         </semantic:inputEntry>
         <semantic:inputEntry id="_18e2aaf8-88a3-4461-ae4f-51053d08632c">
-          <semantic:text>"high"</semantic:text>
-        </semantic:inputEntry>
-        <semantic:inputEntry id="_fed91e2a-1e37-499b-91b4-e85a5fa4858a">
-          <semantic:text>"low"</semantic:text>
+          <semantic:text>true</semantic:text>
         </semantic:inputEntry>
         <semantic:outputEntry id="_3f8070aa-9568-4cb8-a6c8-86cc1d52b344">
-          <semantic:text>true</semantic:text>
-        </semantic:outputEntry>
-      </semantic:rule>
-      <semantic:rule id="_35895544-14d2-43c1-8eb2-a0b13bf7a27d">
-        <semantic:inputEntry id="_04703ca9-65bd-4664-9a50-7bf293d7c8b0">
-          <semantic:text>true</semantic:text>
-        </semantic:inputEntry>
-        <semantic:inputEntry id="_c5fcb8d4-3d6d-4c13-8825-e61895858f77">
-          <semantic:text>true</semantic:text>
-        </semantic:inputEntry>
-        <semantic:inputEntry id="_fec06845-f55d-4d87-9f6c-d235f37ce130">
-          <semantic:text>"medium", "high"</semantic:text>
-        </semantic:inputEntry>
-        <semantic:inputEntry id="_0045860d-b956-4965-bea5-01c4ba554aaa">
-          <semantic:text>"medium", "high"</semantic:text>
-        </semantic:inputEntry>
-        <semantic:outputEntry id="_b1581207-0667-4b75-a257-4c021fa16635">
           <semantic:text>true</semantic:text>
         </semantic:outputEntry>
       </semantic:rule>
