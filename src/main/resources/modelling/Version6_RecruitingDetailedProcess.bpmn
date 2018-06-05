@@ -569,6 +569,7 @@
 "Education": Education,
 "Experience": Experience,
 "startDate": startDate,
+"CandidateID": CandidateID,
 "Chosen": Chosen,
 "PersonalInterview": PersonalInterview,
 "Favorit": Favorit,
@@ -600,6 +601,7 @@
 "Education": Education,
 "Experience": Experience,
 "startDate": startDate,
+"CandidateID": CandidateID,
 "Chosen": Chosen,
 "PersonalInterview": PersonalInterview,
 "Favorit": Favorit,
@@ -624,10 +626,11 @@
           <camunda:formField id="Education" label="education" type="string" />
           <camunda:formField id="Experience" label="experience" type="string" />
           <camunda:formField id="startDate" label="startDate" type="string" />
-          <camunda:formField id="businessKey" label="businessKey" type="string" />
+          <camunda:formField id="CandidateID" label="CandidateID" type="string" />
           <camunda:formField id="Chosen" label="Is the candidate chosen for an interview?" type="boolean" />
           <camunda:formField id="PersonalInterview" label="Invitation for Personal interview?" type="boolean" />
           <camunda:formField id="Favorit" label="Favorit?" type="boolean" />
+          <camunda:formField id="businessKey" label="businessKey" type="string" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1pjpxe6</bpmn:incoming>
@@ -642,9 +645,10 @@
           <camunda:formField id="Education" label="education" type="string" />
           <camunda:formField id="Experience" label="experience" type="string" />
           <camunda:formField id="startDate" label="startDate" type="string" />
-          <camunda:formField id="businessKey" label="businessKey" type="string" />
+          <camunda:formField id="CandidateID" label="CandidateID" type="string" />
           <camunda:formField id="Chosen" label="Is the candidate chosen for an interview?" type="boolean" />
           <camunda:formField id="PersonalInterview" label="Invitation for Personal interview?" type="boolean" />
+          <camunda:formField id="businessKey" label="businessKey" type="string" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0zb3fsh</bpmn:incoming>
@@ -667,6 +671,7 @@
 "Education": Education,
 "Experience": Experience,
 "startDate": startDate,
+"CandidateID": CandidateID,
 "Chosen": Chosen,
 "PersonalInterview": PersonalInterview,
 "Favorit": Favorit,
@@ -687,8 +692,9 @@
           <camunda:formField id="Education" label="education" type="string" />
           <camunda:formField id="Experience" label="experience" type="string" />
           <camunda:formField id="startDate" label="startDate" type="string" />
-          <camunda:formField id="businessKey" label="businessKey" type="string" />
+          <camunda:formField id="CandidateID" label="CandidateID" type="string" />
           <camunda:formField id="Chosen" label="Is the candidate chosen for an interview?" type="boolean" />
+          <camunda:formField id="businessKey" label="businessKey" type="string" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0iqhoxj</bpmn:incoming>
@@ -929,10 +935,11 @@ SalaryRange = object.SalaryRange;]]></camunda:script>
           <camunda:formField id="Education" label="education" type="string" />
           <camunda:formField id="Experience" label="experience" type="string" />
           <camunda:formField id="startDate" label="startDate" type="string" />
-          <camunda:formField id="businessKey" label="businessKey" type="string" />
+          <camunda:formField id="CandidateID" label="Candidate ID" type="string" />
           <camunda:formField id="Chosen" label="Is the candidate chosen for an interview?" type="boolean" />
           <camunda:formField id="PersonalInterview" label="Is the candidate chosen for an interview?" type="boolean" />
           <camunda:formField id="Favorit" label="Favorit?" type="boolean" />
+          <camunda:formField id="businessKey" label="businessKey" type="string" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0r044g4</bpmn:incoming>
@@ -955,6 +962,7 @@ SalaryRange = object.SalaryRange;]]></camunda:script>
     "Education": Education,
     "Experience": Experience,
     "startDate": startDate,
+    "CandidateID": CandidateID,
     "businessKey": execution.getBusinessKey()
 });]]></camunda:script>
             </camunda:inputParameter>
