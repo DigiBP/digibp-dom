@@ -62,7 +62,6 @@
         <bpmn:flowNodeRef>ExclusiveGateway_022bfzo</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>UserTask_0w3z739</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ServiceTask_1hk24ms</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>UserTask_0d1mkae</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ExclusiveGateway_02s1q2a</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>UserTask_01ydwvs</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>UserTask_1qfah6o</bpmn:flowNodeRef>
@@ -316,9 +315,9 @@
               </camunda:inputParameter>
               <camunda:inputParameter name="payload">
                 <camunda:script scriptFormat="javascript"><![CDATA[out = JSON.stringify({
-    "emailaddress": emailaddress,
-    "emailSubject": emailSubject,
-    "emailBody": emailBody,
+    "emailaddress1": emailaddress1,
+    "emailSubject1": emailSubject1,
+    "emailBody1": emailBody1,
     "businessKey": execution.getBusinessKey()
 });]]></camunda:script>
               </camunda:inputParameter>
@@ -329,13 +328,13 @@
         <bpmn:incoming>SequenceFlow_080fn5j</bpmn:incoming>
         <bpmn:outgoing>SequenceFlow_0uw9b2q</bpmn:outgoing>
       </bpmn:serviceTask>
-      <bpmn:userTask id="UserTask_03od52h" name="Email Details">
+      <bpmn:userTask id="UserTask_03od52h" name="Rejection Email Details">
         <bpmn:extensionElements>
           <camunda:formData>
-            <camunda:formField id="emailaddress" label="emailAddress" type="string" />
-            <camunda:formField id="emailSubject" label="emailsubject" type="string" />
-            <camunda:formField id="emailBody" label="email Body" type="string" />
-            <camunda:formField id="businessKey" label="business Key" type="string" defaultValue="${strongUuidGenerator.getNextId()}" />
+            <camunda:formField id="emailaddress1" label="emailAddress" type="string" />
+            <camunda:formField id="emailSubject1" label="emailsubject" type="string" />
+            <camunda:formField id="emailBody1" label="email Body" type="string" />
+            <camunda:formField id="businessKey1" label="business Key" type="string" defaultValue="${strongUuidGenerator.getNextId()}" />
           </camunda:formData>
         </bpmn:extensionElements>
         <bpmn:incoming>SequenceFlow_1u1bhzr</bpmn:incoming>
@@ -439,12 +438,12 @@
       </bpmn:endEvent>
       <bpmn:sequenceFlow id="SequenceFlow_1kt64h3" sourceRef="Task_19t513m" targetRef="EndEvent_183f6bw" />
     </bpmn:subProcess>
-    <bpmn:userTask id="UserTask_18dhq40" name="Email Details for rjection">
+    <bpmn:userTask id="UserTask_18dhq40" name="Email Details for rejection">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="emailaddress" label="emailAddress" type="string" />
-          <camunda:formField id="emailSubject" label="emailsubject" type="string" />
-          <camunda:formField id="emailBody" label="email Body" type="string" />
+          <camunda:formField id="emailaddress1" label="emailAddress" type="string" />
+          <camunda:formField id="emailSubject1" label="emailsubject" type="string" />
+          <camunda:formField id="emailBody1" label="email Body" type="string" />
           <camunda:formField id="businessKey" label="business Key" type="string" defaultValue="${strongUuidGenerator.getNextId()}" />
         </camunda:formData>
       </bpmn:extensionElements>
@@ -470,9 +469,9 @@
             </camunda:inputParameter>
             <camunda:inputParameter name="payload">
               <camunda:script scriptFormat="javascript"><![CDATA[out = JSON.stringify({
-    "emailaddress": emailaddress,
-    "emailSubject": emailSubject,
-    "emailBody": emailBody,
+    "emailaddress1": emailaddress1,
+    "emailSubject1": emailSubject1,
+    "emailBody1": emailBody1,
     "businessKey": execution.getBusinessKey()
 });]]></camunda:script>
             </camunda:inputParameter>
@@ -781,26 +780,10 @@ SalaryRange = object.SalaryRange;]]></camunda:script>
       <bpmn:incoming>SequenceFlow_0640jx8</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1fual91</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:userTask id="UserTask_0d1mkae" name="Confirm job description&#10;">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="JobTitle" label="Job Title" type="string" />
-          <camunda:formField id="JobAcitivities" label="JobAcitivities" type="string" />
-          <camunda:formField id="EducationalRequirements" label="EducationalRequirements" type="string" />
-          <camunda:formField id="RequiredExperience" label="RequiredExperience" type="string" />
-          <camunda:formField id="ManagementResponsibilities" label="ManagementResponsibilities" type="string" />
-          <camunda:formField id="SalaryRange" label="SalaryRange" type="string" />
-          <camunda:formField id="BusinessKey" label="BusinessKey" type="string" />
-        </camunda:formData>
-      </bpmn:extensionElements>
-      <bpmn:incoming>SequenceFlow_1fual91</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_141n3u3</bpmn:outgoing>
-    </bpmn:userTask>
-    <bpmn:sequenceFlow id="SequenceFlow_1fual91" sourceRef="ServiceTask_1hk24ms" targetRef="UserTask_0d1mkae" />
-    <bpmn:sequenceFlow id="SequenceFlow_141n3u3" sourceRef="UserTask_0d1mkae" targetRef="ExclusiveGateway_02s1q2a" />
+    <bpmn:sequenceFlow id="SequenceFlow_1fual91" sourceRef="ServiceTask_1hk24ms" targetRef="ExclusiveGateway_02s1q2a" />
     <bpmn:exclusiveGateway id="ExclusiveGateway_02s1q2a">
-      <bpmn:incoming>SequenceFlow_141n3u3</bpmn:incoming>
       <bpmn:incoming>SequenceFlow_0afzcza</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_1fual91</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0zread7</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:userTask id="UserTask_1arti7q" name="Inform the manager" camunda:candidateGroups="Director">
@@ -822,7 +805,7 @@ SalaryRange = object.SalaryRange;]]></camunda:script>
       <bpmn:outgoing>SequenceFlow_046kq6r</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="SequenceFlow_156fd2e" sourceRef="UserTask_01ydwvs" targetRef="UserTask_0swauhm" />
-    <bpmn:userTask id="UserTask_01ydwvs" name="Handover job description to HR&#10;">
+    <bpmn:userTask id="UserTask_01ydwvs" name="Confirm job description to HR&#10;">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="JobTitle" label="Job Title" type="string" />
@@ -1694,22 +1677,12 @@ SalaryRange = object.SalaryRange;]]></camunda:script>
           <dc:Bounds x="-4057.5" y="694" width="0" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="UserTask_0d1mkae_di" bpmnElement="UserTask_0d1mkae">
-        <dc:Bounds x="-3920" y="675" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_1fual91_di" bpmnElement="SequenceFlow_1fual91">
         <di:waypoint x="-3944" y="715" />
-        <di:waypoint x="-3920" y="715" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="-3932" y="694" width="0" height="12" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="SequenceFlow_141n3u3_di" bpmnElement="SequenceFlow_141n3u3">
-        <di:waypoint x="-3820" y="715" />
         <di:waypoint x="-3804" y="715" />
         <di:waypoint x="-3804" y="775" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="-3812" y="694" width="0" height="12" />
+          <dc:Bounds x="-3919" y="694" width="90" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="UserTask_01ydwvs_di" bpmnElement="UserTask_01ydwvs">

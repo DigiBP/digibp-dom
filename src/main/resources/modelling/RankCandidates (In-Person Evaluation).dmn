@@ -33,6 +33,9 @@
         <semantic:inputExpression id="LiteralExpression_0uiwqvl" typeRef="string">
           <semantic:text>NotHire</semantic:text>
         </semantic:inputExpression>
+        <semantic:inputValues id="UnaryTests_0y80kpy">
+          <semantic:text><![CDATA["Yes","No"]]></semantic:text>
+        </semantic:inputValues>
       </semantic:input>
       <semantic:output id="_a6ff918c-6a8e-4d71-a0c4-e9815c4aa468" label="Include in final candidate shortlist" name="Favorit" typeRef="boolean" />
       <semantic:rule id="_4f5de425-9521-4d57-ba28-15cff76b6587">
@@ -85,7 +88,7 @@
           <semantic:text>-</semantic:text>
         </semantic:inputEntry>
         <semantic:inputEntry id="UnaryTests_032kttl">
-          <semantic:text>yes</semantic:text>
+          <semantic:text><![CDATA["Yes"]]></semantic:text>
         </semantic:inputEntry>
         <semantic:outputEntry id="_adfb5786-771b-4635-80fe-cb54fe886320">
           <semantic:text>false</semantic:text>
@@ -99,7 +102,7 @@
           <semantic:text><![CDATA["Good","Excellent"]]></semantic:text>
         </semantic:inputEntry>
         <semantic:inputEntry id="UnaryTests_1rusun0">
-          <semantic:text>no</semantic:text>
+          <semantic:text><![CDATA["No"]]></semantic:text>
         </semantic:inputEntry>
         <semantic:outputEntry id="_3f8070aa-9568-4cb8-a6c8-86cc1d52b344">
           <semantic:text>true</semantic:text>
