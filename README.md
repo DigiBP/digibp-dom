@@ -60,12 +60,11 @@ to the decided candidate. Once the contract has been signed, the process is comp
 ![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/Bildschirmfoto%202018-05-24%20um%2014.46.10.png?token=AjCUh2nvx1PEy67KM8kxTyxqFaXyMHREks5bG7auwA%3D%3D)
 
 ### Decision Automation
-- Interview Evaluation: Telephone Interview
-- Evaluate Candidate: In-Person Interview
+#### Interview Evaluation: Telephone Interview
+![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/TelephoneEvaluationDMN.png?token=AjCUh_MSHd6V2tEd2MXCfWVVbtRKIHyQks5bG7jNwA%3D%3D)
 
-![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/Evaluate%20Candidate%20DMN.png?token=AjCUh_MSHd6V2tEd2MXCfWVVbtRKIHyQks5bG7jNwA%3D%3D)
-
-![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/Evaluate%20Candidate_BPM.png?token=AjCUh9xXjraeovD7gA7CM_atqyFnK2TFks5bG7kZwA%3D%3D)
+#### Evaluate Candidate: In-Person Interview
+![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/In-personEvaluationDMN.png?token=AjCUh9xXjraeovD7gA7CM_atqyFnK2TFks5bG7kZwA%3D%3D)
 
 ### Service Integration
 #### Tools Used
