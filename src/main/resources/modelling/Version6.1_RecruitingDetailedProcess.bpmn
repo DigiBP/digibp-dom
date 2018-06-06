@@ -8,6 +8,7 @@
     <bpmn:messageFlow id="MessageFlow_1934j70" sourceRef="ServiceTask_0l1gogp" targetRef="Participant_10ukhot" />
     <bpmn:messageFlow id="MessageFlow_1lgdmrq" sourceRef="ServiceTask_1akqya6" targetRef="Participant_10ukhot" />
     <bpmn:messageFlow id="MessageFlow_0tpkgjs" sourceRef="UserTask_15i5je7" targetRef="Participant_10ukhot" />
+    <bpmn:messageFlow id="MessageFlow_015t9x4" sourceRef="Participant_10ukhot" targetRef="UserTask_0bflrs5" />
   </bpmn:collaboration>
   <bpmn:process id="Process_1" name="HR Recruitment" isExecutable="true">
     <bpmn:laneSet>
@@ -49,6 +50,7 @@
         <bpmn:flowNodeRef>UserTask_1jie7ip</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>UserTask_0bflrs5</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ServiceTask_0qwpz4p</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>UserTask_0ls8jli</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_0b7bx2l" name="Manager">
         <bpmn:flowNodeRef>UserTask_0f6sgom</bpmn:flowNodeRef>
@@ -696,7 +698,7 @@
           <camunda:formField id="businessKey" label="businessKey" type="string" />
         </camunda:formData>
       </bpmn:extensionElements>
-      <bpmn:incoming>SequenceFlow_1k2rsoc</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_1nmprkx</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0oj1eaa</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:sequenceFlow id="SequenceFlow_0oj1eaa" sourceRef="UserTask_0kx5pd0" targetRef="ServiceTask_04j0zay" />
@@ -912,6 +914,22 @@ SalaryRange = object.SalaryRange;]]></camunda:script>
       <bpmn:incoming>SequenceFlow_11dfce0</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_12sf1fg</bpmn:outgoing>
     </bpmn:userTask>
+    <bpmn:sequenceFlow id="SequenceFlow_12sf1fg" sourceRef="UserTask_0bflrs5" targetRef="ServiceTask_0qwpz4p" />
+    <bpmn:sequenceFlow id="SequenceFlow_1k2rsoc" sourceRef="ServiceTask_0qwpz4p" targetRef="UserTask_0ls8jli" />
+    <bpmn:startEvent id="StartEvent_15arxtm" name="Request new employee">
+      <bpmn:extensionElements>
+        <camunda:formData />
+      </bpmn:extensionElements>
+      <bpmn:outgoing>SequenceFlow_0jfv0m2</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:userTask id="UserTask_0sut0q0" name="Ask for headcount">
+      <bpmn:extensionElements>
+        <camunda:formData />
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_0jfv0m2</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1uzcxkg</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="SequenceFlow_1uzcxkg" sourceRef="UserTask_0sut0q0" targetRef="Task_142fd67" />
     <bpmn:serviceTask id="ServiceTask_0qwpz4p" name="Get application details">
       <bpmn:extensionElements>
         <camunda:connector>
@@ -968,22 +986,21 @@ Favorit= object.Favorit;]]></camunda:script>
       <bpmn:incoming>SequenceFlow_12sf1fg</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1k2rsoc</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:sequenceFlow id="SequenceFlow_12sf1fg" sourceRef="UserTask_0bflrs5" targetRef="ServiceTask_0qwpz4p" />
-    <bpmn:sequenceFlow id="SequenceFlow_1k2rsoc" sourceRef="ServiceTask_0qwpz4p" targetRef="UserTask_0kx5pd0" />
-    <bpmn:startEvent id="StartEvent_15arxtm" name="Request new employee">
+    <bpmn:userTask id="UserTask_0ls8jli" name="Check candidates information">
       <bpmn:extensionElements>
-        <camunda:formData />
+        <camunda:formData>
+          <camunda:formField id="Name" label="name" type="string" />
+          <camunda:formField id="Education" label="education" type="string" />
+          <camunda:formField id="Experience" label="experience" type="string" />
+          <camunda:formField id="startDate" label="startDate" type="string" />
+          <camunda:formField id="CandidateID" label="CandidateID" type="string" />
+          <camunda:formField id="businessKey" label="businessKey" type="string" />
+        </camunda:formData>
       </bpmn:extensionElements>
-      <bpmn:outgoing>SequenceFlow_0jfv0m2</bpmn:outgoing>
-    </bpmn:startEvent>
-    <bpmn:userTask id="UserTask_0sut0q0" name="Ask for headcount">
-      <bpmn:extensionElements>
-        <camunda:formData />
-      </bpmn:extensionElements>
-      <bpmn:incoming>SequenceFlow_0jfv0m2</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_1uzcxkg</bpmn:outgoing>
+      <bpmn:incoming>SequenceFlow_1k2rsoc</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1nmprkx</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:sequenceFlow id="SequenceFlow_1uzcxkg" sourceRef="UserTask_0sut0q0" targetRef="Task_142fd67" />
+    <bpmn:sequenceFlow id="SequenceFlow_1nmprkx" sourceRef="UserTask_0ls8jli" targetRef="UserTask_0kx5pd0" />
   </bpmn:process>
   <bpmn:process id="Process_1f2nl7c" isExecutable="false" />
   <bpmn:message id="Message_1xowzw4" name="Message_0qbucnu" />
@@ -1775,7 +1792,7 @@ Favorit= object.Favorit;]]></camunda:script>
         <dc:Bounds x="-3553" y="305" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ServiceTask_0qwpz4p_di" bpmnElement="ServiceTask_0qwpz4p" bioc:stroke="#FB8C00" bioc:fill="#FFE0B2">
-        <dc:Bounds x="-3553" y="454" width="100" height="80" />
+        <dc:Bounds x="-3553" y="434" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_11dfce0_di" bpmnElement="SequenceFlow_11dfce0">
         <di:waypoint x="-3589" y="345" />
@@ -1786,16 +1803,16 @@ Favorit= object.Favorit;]]></camunda:script>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_12sf1fg_di" bpmnElement="SequenceFlow_12sf1fg">
         <di:waypoint x="-3503" y="385" />
-        <di:waypoint x="-3503" y="454" />
+        <di:waypoint x="-3503" y="434" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="-3488" y="413.5" width="0" height="12" />
+          <dc:Bounds x="-3533" y="403.5" width="90" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1k2rsoc_di" bpmnElement="SequenceFlow_1k2rsoc">
-        <di:waypoint x="-3503" y="534" />
-        <di:waypoint x="-3503" y="675" />
+        <di:waypoint x="-3503" y="514" />
+        <di:waypoint x="-3503" y="547" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="-3488" y="598.5" width="0" height="12" />
+          <dc:Bounds x="-3533" y="524.5" width="90" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="UserTask_0sut0q0_di" bpmnElement="UserTask_0sut0q0">
@@ -1806,6 +1823,23 @@ Favorit= object.Favorit;]]></camunda:script>
         <di:waypoint x="-4424" y="1467" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="-4409" y="1147.5" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MessageFlow_015t9x4_di" bpmnElement="MessageFlow_015t9x4">
+        <di:waypoint x="-3503.875" y="96.25" />
+        <di:waypoint x="-3503.875" y="310.25" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-3488.875" y="197.25" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_0ls8jli_di" bpmnElement="UserTask_0ls8jli">
+        <dc:Bounds x="-3553" y="547" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1nmprkx_di" bpmnElement="SequenceFlow_1nmprkx">
+        <di:waypoint x="-3503" y="627" />
+        <di:waypoint x="-3503" y="675" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-3488" y="645" width="0" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
