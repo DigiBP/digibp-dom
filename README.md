@@ -44,9 +44,9 @@ Again, two possible routes can than be executed:
 - The open position is a new role in the company and a new job description needs to be prepared, or
 - The open position is for a role that already exists in the company and has an existing job description. 
 
-If it is the latter, the Manager will retrieve an existing job description by searching the job title. The Manager can use this file as is, but will most likely add or change some of the information to better fit the job that the new employee will perform. After finishing the job description, the Manager sends the description file to the HR Department. In the HR Department, an assistant can edit the file (adding things like the position start date, instructions to apply, etc.) and before posting the job to the company's Facebook page. After the job is posted, the Manager and HR employee involved in this instance of the process wait for two weeks while interested candidates submit their applications via Facebook (by clicking on the posted job on the company's page).
+If it is the latter, the Manager will retrieve an existing job description by searching the job title. The Manager can use this file as is, but will most likely add or change some of the information to better fit the job that the new employee will perform. After finishing the job description, the Manager sends the description file to the HR Department. In the HR Department, an assistant can edit the file (adding things like the position start date, instructions to apply, etc.) and before posting the job to the company's Facebook page. After the job is posted, the Manager and HR employee involved in this instance of the process wait for two weeks while interested candidates submit their applications via Facebook. By clicking on the job post on the company's page, potential applicants are shown a chatbot interface, which asks them a few questions. Their answers include the necessary data to create an applicant profile, that the HR assistant will later evaluate.
 
-After the two weeks, unsuitable applications will be sorted out by HR staff and the remaining suitable applications are recorded in a list. This list is then forwarded to the Manager, who again sorts out unsuitable applicants, updates the list, and sends it to HR.
+After the two weeks, applications will be reviewed by the HR assistant and unsuitable applications will be sorted out. The remaining suitable applications are recorded in a list, which is then forwarded to the Manager, who again sorts out unsuitable applicants, updates the list, and sends it back to HR.
 
 Next, an HR employee conducts telephone interviews with the applicants that appear on the Manager's shortlist, in order to check the details of the candidates and to screen out anyone that the HR employee deems unsuitable. The telephone interviews are evaluated on the basis of a decision-making table, and any candidates that fail to meet all three criteria will be rejected. 
 
@@ -59,10 +59,12 @@ This decision is communicated to the HR employee, who subsequently informs all u
 ### Decision Automation
 #### Interview Evaluation: Telephone Interview
 Only candidates that can provide references, are available to start on the position start date, and appear interested in the position will move forward in the process after the telephone interview.
+
 ![telephoneevaluationdmn](https://user-images.githubusercontent.com/36928393/41066204-6683633c-69e1-11e8-9493-7a86f32555d6.png)
 
 #### Evaluate Candidate: In-Person Interview
 In order stay in the running and be considered for the position after the in-person interview, a candidate has to meet educational requirements, be a good or excellent fit for the team (according to the Interview Panel members), and not having any outstanding reasons why they should not be hired (according to the Interview Panel members, once again).
+
 ![in-personevaluationdmn](https://user-images.githubusercontent.com/36928393/41066274-a5bb4a92-69e1-11e8-9bd4-ecfcdd64fb17.png)
 
 ### Service Integration
@@ -78,7 +80,7 @@ In order stay in the running and be considered for the position after the in-per
 - Dialogflow: Chatbot integration
 
 #### APIs
-- Get existing job description (GetJob)
+#### - Get existing job description (GetJob)
 The task "Get existing job description" has been defined as a service task, in order to make it easier for the Manager to find out if there is already a job description existing for the open position that they will hire for. This reduces rework every time a new employee is hired, as the Manager just has to adapt an existing job description (already specific to the job title) to that specific position and department. For this purpose the GoogleSheet has been connected within the Task. 
 
 In this case the data is identified by a business key, which is the Job Title e.g. HR Director. The service tasks are connected to two Integromat scenario endpoints create-customer-data and read-customer-data as shown in the following animation:
@@ -100,32 +102,39 @@ For the integration with integromat and Camunda the Wiki page has been used, whi
 ###### Get job - Response
 ![getjob_response_3rdstep](https://user-images.githubusercontent.com/36928393/41066408-ff5acf28-69e1-11e8-9556-6e8f017abcb5.PNG)
 
-- Post job (Post)
-Describe this step.
+#### - Post job (Post)
+In this service integration step, the HR assistant posts the job ad to Facebook. (MORE DETAIL HERE ON HOW THIS IS ACCOMPLISHED PLEASE)
 
+###### Post to Facebook overview
 ![posttofb_overview](https://user-images.githubusercontent.com/36928393/41066352-d87632c6-69e1-11e8-89de-01a2a9743585.PNG)
 
+###### Post to Facebook - Post
 ![posttofb_post](https://user-images.githubusercontent.com/36928393/41066443-1bb2da4e-69e2-11e8-88ec-6b7caea11c70.PNG)
 
+###### Post to Facebook - Visible to users
 ![facebook2](https://user-images.githubusercontent.com/36928393/41066466-2dd08e10-69e2-11e8-8a53-0e7f91169f32.PNG)
 
-##### Create shortlist of applicants (Shortlist)
-- Upload Shortlist
-- Update Shortlist
-- Update candidate list with favorites
+#### - Retrieve applications (Get)
+After the two week waiting period has expired, the HR assistant will retrieve all applications that were collected through the Dialogflow chatbot (see "Digital Assistant/Chatbot" section for more detail). (MORE DETAIL NEEDED HERE ON HOW APPLICATIONS ARE RETRIEVED).
+![retrieveapplications_overview](https://user-images.githubusercontent.com/36928393/41066490-45ae2862-69e2-11e8-91d4-8faea66c7de4.PNG)
 
-To automaticaly create and update the list with all the applicants which have applied for the job, we have decided to use Google Sheet, in order to automaticly update column values. This automation is done with the help of integromat, where we have connected the Google Sheet into the Camunda process.
+![retrieveapplications_select_1ststep](https://user-images.githubusercontent.com/36928393/41066495-4993eade-69e2-11e8-923f-f49b01029f5d.PNG)
+
+![retrieveapplications_update_2ndstep](https://user-images.githubusercontent.com/36928393/41066506-4e5692ce-69e2-11e8-8f99-f07793e6f727.PNG)
+
+#### - Create shortlist of applicants (Shortlist)
+Creating and updating the candidate shortlist after each round of candidate evaluations is a critical piece of service integration for this process, as it effectively create a sort of workflow management system between the HR assistant and the Manager to know what the status of a particular instantiation of the recruitment process is at all times. To automaticalLy create and update the list with all the applicants which have applied for the job, we have decided to use Google Sheet, in order to automatically update column values. This automation is achieved several times throughout the process with the help of integromat, where we have connected the Google Sheet into the Camunda process.
 
 ![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/updateexcel-select.PNG?token=AjCUh9N2k4rlLsKpMwgqnWEocnGaGbm8ks5bG75GwA%3D%3D)
 
 ![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/updateexcel-update.PNG?token=AjCUh_ytaLz4OTE6YaYPyFI3obfq7qvGks5bG76QwA%3D%3D)
 
-##### Send mail task (Send)
+- Send mail task (Send)
 The mail task appears multiple times within the process. It is used to communicate between the different parties such as the applicants, to update them on their application (especially when they are no longer being considered for the position), and also to communicate with the Manager, as well as the interview panel.
 
-- For the mail integration Microsoft flow is used
+-For the mail integration Microsoft flow is used
 
-- Inside the microsoft flow one HTTP request along with the send-mail gateway for Gmail and one HTTP response has been configured.
+-Inside the microsoft flow one HTTP request along with the send-mail gateway for Gmail and one HTTP response has been configured.
 
 ![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/email1st.PNG?token=AjCUh1ms-uJRyl9456QzaUKDPpXjq1Tyks5bG7_lwA%3D%3D)
 
