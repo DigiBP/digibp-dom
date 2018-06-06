@@ -34,19 +34,25 @@ Applicants are interested in the posted position and apply for the job.
 ### Process Flow
 The recruitment process starts with the request of a department Manager for a new employee. The request goes to the Head of the department. Two possible routes can than be executed: 
 
-When the Department Head rejects the request, the process ends -- when he/she approves, the process proceeds. 
-When approved: The department head sends an approval notification to the department manager. When the 
+- When the Department Head rejects the request, the process ends.
+- When he/she approves, the process proceeds. 
+
+When approved: The Department Head sends an approval notification to the Department Manager. When the 
 manager gets the approval he/she then starts preparing the job description for the new position. 
-Again, Ttwo possible routes can than be executed: 
+Again, two possible routes can than be executed: 
 
 - either the open position is for a role that already exists in the company and has an existing job description, 
 - or a new job description needs to be prepared. 
 
-After finishing the job description, the Manager sends the description file to the HR 
-Department. In the HR Department, an employee finishes up the description file (adding things like the position start date, instructions to apply, etc.) and posts the description on the company website. After the job is posted, the Manager and HR employee involved in this instance of the process wait for two weeks while interested candidates submit their applications. After the two weeks, unsuitable 
-applications will be sorted out by HR staff and the remaining suitable applications are recorded in a list. This list is then forwarded to the Manager, who again sorts out unsuitable applicants, updates the list, and sends it to HR. Next, an HR employee conducts telephone interviews with the applicants that appear on the Manager's shortlist, in order to check the details of the candidates and to screen out anyone that the HR employee deems unsuitable.
+After finishing the job description, the Manager sends the description file to the HR Department. In the HR Department, an assistant finishes up the description file (adding things like the position start date, instructions to apply, etc.) and posts the description on the company website. After the job is posted, the Manager and HR employee involved in this instance of the process wait for two weeks while interested candidates submit their applications.
 
-The telephone interviews are evaluated on the basis of a decision-making table. After the interviews, candidates are sorted again and a rejection email is sent to all unsuccessful applicants. The list of applicants is updated once more and is sent to the Manager, who also sorts the list to include only candidates that he/she feels are worth interviewing in/person. Again, all applicants that are no longer being considred for the position will receive a rejection email from HR. The Manager then sends the new list back to HR, and based on this new list, personal interviews with the remaining candidates are arranged. To do this, the HR employee first checks the schedule availability of the interview panel members, and proposes certain dates and times to the candidates that will be interviewed. Once the candidates confirm their availibility for the selected dates and times, the HR employee informs interview time confirmations to the candidates and the interview panel. At the appropriate date and time, each candidate is evaluated by the interview panel through an in-person interview, using a decision table that gives each candidate a score. Candidates are then ranked from highest to lowest score, and the interview panel makes a selection of their favourite candidates. This list is sent to the Manager, who makes the final decision about which candidate he/she would like to hire for the open position.
+After the two weeks, unsuitable applications will be sorted out by HR staff and the remaining suitable applications are recorded in a list. This list is then forwarded to the Manager, who again sorts out unsuitable applicants, updates the list, and sends it to HR.
+
+Next, an HR employee conducts telephone interviews with the applicants that appear on the Manager's shortlist, in order to check the details of the candidates and to screen out anyone that the HR employee deems unsuitable. The telephone interviews are evaluated on the basis of a decision-making table. 
+
+After the interviews, candidates are sorted again and a rejection email is sent to all unsuccessful applicants. The list of applicants is updated once more and is sent to the Manager, who also sorts the list to include only candidates that he/she feels are worth interviewing in/person. Again, all applicants that are no longer being considred for the position will receive a rejection email from HR. The Manager then sends the new list back to HR, and based on this new list, personal interviews with the remaining candidates are arranged. To do this, the HR employee first checks the schedule availability of the interview panel members, and proposes certain dates and times to the candidates that will be interviewed. Once the candidates confirm their availibility for the selected dates and times, the HR employee informs interview time confirmations to the candidates and the interview panel.
+
+At the appropriate date and time, each candidate is evaluated by the interview panel through an in-person interview, using a decision table that gives each candidate a score. Candidates are then ranked from highest to lowest score, and the interview panel makes a selection of their favourite candidates. This list is sent to the Manager, who makes the final decision about which candidate he/she would like to hire for the open position.
 
 This decision is communicated to the HR employee, who subsequently informs all unsuccessful candidates that the job has been offered to another candidate, and informs the chosen candidate that they are being offered the position. The HR employee then sends the contract 
 to the decided candidate. Once the contract has been signed, the process is completed.
@@ -54,11 +60,24 @@ to the decided candidate. Once the contract has been signed, the process is comp
 ![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/Bildschirmfoto%202018-05-24%20um%2014.46.10.png?token=AjCUh2nvx1PEy67KM8kxTyxqFaXyMHREks5bG7auwA%3D%3D)
 
 ### Decision Automation
-xxx
+- Interview Evaluation: Telephone Interview
+- Evaluate Candidate: In-Person Interview
+
+![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/Evaluate%20Candidate%20DMN.png?token=AjCUh_MSHd6V2tEd2MXCfWVVbtRKIHyQks5bG7jNwA%3D%3D)
+
+![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/Evaluate%20Candidate_BPM.png?token=AjCUh9xXjraeovD7gA7CM_atqyFnK2TFks5bG7kZwA%3D%3D)
 
 ### Service Integration
 #### APIs
-xxx
+- [Request for new employee](Request)
+- [Get existing job description](GetJob)
+- [Post Job](post)
+- [Create Shortlist of applicants](Shortlist)
+  - Upload Shortlist
+  - Update Shortlist
+  - Update candidate list with favorites
+- [Send mail Task](Send)
+  - Rejection of candidates
 
 #### Digital Assistant/Chatbot
 xxx
@@ -70,23 +89,6 @@ xxx
 xxx
 
 
-
-
-
-
-## Roles within the Process
-
-
-
-
-## Decision Tables
-
-- Interview Evaluation: Telephone Interview
-- Evaluate Candidate: In-Person Interview
-
-![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/Evaluate%20Candidate%20DMN.png?token=AjCUh_MSHd6V2tEd2MXCfWVVbtRKIHyQks5bG7jNwA%3D%3D)
-
-![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/Evaluate%20Candidate_BPM.png?token=AjCUh9xXjraeovD7gA7CM_atqyFnK2TFks5bG7kZwA%3D%3D)
 
 
 ## Service integration Tasks
