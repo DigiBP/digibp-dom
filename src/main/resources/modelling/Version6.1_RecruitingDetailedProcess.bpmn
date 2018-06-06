@@ -277,9 +277,9 @@
       <bpmn:userTask id="UserTask_1fvp05b" name="Call Candidate">
         <bpmn:extensionElements>
           <camunda:formData>
-            <camunda:formField id="ProvideReference" label="Can provide references" type="boolean" defaultValue="true, false" />
-            <camunda:formField id="PositionStartDate" label="Available for position start date?" type="boolean" defaultValue="true, false" />
-            <camunda:formField id="InterestedInPosition" label="Interested in position?" type="boolean" defaultValue="true, false" />
+            <camunda:formField id="ProvideReference" label="Can provide references" type="boolean" />
+            <camunda:formField id="PositionStartDate" label="Available for position start date?" type="boolean" />
+            <camunda:formField id="InterestedInPosition" label="Interested in position?" type="boolean" />
           </camunda:formData>
         </bpmn:extensionElements>
         <bpmn:incoming>SequenceFlow_14l15zb</bpmn:incoming>
