@@ -1,38 +1,35 @@
 ![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/recruitment.jpg?token=AjCUhxHgVTWjl5CuNBnzQtnPd_1e-Ur3ks5bG7ZEwA%3D%3D)
 
 
-### HR RECRUITMENT PROCESS
-### Digitalization of Business Processes - Group Dom
+# HR RECRUITMENT PROCESS
+# Digitalization of Business Processes - Group Dom
 
 
 ## Introduction
-# Process Scope
+### Process Scope
 xxx
 
-# Typical Challenges
+### Typical Challenges
 xxx
 
 ## Process Description
-# Roles
+### Process Flow
 xxx
 
-# Process Flow
+### Decision Automation
 xxx
 
-# Decision Automation
+### Service Integration
+#### APIs
 xxx
 
-# Service Integration
-APIs
+#### Digital Assistant/Chatbot
 xxx
 
-Digital Assistant/Chatbot
+#### Challenges
 xxx
 
-## Challenges
-xxx
-
-## Recommendations
+#### Recommendations
 xxx
 
 
