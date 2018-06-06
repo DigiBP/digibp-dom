@@ -1,7 +1,41 @@
 ![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/recruitment.jpg?token=AjCUhxHgVTWjl5CuNBnzQtnPd_1e-Ur3ks5bG7ZEwA%3D%3D)
 
 
-## Recruitment process - Process Description
+### HR RECRUITMENT PROCESS
+### Digitalization of Business Processes - Group Dom
+
+
+## Introduction
+# Process Scope
+xxx
+
+# Typical Challenges
+xxx
+
+## Process Description
+# Roles
+xxx
+
+# Process Flow
+xxx
+
+# Decision Automation
+xxx
+
+# Service Integration
+APIs
+xxx
+
+Digital Assistant/Chatbot
+xxx
+
+## Challenges
+xxx
+
+## Recommendations
+xxx
+
+
 
 In the following ReadMe file, the recruitment process is documented, including all its aspects and services within 
 the process.
