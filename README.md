@@ -125,12 +125,14 @@ After the two week waiting period has expired, the HR assistant will retrieve al
 #### - Create shortlist of applicants (Shortlist)
 Creating and updating the candidate shortlist after each round of candidate evaluations is a critical piece of service integration for this process, as it effectively create a sort of workflow management system between the HR assistant and the Manager to know what the status of a particular instantiation of the recruitment process is at all times. To automaticalLy create and update the list with all the applicants which have applied for the job, we have decided to use Google Sheet, in order to automatically update column values. This automation is achieved several times throughout the process with the help of integromat, where we have connected the Google Sheet into the Camunda process.
 
-![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/updateexcel-select.PNG?token=AjCUh9N2k4rlLsKpMwgqnWEocnGaGbm8ks5bG75GwA%3D%3D)
+###### Create candidate shortlist
+![createcandidatelist](https://user-images.githubusercontent.com/36928393/41066541-6d031026-69e2-11e8-9bb3-bbc32a432bdd.PNG)
 
-![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/updateexcel-update.PNG?token=AjCUh_ytaLz4OTE6YaYPyFI3obfq7qvGks5bG76QwA%3D%3D)
+###### Update shortlist
+![update_overview](https://user-images.githubusercontent.com/36928393/41068591-788328f2-69ea-11e8-87b6-40fe4bcc126e.PNG)
 
-- Send mail task (Send)
-The mail task appears multiple times within the process. It is used to communicate between the different parties such as the applicants, to update them on their application (especially when they are no longer being considered for the position), and also to communicate with the Manager, as well as the interview panel.
+#### - Send mail task (Send)
+The mail task appears multiple times within the process. It is used to communicate between the different parties such as the applicants, to update them on their application (especially when they are no longer being considered for the position, and receive a rejection email), and also to communicate with the Manager, as well as the Interview Panel.
 
 -For the mail integration Microsoft flow is used
 
