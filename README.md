@@ -64,7 +64,7 @@ to the decided candidate. Once the contract has been signed, the process is comp
 ![telephoneevaluationdmn](https://user-images.githubusercontent.com/36928393/41066204-6683633c-69e1-11e8-9493-7a86f32555d6.png)
 
 #### Evaluate Candidate: In-Person Interview
-![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/In-personEvaluationDMN.png?token=AjCUh9xXjraeovD7gA7CM_atqyFnK2TFks5bG7kZwA%3D%3D)
+![in-personevaluationdmn](https://user-images.githubusercontent.com/36928393/41066274-a5bb4a92-69e1-11e8-9bd4-ecfcdd64fb17.png)
 
 ### Service Integration
 #### Tools Used
@@ -89,7 +89,24 @@ In this case the data is identified by a business key. The service tasks are con
 
 For the integration with integromat and Camunda the Wiki page has been used, which was provided by the lectures.
 
+![getjob_overview](https://user-images.githubusercontent.com/36928393/41066376-ea908eac-69e1-11e8-8c23-596c570c010e.PNG)
+
+![jobdatasheet](https://user-images.githubusercontent.com/36928393/41066593-a0e67ec8-69e2-11e8-8e35-3e8627ccf113.PNG)
+
+![getjob_selectrows_1ststep](https://user-images.githubusercontent.com/36928393/41066390-f2127bcc-69e1-11e8-80f0-040311668600.PNG)
+
+![getjob_updaterows_2ndstep](https://user-images.githubusercontent.com/36928393/41066399-f9ebc448-69e1-11e8-8184-83b29fc0f199.PNG)
+
+![getjob_response_3rdstep](https://user-images.githubusercontent.com/36928393/41066408-ff5acf28-69e1-11e8-9556-6e8f017abcb5.PNG)
+
 ##### Post job (Post)
+Describe this step.
+
+![posttofb_overview](https://user-images.githubusercontent.com/36928393/41066352-d87632c6-69e1-11e8-89de-01a2a9743585.PNG)
+
+![posttofb_post](https://user-images.githubusercontent.com/36928393/41066443-1bb2da4e-69e2-11e8-88ec-6b7caea11c70.PNG)
+
+![facebook2](https://user-images.githubusercontent.com/36928393/41066466-2dd08e10-69e2-11e8-8a53-0e7f91169f32.PNG)
 
 ##### Create shortlist of applicants (Shortlist)
 - Upload Shortlist
