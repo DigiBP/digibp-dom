@@ -77,6 +77,8 @@ In order stay in the running and be considered for the position after the in-per
 - Integromat: For process automation  
   - connection & process integration
   - If trigger then action until loop (condition)
+![overviewscenarios_integromat](https://user-images.githubusercontent.com/36928393/41068600-86500400-69ea-11e8-87b8-7c88e7fa6d4b.PNG)
+
 - Dialogflow: Chatbot integration
 
 #### APIs
@@ -134,24 +136,33 @@ Creating and updating the candidate shortlist after each round of candidate eval
 #### - Send mail task (Send)
 The mail task appears multiple times within the process. It is used to communicate between the different parties such as the applicants, to update them on their application (especially when they are no longer being considered for the position, and receive a rejection email), and also to communicate with the Manager, as well as the Interview Panel.
 
+![overviewmailservices](https://user-images.githubusercontent.com/36928393/41068603-89e62a54-69ea-11e8-874f-1c84973fec86.PNG)
+
 -For the mail integration Microsoft flow is used
 
 -Inside the microsoft flow one HTTP request along with the send-mail gateway for Gmail and one HTTP response has been configured.
 
-![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/email1st.PNG?token=AjCUh1ms-uJRyl9456QzaUKDPpXjq1Tyks5bG7_lwA%3D%3D)
+![maildetail](https://user-images.githubusercontent.com/36928393/41068609-92053c3e-69ea-11e8-9775-ba932e28eacb.PNG)
 
 - In HTTP request we have used a json script containing the objects such as Emailadress, Emailsubject and emailbody
 
-![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/email2nd.PNG?token=AjCUhz-rg5AEx8j15pmi13HhWsglaBocks5bG8ALwA%3D%3D)
+![email2nd](https://user-images.githubusercontent.com/36928393/41068614-9798a9f6-69ea-11e8-9a82-99be83b0a4b8.PNG)
 
-![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/email3rd.PNG?token=AjCUh2hh0_lFpSx4lWRm0iUvCt5U3xjYks5bG8AVwA%3D%3D)
+![email3rd](https://user-images.githubusercontent.com/36928393/41068619-9d2ce51c-69ea-11e8-960c-20c8ce6f12ba.PNG)
 
 #### Digital Assistant/Chatbot
-xxx
+(PLEASE SOMEONE EXPLAIN THIS PART)
+![dialoghook](https://user-images.githubusercontent.com/36928393/41068660-d0b17538-69ea-11e8-8648-ac16d6dfc4fb.PNG)
+
+![dialogscreens](https://user-images.githubusercontent.com/36928393/41068655-cbae739c-69ea-11e8-8fe2-523598a1f736.PNG)
+
+![dialogscreen](https://user-images.githubusercontent.com/36928393/41068662-d37a6860-69ea-11e8-8bf4-ec8a1240d65c.PNG)
 
 #### Challenges
+Our main challenges in this project were to first get the process to an executable state, and of course, integrate services. Many ideas that we had at the beginning of the project did not materialize as they were too complex for our skill level. One particular challenge that we struggled with was making certain tasks or subproccesses able to instantiate multiple times, therefore allowing several applicants to be considered and move through the recruiment processes at the same time for the same role. Unfortunately we were not successful in this, but have labelled the tasks that should be executed multiple times (to allow for multiple applicants to be considered) in blue.
+
 - Service integration has been one of the biggest challanges regarding the automation.
-  - In particular, integrating the Alexa skill was very difficult. By the end we were able to integrate Alexa into the process, but problems occured when we tried to transfer the data to an external platform.
+  - In particular, integrating the Alexa skill was very difficult. By the end we were able to integrate a Dialogflow chatbot into the process, but problems occured when we tried to transfer the data to an external platform.
 
 #### Recommendations
 - To improve the process further, we would recommend the integration of an Alexa chatbot, to enable higher process efficiency and make the overall process easier for those involved by increasing the amount of automation.
