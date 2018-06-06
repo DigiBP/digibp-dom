@@ -68,44 +68,7 @@ to the decided candidate. Once the contract has been signed, the process is comp
 ![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/Evaluate%20Candidate_BPM.png?token=AjCUh9xXjraeovD7gA7CM_atqyFnK2TFks5bG7kZwA%3D%3D)
 
 ### Service Integration
-#### APIs
-- [Request for new employee](Request)
-- [Get existing job description](GetJob)
-- [Post Job](post)
-- [Create Shortlist of applicants](Shortlist)
-  - Upload Shortlist
-  - Update Shortlist
-  - Update candidate list with favorites
-- [Send mail Task](Send)
-  - Rejection of candidates
-
-#### Digital Assistant/Chatbot
-xxx
-
-#### Challenges
-xxx
-
-#### Recommendations
-xxx
-
-
-
-
-## Service integration Tasks
-
-- [Request for new employee](Request)
-- [Get existing job description](GetJob)
-- [Post Job](post)
-- [Create Shortlist of applicants](Shortlist)
-  - Upload Shortlist
-  - Update Shortlist
-  - Update candidate list with favorites
-- [Send mail Task](Send)
-  - Rejection of candidates
-
-
-## Tools used for process automation
-
+#### Tools Used
 - Camunda BPM modeler and DMN diagrams: To model the process
 - Camunda Platform / BPM for executing BPMN workflows and DMN decision tables
 - GitHub: For documentation, modelling and project artefacts and sharing the data within the Group
@@ -119,29 +82,20 @@ xxx
   - If trigger then action until loop (condition)
 - Dialogflow: Chatbot integration
 
-
-### Get existing job description
-
+#### APIs
+##### Get existing job description (GetJob)
 The service task "Get existing job description" has been defined as a service task, in order to make it easier for the participants to retrieve data. For that purpose the GoogleSheet has been connected to the process, or rather within the Task. 
 
 In this case the data is identified by a business key. The service tasks are connected to two Integromat scenario endpoints create-customer-data and read-customer-data as shown in the following animation:
 
 For the integration with integromat and Camunda the Wiki page has been used, which was provided by the lectures.
 
+##### Post job (Post)
 
-### Request for new employee
-
-The Task "Request for Employee" has been automated as follows: The department Manager doesn't need to write an Email notification to make the Request for a new Employee. He can use the dialogflow by simply typing in the answer to the following questions:
-
-1. Hi there, what is your preferred position? -> Answer: Position name
-2. What is the role of the job? -> Answer: Role
-3. Do you have a salary expectation? -> Answer: negotianable
-
-![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/dialogflowOne.PNG?token=AjCUh2xTw6qZ3RrwyTKBPy3_XkVJAfb0ks5bG7oIwA%3D%3D)
-
-- The input values/answers to the questions will then be summed up to one information base and sent to the Department Head.
-
-### Create Shortlist of applicants
+##### Create shortlist of applicants (Shortlist)
+- Upload Shortlist
+- Update Shortlist
+- Update candidate list with favorites
 
 To automaticaly create and update the list with all the applicants which have applied for the job, we have decided to use Google Sheet, in order to automaticly update column values. This automation is done with the help of integromat, where we have connected the Google Sheet into the Camunda process.
 
@@ -149,10 +103,8 @@ To automaticaly create and update the list with all the applicants which have ap
 
 ![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/updateexcel-update.PNG?token=AjCUh_ytaLz4OTE6YaYPyFI3obfq7qvGks5bG76QwA%3D%3D)
 
-
-### Send mail Task
-
-The mail task appears multiple times within the process. It is used to communicate between the different parties such as the applicants, to update them on their application and also to communicate with the Manager, as well as the interview panel.
+##### Send mail task (Send)
+The mail task appears multiple times within the process. It is used to communicate between the different parties such as the applicants, to update them on their application (especially when they are no longer being considered for the position), and also to communicate with the Manager, as well as the interview panel.
 
 - For the mail integration Microsoft flow is used
 
@@ -166,16 +118,16 @@ The mail task appears multiple times within the process. It is used to communica
 
 ![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/email3rd.PNG?token=AjCUh2hh0_lFpSx4lWRm0iUvCt5U3xjYks5bG8AVwA%3D%3D)
 
-### Overall Challanges and future recommendation 
+#### Digital Assistant/Chatbot
+xxx
 
-#### Challanges
-
+#### Challenges
 - Service integration has been one of the biggest challanges regarding the automation.
   - In particular, integrating the Alexa skill was very difficult. By the end we were able to integrate Alexa into the process, but problems occured when we tried to transfer the data to an external platform.
- 
-#### Future recommendation
 
+#### Recommendations
 - To improve the process further, we would recommend the integration of an Alexa chatbot, to enable higher process efficiency and make the overall process easier for those involved by increasing the amount of automation.
+
 
 
 ![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/Thank%20You.png?token=AjCUhxJRZf6stOqvFR5FIG0-Gpg_jdmEks5bG8aywA%3D%3D)
