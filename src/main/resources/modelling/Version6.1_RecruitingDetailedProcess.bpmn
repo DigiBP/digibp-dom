@@ -386,10 +386,10 @@
     <bpmn:userTask id="Task_0hchgiy" name="Email Details for rejection">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="emailaddress1" label="emailAddress" type="string" />
-          <camunda:formField id="emailSubject1" label="emailsubject" type="string" />
-          <camunda:formField id="emailBody1" label="email Body" type="string" />
-          <camunda:formField id="businessKey1" label="business Key" type="string" defaultValue="${strongUuidGenerator.getNextId()}" />
+          <camunda:formField id="emailaddress2" label="emailAddress" type="string" />
+          <camunda:formField id="emailSubject2" label="emailsubject" type="string" />
+          <camunda:formField id="emailBody2" label="email Body" type="string" />
+          <camunda:formField id="businessKey" label="business Key" type="string" defaultValue="${strongUuidGenerator.getNextId()}" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0s7s6ve</bpmn:incoming>
@@ -443,16 +443,15 @@
     <bpmn:userTask id="UserTask_18dhq40" name="Email Details for rejection">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="emailaddress1" label="emailAddress" type="string" />
-          <camunda:formField id="emailSubject1" label="emailsubject" type="string" />
-          <camunda:formField id="emailBody1" label="email Body" type="string" />
+          <camunda:formField id="emailaddress3" label="emailAddress" type="string" />
+          <camunda:formField id="emailSubject3" label="emailsubject" type="string" />
+          <camunda:formField id="emailBody3" label="email Body" type="string" />
           <camunda:formField id="businessKey" label="business Key" type="string" defaultValue="${strongUuidGenerator.getNextId()}" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0w2t48k</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0598cg3</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:sequenceFlow id="SequenceFlow_0w2t48k" sourceRef="ExclusiveGateway_1ojxcfo" targetRef="UserTask_18dhq40" />
     <bpmn:serviceTask id="ServiceTask_1yhh2z7" name="Send rejection mail">
       <bpmn:extensionElements>
         <camunda:inputOutput>
@@ -463,7 +462,7 @@
         <camunda:connector>
           <camunda:inputOutput>
             <camunda:inputParameter name="method">POST</camunda:inputParameter>
-            <camunda:inputParameter name="url"><![CDATA[https://prod-36.westeurope.logic.azure.com:443/workflows/2ed34ee9ad3c430a84c59871e6a2272b/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=vBC0HwCh3bnVOIEz7YsxpeZ62ExfQwB1N_3ql-EEM7U]]></camunda:inputParameter>
+            <camunda:inputParameter name="url"><![CDATA[https://prod-20.westeurope.logic.azure.com:443/workflows/386ad462664346a39f925a1ea75dba04/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=WIleVI409864gM5JNhntj-TWTwpJ45k5Zv53FfEPzZE]]></camunda:inputParameter>
             <camunda:inputParameter name="headers">
               <camunda:map>
                 <camunda:entry key="Content-Type">application/json</camunda:entry>
@@ -471,9 +470,9 @@
             </camunda:inputParameter>
             <camunda:inputParameter name="payload">
               <camunda:script scriptFormat="javascript"><![CDATA[out = JSON.stringify({
-    "emailaddress1": emailaddress1,
-    "emailSubject1": emailSubject1,
-    "emailBody1": emailBody1,
+    "emailaddress3": emailaddress3,
+    "emailSubject3": emailSubject3,
+    "emailBody3": emailBody3,
     "businessKey": execution.getBusinessKey()
 });]]></camunda:script>
             </camunda:inputParameter>
@@ -530,7 +529,7 @@
         <camunda:connector>
           <camunda:inputOutput>
             <camunda:inputParameter name="method">POST</camunda:inputParameter>
-            <camunda:inputParameter name="url"><![CDATA[https://prod-36.westeurope.logic.azure.com:443/workflows/2ed34ee9ad3c430a84c59871e6a2272b/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=vBC0HwCh3bnVOIEz7YsxpeZ62ExfQwB1N_3ql-EEM7U]]></camunda:inputParameter>
+            <camunda:inputParameter name="url"><![CDATA[https://prod-37.westeurope.logic.azure.com:443/workflows/2a6c0292b8eb4305aa26bf72292a8c96/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=zA7_bJYDzrf4Gv0MvMD612RK4Bv47qUC1e79vgC7qg4]]></camunda:inputParameter>
             <camunda:inputParameter name="headers">
               <camunda:map>
                 <camunda:entry key="Content-Type">application/json</camunda:entry>
@@ -538,9 +537,9 @@
             </camunda:inputParameter>
             <camunda:inputParameter name="payload">
               <camunda:script scriptFormat="javascript"><![CDATA[out = JSON.stringify({
-    "emailaddress1": emailaddress1,
-    "emailSubject1": emailSubject1,
-    "emailBody1": emailBody1,
+    "emailaddress2": emailaddress2,
+    "emailSubject2": emailSubject2,
+    "emailBody2": emailBody2,
     "businessKey": execution.getBusinessKey()
 });]]></camunda:script>
             </camunda:inputParameter>
@@ -724,7 +723,7 @@
     <bpmn:userTask id="UserTask_0w3z739" name="Choose job description">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="BusinessKey" label="Job ID" type="string" />
+          <camunda:formField id="JobTitle" label="Job Title" type="string" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_08nasyh</bpmn:incoming>
@@ -739,7 +738,7 @@
             <camunda:inputParameter name="method">POST</camunda:inputParameter>
             <camunda:inputParameter name="payload">
               <camunda:script scriptFormat="javascript"><![CDATA[out = JSON.stringify({
-        "BusinessKey": BusinessKey
+        "JobTitle": JobTitle
 });]]></camunda:script>
             </camunda:inputParameter>
             <camunda:inputParameter name="headers">
@@ -858,7 +857,7 @@ SalaryRange = object.SalaryRange;]]></camunda:script>
       <bpmn:extensionElements>
         <camunda:connector>
           <camunda:inputOutput>
-            <camunda:inputParameter name="url">https://hook.integromat.com/6cir4d4qno7b1qj376wxzeq7lybvbl4h</camunda:inputParameter>
+            <camunda:inputParameter name="url">https://hook.integromat.com/rbegdjjc8ptg1l5jurkgs3grkha1o9ng</camunda:inputParameter>
             <camunda:inputParameter name="method">POST</camunda:inputParameter>
             <camunda:inputParameter name="headers">
               <camunda:map>
@@ -898,7 +897,7 @@ SalaryRange = object.SalaryRange;]]></camunda:script>
     <bpmn:userTask id="UserTask_1jie7ip" name="Show success message">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="success" label="success" type="string" defaultValue="File is posted successfully to LinkedIn" />
+          <camunda:formField id="success" label="success" type="string" defaultValue="File is posted successfully to Facebook" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_0gdg1j2</bpmn:incoming>
@@ -1001,6 +1000,7 @@ Favorit= object.Favorit;]]></camunda:script>
       <bpmn:outgoing>SequenceFlow_1nmprkx</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:sequenceFlow id="SequenceFlow_1nmprkx" sourceRef="UserTask_0ls8jli" targetRef="UserTask_0kx5pd0" />
+    <bpmn:sequenceFlow id="SequenceFlow_0w2t48k" sourceRef="ExclusiveGateway_1ojxcfo" targetRef="UserTask_18dhq40" />
   </bpmn:process>
   <bpmn:process id="Process_1f2nl7c" isExecutable="false" />
   <bpmn:message id="Message_1xowzw4" name="Message_0qbucnu" />
@@ -1497,14 +1497,6 @@ Favorit= object.Favorit;]]></camunda:script>
       <bpmndi:BPMNShape id="UserTask_18dhq40_di" bpmnElement="UserTask_18dhq40">
         <dc:Bounds x="888" y="363" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="SequenceFlow_0w2t48k_di" bpmnElement="SequenceFlow_0w2t48k">
-        <di:waypoint x="853" y="444" />
-        <di:waypoint x="853" y="403" />
-        <di:waypoint x="888" y="403" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="868" y="417.5" width="0" height="12" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ServiceTask_1yhh2z7_di" bpmnElement="ServiceTask_1yhh2z7" bioc:stroke="#FB8C00" bioc:fill="#FFE0B2">
         <dc:Bounds x="1015" y="363" width="100" height="80" />
       </bpmndi:BPMNShape>
@@ -1840,6 +1832,14 @@ Favorit= object.Favorit;]]></camunda:script>
         <di:waypoint x="-3503" y="675" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="-3488" y="645" width="0" height="12" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0w2t48k_di" bpmnElement="SequenceFlow_0w2t48k">
+        <di:waypoint x="853" y="444" />
+        <di:waypoint x="853" y="403" />
+        <di:waypoint x="888" y="403" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="823" y="418" width="90" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
