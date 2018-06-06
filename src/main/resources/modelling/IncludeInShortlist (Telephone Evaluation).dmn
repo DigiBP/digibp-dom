@@ -15,7 +15,7 @@
     <semantic:informationRequirement>
       <semantic:requiredInput href="#inputData__1a80d250-5932-487e-b046-36c23d62912f" />
     </semantic:informationRequirement>
-    <semantic:decisionTable id="_d59c004a-5133-42fd-9183-3d70cad4d9e0" hitPolicy="ANY" outputLabel="Decision Logic 1">
+    <semantic:decisionTable id="_d59c004a-5133-42fd-9183-3d70cad4d9e0" outputLabel="Decision Logic 1">
       <semantic:input id="_b41e4bf8-33d6-49ec-81c3-37b6fca01223" label="Can provide references">
         <semantic:inputExpression typeRef="boolean">
           <semantic:text>ProvideReference</semantic:text>
@@ -46,29 +46,15 @@
           <semantic:text>false</semantic:text>
         </semantic:outputEntry>
       </semantic:rule>
-      <semantic:rule id="_463191ab-a4fc-415b-9a9e-9d9745b4cd6e">
-        <semantic:inputEntry id="_4758e7a2-8c4a-4aac-b3a5-289fa81da779">
-          <semantic:text>false</semantic:text>
-        </semantic:inputEntry>
-        <semantic:inputEntry id="_76bfaf14-75a1-4c40-bfb7-065e53683b98">
-          <semantic:text>-</semantic:text>
-        </semantic:inputEntry>
-        <semantic:inputEntry id="_e7fd6030-559c-45f2-9606-9aa7a0892568">
-          <semantic:text></semantic:text>
-        </semantic:inputEntry>
-        <semantic:outputEntry id="_30298bfb-b370-441f-83fe-1ee8df5a21a6">
-          <semantic:text>false</semantic:text>
-        </semantic:outputEntry>
-      </semantic:rule>
       <semantic:rule id="_cfbd6851-e954-4564-b8ed-6fdb676b23b5">
         <semantic:inputEntry id="_8247c5fe-3dc4-4d59-8bdd-4676d55f8452">
-          <semantic:text>true</semantic:text>
+          <semantic:text></semantic:text>
         </semantic:inputEntry>
         <semantic:inputEntry id="_d68b0f0f-48f6-46ff-ab52-ee5c90a153de">
           <semantic:text>false</semantic:text>
         </semantic:inputEntry>
         <semantic:inputEntry id="_f6b0f264-cb13-4c8e-8f76-6c300df075c3">
-          <semantic:text>true</semantic:text>
+          <semantic:text></semantic:text>
         </semantic:inputEntry>
         <semantic:outputEntry id="_1c9e14e9-3780-41a9-b170-8730e8a3c0d1">
           <semantic:text>false</semantic:text>
@@ -76,10 +62,10 @@
       </semantic:rule>
       <semantic:rule id="_e6d98c93-9553-4283-b2b8-4065b966cbf6">
         <semantic:inputEntry id="_d742bb8e-986a-448a-83c6-3e7adf99696c">
-          <semantic:text>true</semantic:text>
+          <semantic:text></semantic:text>
         </semantic:inputEntry>
         <semantic:inputEntry id="_d1fef624-49d8-4ab1-bcd8-ba04a38bcc5a">
-          <semantic:text>true</semantic:text>
+          <semantic:text></semantic:text>
         </semantic:inputEntry>
         <semantic:inputEntry id="_4649c116-f90f-40a1-82a4-bea32eb620f6">
           <semantic:text>false</semantic:text>
