@@ -693,7 +693,7 @@
           <camunda:formField id="Experience" label="experience" type="string" />
           <camunda:formField id="startDate" label="startDate" type="string" />
           <camunda:formField id="CandidateID" label="CandidateID" type="string" />
-          <camunda:formField id="Chosen" label="Is the candidate chosen for an interview?" type="boolean" />
+          <camunda:formField id="Chosen" label="Is the candidate chosen for an telephone interview?" type="boolean" />
           <camunda:formField id="businessKey" label="businessKey" type="string" />
         </camunda:formData>
       </bpmn:extensionElements>
