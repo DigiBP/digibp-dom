@@ -61,7 +61,7 @@ to the decided candidate. Once the contract has been signed, the process is comp
 
 ### Decision Automation
 #### Interview Evaluation: Telephone Interview
-![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/TelephoneEvaluationDMN.png?token=AjCUh_MSHd6V2tEd2MXCfWVVbtRKIHyQks5bG7jNwA%3D%3D)
+![telephoneevaluationdmn](https://user-images.githubusercontent.com/36928393/41066204-6683633c-69e1-11e8-9493-7a86f32555d6.png)
 
 #### Evaluate Candidate: In-Person Interview
 ![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/In-personEvaluationDMN.png?token=AjCUh9xXjraeovD7gA7CM_atqyFnK2TFks5bG7kZwA%3D%3D)
