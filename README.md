@@ -161,11 +161,17 @@ The mail task appears multiple times within the process. It is used to communica
 #### Challenges
 Our main challenges in this project were to first get the process to an executable state, and of course, integrate services. Many ideas that we had at the beginning of the project did not materialize as they were too complex for our skill level. One particular challenge that we struggled with was making certain tasks or subproccesses able to instantiate multiple times, therefore allowing several applicants to be considered and move through the recruiment processes at the same time for the same role. Unfortunately we were not successful in this, but have labelled the tasks that should be executed multiple times (to allow for multiple applicants to be considered) in blue.
 
-- Service integration has been one of the biggest challanges regarding the automation.
-  - In particular, integrating the Alexa skill was very difficult. By the end we were able to integrate a Dialogflow chatbot into the process, but problems occured when we tried to transfer the data to an external platform.
+![bluetasks](https://user-images.githubusercontent.com/36928393/41069223-3b9d1896-69ed-11e8-9519-3ccd71a8962c.png)
+
+Another area of the service integration that we found particularly difficult was integrating the Alexa skill was very difficult. By the end we were able to integrate a Dialogflow chatbot into the process, but problems occured when we tried to transfer the data to an external platform.
 
 #### Recommendations
-- To improve the process further, we would recommend the integration of an Alexa chatbot, to enable higher process efficiency and make the overall process easier for those involved by increasing the amount of automation.
+To improve the process further, we would of course recommend to adapt the process to accomodate tasks that can have multiple instantiations, but also the integration of an Alexa chatbot that would (what would it do exactly, how would it improve efficiency), to enable higher process efficiency and make the overall process easier for those involved by increasing the amount of automation.
+
+To ensure that candidates are also evaluated in a uniform and consistent manner, we would also recommend using Google Forms as a an evluation form that the Interview Panel members would file out during each candidates' interview, or shortly afterwards. This would ensure two things:
+-Uniform, non-biased evaluation of candidates by grading each applicant against the same evaluation criteria
+-Less rework, as these evaluation documents could be shared thoughout the organization (like the job descriptions)
+-Automated data collection from Interview Panel, which Manager could later analyze to make their final decision (instead of paper based notes and verbal conversation).
 
 
 
