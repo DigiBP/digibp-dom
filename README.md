@@ -6,15 +6,52 @@
 
 
 ## Introduction
+In the following paragraphs the recruitment process for a new position is described, including all the artefacts and integrated services within the process.
+
 ### Process Scope
-xxx
+For this project, the scope of the HR recruitment process has been defined to start with the request for a new employee to join the team, and ends when a new employee is successfully hired. Therefore, the onboarding and training of the new employee is not within scope.
 
 ### Typical Challenges
-xxx
+HR recruitment processes are often considered inefficient and somewhat messy. In general, the reasons behind this perception are that there are many complex decisions and instances of collaboration that need to occur in order to hire the "right" candidate. This takes a great deal of time and often requires several rounds of interviews for HR and Management to feel confident in their hiring decision. In the following paragraph we have detailed an example of a more efficient and innovative recruitment process through the use of decision automation and intelligent service integration.
+
 
 ## Process Description
+### Roles
+#### Internal
+HR assistant:
+The HR assistant plays an integral role in the recruitment processand is responsible for the majority of the tasks, acting as the intermediary between the applicants and Manager and Interview Panel.
+- Department Manager:
+The Manager initiates the recruitment process by requesting a new headcount for his/her team from the Department Head. The Manager can be seen as the Hiring Manager for the position's recruitment, as they will make the final decision about with candidate will be offered the role.
+- Interview Panel:
+The Interview Panel is a group of employees (3-5) assembled by the Manager, chosen for their experience in hiring employees, because they will work with the new employee hired, or because the Manager values their judgement. The Interview Panel together with the Manager will evaluate all candidates that make it to the second round of interviews.
+- Department Head:
+The Department Head is responsible for the department budget, and makes the decision about whether having a new headcount is possible or not.
+
+#### External
+- Applicants/Candidates
+Applicants are interested in the posted position and apply for the job.
+
 ### Process Flow
-xxx
+The recruitment process starts with the request of a department Manager for a new employee. The request goes to the Head of the department. Two possible routes can than be executed: 
+
+When the Department Head rejects the request, the process ends -- when he/she approves, the process proceeds. 
+When approved: The department head sends an approval notification to the department manager. When the 
+manager gets the approval he/she then starts preparing the job description for the new position. 
+Again, Ttwo possible routes can than be executed: 
+
+- either the open position is for a role that already exists in the company and has an existing job description, 
+- or a new job description needs to be prepared. 
+
+After finishing the job description, the Manager sends the description file to the HR 
+Department. In the HR Department, an employee finishes up the description file (adding things like the position start date, instructions to apply, etc.) and posts the description on the company website. After the job is posted, the Manager and HR employee involved in this instance of the process wait for two weeks while interested candidates submit their applications. After the two weeks, unsuitable 
+applications will be sorted out by HR staff and the remaining suitable applications are recorded in a list. This list is then forwarded to the Manager, who again sorts out unsuitable applicants, updates the list, and sends it to HR. Next, an HR employee conducts telephone interviews with the applicants that appear on the Manager's shortlist, in order to check the details of the candidates and to screen out anyone that the HR employee deems unsuitable.
+
+The telephone interviews are evaluated on the basis of a decision-making table. After the interviews, candidates are sorted again and a rejection email is sent to all unsuccessful applicants. The list of applicants is updated once more and is sent to the Manager, who also sorts the list to include only candidates that he/she feels are worth interviewing in/person. Again, all applicants that are no longer being considred for the position will receive a rejection email from HR. The Manager then sends the new list back to HR, and based on this new list, personal interviews with the remaining candidates are arranged. To do this, the HR employee first checks the schedule availability of the interview panel members, and proposes certain dates and times to the candidates that will be interviewed. Once the candidates confirm their availibility for the selected dates and times, the HR employee informs interview time confirmations to the candidates and the interview panel. At the appropriate date and time, each candidate is evaluated by the interview panel through an in-person interview, using a decision table that gives each candidate a score. Candidates are then ranked from highest to lowest score, and the interview panel makes a selection of their favourite candidates. This list is sent to the Manager, who makes the final decision about which candidate he/she would like to hire for the open position.
+
+This decision is communicated to the HR employee, who subsequently informs all unsuccessful candidates that the job has been offered to another candidate, and informs the chosen candidate that they are being offered the position. The HR employee then sends the contract 
+to the decided candidate. Once the contract has been signed, the process is completed.
+
+![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/Bildschirmfoto%202018-05-24%20um%2014.46.10.png?token=AjCUh2nvx1PEy67KM8kxTyxqFaXyMHREks5bG7auwA%3D%3D)
 
 ### Decision Automation
 xxx
@@ -34,40 +71,12 @@ xxx
 
 
 
-In the following ReadMe file, the recruitment process is documented, including all its aspects and services within 
-the process.
-The recruitment process starts with the request of a department Manager for a new employee. The request goes to the Head of the department. When the Department Head rejects the request, the process ends -- when he/she approves, the process proceeds. 
 
-When approved: The department head sends an approval notification to the department manager. When the 
-manager gets the approval he/she then starts preparing the job description for the new position. 
-Two possible routes can than be executed: 
 
-- either the open position is for a role that already exists in the company and has an existing job description, 
-- or a new job description needs to be prepared. 
-
-After finishing the job description, the Manager sends the description file to the HR 
-Department. In the HR Department, an employee finishes up the description file (adding things like the position start date, instructions to apply, etc.) and posts the description on the company 
-website. After the job is posted, the Manager and HR employee involved in this instance of the process wait for two weeks while interested candidates submit their applications. After the two weeks, unsuitable 
-applications will be sorted out by HR staff and the remaining suitable applications are recorded in a list. This list is then forwarded to the Manager, who 
-again sorts out unsuitable applicants, updates the list, and sends it to HR. Next, an HR employee conducts telephone interviews with the applicants that appear on the Manager's shortlist, in order to check the details of the candidates and to screen out anyone that the HR employee deems unsuitable.
-
-The telephone interviews are evaluated on the basis of a decision-making table. After the 
-interviews, candidates are sorted again and a rejection email is sent to all unsuccessful applicants. The list of applicants is updated once more and is sent to the 
-Manager, who also sorts the list to include only candidates that he/she feels are worth interviewing in/person. Again, all applicants that are no longer being considred for the position will receive a rejection email from HR. The Manager then sends the new list back to HR, and based on this new list, personal interviews 
-with the remaining candidates are arranged. To do this, the HR employee first checks the schedule availability of the interview panel members, and proposes certain dates and times to the candidates that will be interviewed. Once the candidates confirm their availibility for the selected dates and times, the HR employee informs interview time confirmations to the candidates and the interview panel. At the appropriate date and time, each candidate is evaluated by the interview panel through an in-person interview, using a decision table that gives each candidate a score. Candidates are then ranked from highest to lowest score, and the interview panel makes a selection of their favourite candidates. This list is sent to the Manager, who makes the final decision about which candidate he/she would like to hire for the open position.
-This decision is communicated to the HR employee, who subsequently informs all unsuccessful candidates that the job has been offered to another candidate, and informs the chosen candidate that they are being offered the position. The HR employee then sends the contract 
-to the decided candidate. Once the contract has been signed, the process is completed.
-
-![](https://raw.githubusercontent.com/DigiBP/digibp-dom/master/Report%20Pics/Bildschirmfoto%202018-05-24%20um%2014.46.10.png?token=AjCUh2nvx1PEy67KM8kxTyxqFaXyMHREks5bG7auwA%3D%3D)
 
 ## Roles within the Process
 
-- HR Department
-- Department Manager
-- Interview Panel
-- Department Head
 
-- Applicant/s
 
 
 ## Decision Tables
