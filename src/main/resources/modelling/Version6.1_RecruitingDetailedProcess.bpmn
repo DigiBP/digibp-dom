@@ -357,7 +357,7 @@
         <bpmn:incoming>SequenceFlow_12owzjj</bpmn:incoming>
         <bpmn:outgoing>SequenceFlow_1rnjwyo</bpmn:outgoing>
       </bpmn:userTask>
-      <bpmn:userTask id="UserTask_1oox31n" name="Update Shortlist">
+      <bpmn:userTask id="UserTask_1oox31n" name="Clean up Shortlist">
         <bpmn:extensionElements>
           <camunda:formData />
         </bpmn:extensionElements>
