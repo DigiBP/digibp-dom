@@ -165,11 +165,9 @@ The chatbot configuration is done with Dialogflow There, sentences are defined w
 
 ![dialoghook](https://user-images.githubusercontent.com/36928393/41068660-d0b17538-69ea-11e8-8648-ac16d6dfc4fb.PNG)
 
-![dialogscreens](https://user-images.githubusercontent.com/36928393/41068655-cbae739c-69ea-11e8-8fe2-523598a1f736.PNG)
-
 ![dialogscreen](https://user-images.githubusercontent.com/36928393/41068662-d37a6860-69ea-11e8-8bf4-ec8a1240d65c.PNG)
 
-#### Challenges
+#### Project Challenges
 Our main challenges in this project were to first get the process to an executable state, and of course, integrate services. Many ideas that we had at the beginning of the project did not materialize as they were too complex for our skill level. One particular challenge that we struggled with was making certain tasks or subproccesses able to instantiate multiple times, therefore allowing several applicants to be considered and move through the recruitment processes at the same time for the same role. Unfortunately, we were not successful in this, but have labelled the tasks that should be executed multiple times (to allow for multiple applicants to be considered) in blue.
 
 ![bluetasks](https://user-images.githubusercontent.com/36928393/41069223-3b9d1896-69ed-11e8-9519-3ccd71a8962c.png)
