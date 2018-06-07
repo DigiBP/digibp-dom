@@ -15,7 +15,7 @@
     <semantic:informationRequirement>
       <semantic:requiredInput href="#inputData__1a80d250-5932-487e-b046-36c23d62912f" />
     </semantic:informationRequirement>
-    <semantic:decisionTable id="_d59c004a-5133-42fd-9183-3d70cad4d9e0" hitPolicy="ANY" outputLabel="Decision Logic 1">
+    <semantic:decisionTable id="_d59c004a-5133-42fd-9183-3d70cad4d9e0" outputLabel="Decision Logic 1">
       <semantic:input id="_b41e4bf8-33d6-49ec-81c3-37b6fca01223" label="Can provide references">
         <semantic:inputExpression typeRef="boolean">
           <semantic:text>ProvideReference</semantic:text>
