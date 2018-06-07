@@ -107,9 +107,9 @@ For the integration with integromat and Camunda the Wiki page has been used, whi
 #### - Post job (Post)
 In this service integration step, the HR assistant posts the job description to Facebook. The information for the post is provided by the given forms which have been filled with the service task “get job description”. The post is done into a page on Facebook and not in a company profile which would have been the correct way in order to get applicants, but Facebook does not allow to create fake-accounts. Therefore, the Facebook page “Digibp HR recruitment” is used. 
 
+![facebook1](https://user-images.githubusercontent.com/36928393/41085490-77ed5e74-6a37-11e8-9c74-9c84b7550663.PNG)
 
-
-Following figures show the Integromat services which result into the Facebook post.
+The following figures show the Integromat services which result into the Facebook post.
 
 ###### Post to Facebook overview
 ![posttofb_overview](https://user-images.githubusercontent.com/36928393/41066352-d87632c6-69e1-11e8-89de-01a2a9743585.PNG)
@@ -130,7 +130,7 @@ After the two week waiting period has expired, the HR assistant will retrieve al
 ![retrieveapplications_update_2ndstep](https://user-images.githubusercontent.com/36928393/41066506-4e5692ce-69e2-11e8-8f99-f07793e6f727.PNG)
 
 #### - Create shortlist of applicants (Shortlist)
-Creating and updating the candidate shortlist after each round of candidate evaluations is a critical piece of service integration for this process, as it effectively create a sort of workflow management system between the HR assistant and the Manager to know what the status of a particular instantiation of the recruitment process is at all times. To automatically create and update the list with all the applicants which have applied for the job, we have decided to use Google Sheet, in order to automatically update column values. The first input is given from the applicants themselves with providing their information through the chatbot as described in that section. The automated updates of the Google Sheet are achieved several times throughout the process with the help of Integromat, where we have connected the Google Sheet into the Camunda process.
+Creating and updating the candidate shortlist after each round of candidate evaluations is a critical piece of service integration for this process, as it effectively creates a sort of workflow management system between the HR assistant and the Manager to know what the status of a particular instantiation of the recruitment process is at all times. To automatically create and update the list with all the applicants which have applied for the job, we have decided to use Google Sheet, in order to automatically update column values. The first input is given from the applicants themselves with providing their information through the chatbot as described in that section. The automated updates of the Google Sheet are achieved several times throughout the process with the help of Integromat, where we have connected the Google Sheet into the Camunda process.
 
 ###### Create candidate shortlist
 ![createcandidatelist](https://user-images.githubusercontent.com/36928393/41066541-6d031026-69e2-11e8-9bb3-bbc32a432bdd.PNG)
@@ -139,9 +139,9 @@ Creating and updating the candidate shortlist after each round of candidate eval
 ![update_overview](https://user-images.githubusercontent.com/36928393/41068591-788328f2-69ea-11e8-87b6-40fe4bcc126e.PNG)
 
 #### - Send mail task (Send)
-The mail task appears multiple times within the process. It is used to communicate between the HR of the company and the applicants, to update them on their application (especially when they are no longer being considered for the position, and receive a rejection email), and also to provide them their interview appointment.
-For the mail integration Microsoft flow is used.-Inside the Microsoft flow one HTTP request along with the send-mail gateway for Gmail and one HTTP response has been configured. In the HTTP request we have used a json script containing the objects such as Emailadress, Emailsubject and Emailbody. As the recipient of the email and the content varies in the process, variables have been used so that the HR can enter the information flexible. 
+The mail task appears multiple times within the process. It is used to communicate between the HR of the company and the applicants, to The mail task appears multiple times within the process. It is used to communicate between the HR of the company and the applicants, to update them on their application (especially when they are no longer being considered for the position, and receive a rejection email), and also to provide them their interview appointment.
 
+For the mail integration Microsoft flow is used. Inside the Microsoft flow one HTTP request along with the send-mail gateway for Gmail and one HTTP response has been configured. In the HTTP request, we have used a json script containing the objects such as Emailadress, Emailsubject and Emailbody. As the recipient of the email and the content varies in the process, variables have been used so that the HR can enter the information flexible. 
 
 ![overviewmailservices](https://user-images.githubusercontent.com/36928393/41068603-89e62a54-69ea-11e8-874f-1c84973fec86.PNG)
 
@@ -158,10 +158,10 @@ For the mail integration Microsoft flow is used.-Inside the Microsoft flow one H
 ![email3rd](https://user-images.githubusercontent.com/36928393/41068619-9d2ce51c-69ea-11e8-960c-20c8ce6f12ba.PNG)
 
 #### Digital Assistant/Chatbot
-The chatbot is used to offer the applicants a more personaliyed function like a chatbot where they can apply for the job. The link between the chatbot and the job is given by the facebook post where the link is posted with every job description. By clicking the link the chatbot opens and the communication can be started as soon as the applicants enters a trigger with an invocation text Ex:“hi”. The chatbot is then asking for the required information which are then automatically inserted into the Google Sheet for the candidate information. 
-The concept used to realize this scenario is an inline intent while capturing values at the end of conversation. These values are then transferred to the webhooks and stored in the Google Spreadsheet.
+The chatbot is used to offer the applicants a more personalized function like a chatbot where they can apply for the job. The link between the chatbot and the job is given by the Facebook post where the link is posted with every job description. By clicking the link, the chatbot opens and the communication can be started as soon as the applicants enters a trigger with an invocation text E.g. “hi”. The chatbot is then asking for the required information which are then automatically inserted into the Google Sheet for the candidate information. The concept used to realize this scenario is an inline intent while capturing values at the end of conversation. These values are then transferred to the webhooks and stored in the Google Spreadsheet.
+
 Example Scenario:
-The chatbot configuration is done with Dialogflow There, sentences are defined which are asked to the user, and the user answers to the questions, which are then fetched by the bot. the answers are scanned and compared to required values in order to make sure that the applicant is  not given false information such as a date in a name field. To ease this, in our example we defined fix values which should be entered by the applicant to make sure that the process continues. In real life of course, the applicant can enter any values in the chat. 
+The chatbot configuration is done with Dialogflow There, sentences are defined which are asked to the user, and the user answers to the questions, which are then fetched by the bot. the answers are scanned and compared to required values in order to make sure that the applicant is not given false information such as a date in a name field. To ease this, in our example we defined fix values which should be entered by the applicant to make sure that the process continues. In real life of course, the applicant can enter any values in the chat. 
 
 ![dialoghook](https://user-images.githubusercontent.com/36928393/41068660-d0b17538-69ea-11e8-8648-ac16d6dfc4fb.PNG)
 
@@ -170,19 +170,20 @@ The chatbot configuration is done with Dialogflow There, sentences are defined w
 ![dialogscreen](https://user-images.githubusercontent.com/36928393/41068662-d37a6860-69ea-11e8-8bf4-ec8a1240d65c.PNG)
 
 #### Challenges
-Our main challenges in this project were to first get the process to an executable state, and of course, integrate services. Many ideas that we had at the beginning of the project did not materialize as they were too complex for our skill level. One particular challenge that we struggled with was making certain tasks or subproccesses able to instantiate multiple times, therefore allowing several applicants to be considered and move through the recruiment processes at the same time for the same role. Unfortunately we were not successful in this, but have labelled the tasks that should be executed multiple times (to allow for multiple applicants to be considered) in blue.
+Our main challenges in this project were to first get the process to an executable state, and of course, integrate services. Many ideas that we had at the beginning of the project did not materialize as they were too complex for our skill level. One particular challenge that we struggled with was making certain tasks or subproccesses able to instantiate multiple times, therefore allowing several applicants to be considered and move through the recruitment processes at the same time for the same role. Unfortunately, we were not successful in this, but have labelled the tasks that should be executed multiple times (to allow for multiple applicants to be considered) in blue.
 
 ![bluetasks](https://user-images.githubusercontent.com/36928393/41069223-3b9d1896-69ed-11e8-9519-3ccd71a8962c.png)
 
-Another area of the service integration that we found particularly difficult was integrating the Alexa skill was very difficult. By the end we were able to integrate a Dialogflow chatbot into the process, but problems occured when we tried to transfer the data to an external platform.
+Another area of the service integration that we found particularly difficult was integrating the Alexa skill was very difficult. By the end we were able to integrate a Dialogflow chatbot into the process, but problems occurred when we tried to transfer the data to an external platform.
 
 #### Recommendations
-To improve the process further, we would of course recommend to adapt the process to accomodate tasks that can have multiple instantiations, but also the integration of an Alexa chatbot that would (what would it do exactly, how would it improve efficiency), to enable higher process efficiency and make the overall process easier for those involved by increasing the amount of automation.
+To improve the process further, we would of course recommend adapting the process to accommodate tasks that can have multiple instantiations, but also the integration of an Alexa chatbot that would (what would it do exactly, how would it improve efficiency), to enable higher process efficiency and make the overall process easier for those involved by increasing the amount of automation.
 
-To ensure that candidates are also evaluated in a uniform and consistent manner, we would also recommend using Google Forms as a an evluation form that the Interview Panel members would file out during each candidates' interview, or shortly afterwards. This would ensure two things:
+To ensure that candidates are also evaluated in a uniform and consistent manner, we would also recommend using Google Forms as an evaluation form that the Interview Panel members would file out during each candidates' interview, or shortly afterwards. This would ensure two things:
 -Uniform, non-biased evaluation of candidates by grading each applicant against the same evaluation criteria
--Less rework, as these evaluation documents could be shared thoughout the organization (like the job descriptions)
+-Less rework, as these evaluation documents could be shared throughout the organization (like the job descriptions)
 -Automated data collection from Interview Panel, which Manager could later analyze to make their final decision (instead of paper based notes and verbal conversation).
+
 
 
 
