@@ -85,7 +85,7 @@ In order stay in the running and be considered for the position after the in-per
 #### - Get existing job description (GetJob)
 The task "Get existing job description" has been defined as a service task, in order to make it easier for the Manager to find out if there is already a job description existing for the open position that they will hire for. This reduces rework every time a new employee is hired, as the Manager just has to adapt an existing job description (already specific to the job title) to that specific position and department. For this purpose the GoogleSheet has been connected within the Task. 
 
-In this case the data is identified by a business key, which is the Job Title e.g. HR Director. The service tasks are connected to two Integromat scenario endpoints create-customer-data and read-customer-data as shown in the following animation:
+In this case the data is identified by a business key, which is the Job Title e.g. HR Director. The service task is connected to the Integromat scenario “getJob” to first provide the business key “HR Director” to the Google Sheet and retrieve all information from this position in the defined forms as shown in the following animation:
 
 For the integration with integromat and Camunda the Wiki page has been used, which was provided by the lectures.
 
@@ -105,7 +105,11 @@ For the integration with integromat and Camunda the Wiki page has been used, whi
 ![getjob_response_3rdstep](https://user-images.githubusercontent.com/36928393/41066408-ff5acf28-69e1-11e8-9556-6e8f017abcb5.PNG)
 
 #### - Post job (Post)
-In this service integration step, the HR assistant posts the job ad to Facebook. (MORE DETAIL HERE ON HOW THIS IS ACCOMPLISHED PLEASE)
+In this service integration step, the HR assistant posts the job description to Facebook. The information for the post is provided by the given forms which have been filled with the service task “get job description”. The post is done into a page on Facebook and not in a company profile which would have been the correct way in order to get applicants, but Facebook does not allow to create fake-accounts. Therefore the Facebook page “Digibp HR recruitment” is used. 
+
+FACEBOOK PAGE
+
+Following figures show the Integromat services which result into the Facebook post.
 
 ###### Post to Facebook overview
 ![posttofb_overview](https://user-images.githubusercontent.com/36928393/41066352-d87632c6-69e1-11e8-89de-01a2a9743585.PNG)
@@ -117,7 +121,8 @@ In this service integration step, the HR assistant posts the job ad to Facebook.
 ![facebook2](https://user-images.githubusercontent.com/36928393/41066466-2dd08e10-69e2-11e8-8a53-0e7f91169f32.PNG)
 
 #### - Retrieve applications (Get)
-After the two week waiting period has expired, the HR assistant will retrieve all applications that were collected through the Dialogflow chatbot (see "Digital Assistant/Chatbot" section for more detail). (MORE DETAIL NEEDED HERE ON HOW APPLICATIONS ARE RETRIEVED).
+After the two week waiting period has expired, the HR assistant will retrieve all applications that were collected through the Dialogflow chatbot (see "Digital Assistant/Chatbot" section for more detail). In the process two weeks are defined as five seconds in order to not wait two weeks until the process continues. This service is triggered by the candidate ID which is defined within the application service with the chatbot. The applicant information from the Google Sheet is retrieved with this candidate ID. The service is the same as already described for getting the job description. 
+
 ![retrieveapplications_overview](https://user-images.githubusercontent.com/36928393/41066490-45ae2862-69e2-11e8-91d4-8faea66c7de4.PNG)
 
 ![retrieveapplications_select_1ststep](https://user-images.githubusercontent.com/36928393/41066495-4993eade-69e2-11e8-923f-f49b01029f5d.PNG)
@@ -125,7 +130,7 @@ After the two week waiting period has expired, the HR assistant will retrieve al
 ![retrieveapplications_update_2ndstep](https://user-images.githubusercontent.com/36928393/41066506-4e5692ce-69e2-11e8-8f99-f07793e6f727.PNG)
 
 #### - Create shortlist of applicants (Shortlist)
-Creating and updating the candidate shortlist after each round of candidate evaluations is a critical piece of service integration for this process, as it effectively create a sort of workflow management system between the HR assistant and the Manager to know what the status of a particular instantiation of the recruitment process is at all times. To automaticalLy create and update the list with all the applicants which have applied for the job, we have decided to use Google Sheet, in order to automatically update column values. This automation is achieved several times throughout the process with the help of integromat, where we have connected the Google Sheet into the Camunda process.
+Creating and updating the candidate shortlist after each round of candidate evaluations is a critical piece of service integration for this process, as it effectively create a sort of workflow management system between the HR assistant and the Manager to know what the status of a particular instantiation of the recruitment process is at all times. To automatically create and update the list with all the applicants which have applied for the job, we have decided to use Google Sheet, in order to automatically update column values. The first input is given from the applicants themselves with providing their information through the chatbot as described in that section. The automated updates of the Google Sheet are achieved several times throughout the process with the help of Integromat, where we have connected the Google Sheet into the Camunda process.
 
 ###### Create candidate shortlist
 ![createcandidatelist](https://user-images.githubusercontent.com/36928393/41066541-6d031026-69e2-11e8-9bb3-bbc32a432bdd.PNG)
@@ -134,7 +139,9 @@ Creating and updating the candidate shortlist after each round of candidate eval
 ![update_overview](https://user-images.githubusercontent.com/36928393/41068591-788328f2-69ea-11e8-87b6-40fe4bcc126e.PNG)
 
 #### - Send mail task (Send)
-The mail task appears multiple times within the process. It is used to communicate between the different parties such as the applicants, to update them on their application (especially when they are no longer being considered for the position, and receive a rejection email), and also to communicate with the Manager, as well as the Interview Panel.
+The mail task appears multiple times within the process. It is used to communicate between the HR of the company and the applicants, to update them on their application (especially when they are no longer being considered for the position, and receive a rejection email), and also to provide them their interview appointment.
+For the mail integration Microsoft flow is used.-Inside the Microsoft flow one HTTP request along with the send-mail gateway for Gmail and one HTTP response has been configured. In the HTTP request we have used a json script containing the objects such as Emailadress, Emailsubject and Emailbody. As the recipient of the email and the content varies in the process, variables have been used so that the HR can enter the information flexible. 
+
 
 ![overviewmailservices](https://user-images.githubusercontent.com/36928393/41068603-89e62a54-69ea-11e8-874f-1c84973fec86.PNG)
 
@@ -151,7 +158,11 @@ The mail task appears multiple times within the process. It is used to communica
 ![email3rd](https://user-images.githubusercontent.com/36928393/41068619-9d2ce51c-69ea-11e8-960c-20c8ce6f12ba.PNG)
 
 #### Digital Assistant/Chatbot
-(PLEASE SOMEONE EXPLAIN THIS PART)
+The chatbot is used to offer the applicants a more personaliyed function like a chatbot where they can apply for the job. The link between the chatbot and the job is given by the facebook post where the link is posted with every job description. By clicking the link the chatbot opens and the communication can be started as soon as the applicants enters a trigger with an invocation text Ex:“hi”. The chatbot is then asking for the required information which are then automatically inserted into the Google Sheet for the candidate information. 
+The concept used to realize this scenario is an inline intent while capturing values at the end of conversation. These values are then transferred to the webhooks and stored in the Google Spreadsheet.
+Example Scenario:
+The chatbot configuration is done with Dialogflow There, sentences are defined which are asked to the user, and the user answers to the questions, which are then fetched by the bot. the answers are scanned and compared to required values in order to make sure that the applicant is  not given false information such as a date in a name field. To ease this, in our example we defined fix values which should be entered by the applicant to make sure that the process continues. In real life of course, the applicant can enter any values in the chat. 
+
 ![dialoghook](https://user-images.githubusercontent.com/36928393/41068660-d0b17538-69ea-11e8-8648-ac16d6dfc4fb.PNG)
 
 ![dialogscreens](https://user-images.githubusercontent.com/36928393/41068655-cbae739c-69ea-11e8-8fe2-523598a1f736.PNG)
