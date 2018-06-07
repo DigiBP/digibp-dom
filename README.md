@@ -2,7 +2,7 @@
 
 
 # HR RECRUITMENT PROCESS
-# Digitalization of Business Processes - Group Dom
+# Digitalization of Business Processes - Group Dom (M. Adnan, T. Brändlin, C. Frank, L. Pfirter)
 
 
 ## Introduction
